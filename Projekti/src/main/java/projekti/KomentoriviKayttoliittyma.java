@@ -22,10 +22,24 @@ public class KomentoriviKayttoliittyma implements KayttoliittymaRajapinta{
 
 
     public Viite annaViite() {
-        String syote = lukija.nextLine();
-        if(syote.equalsIgnoreCase("lopeta") || syote == null){
+        String syote;
+        
+        while(true){
+            syote = lukija.nextLine();
+            if(syote == null){
+                naytaOhjeet();
+                continue;
+            }
+            if(syote.equalsIgnoreCase("lopeta") || syote.equalsIgnoreCase("lisaa")){
+                break;
+            }
+            naytaOhjeet();
+        }
+        
+        if(syote.equalsIgnoreCase("lopeta")){
             return null;
         }
+        
         if(syote.equalsIgnoreCase("lisaa")){
             System.out.println("Kirjoita ensin, minkä tiedon viitteestä aiot antaa (esim \"author\"),"
                 + " ja sen jälkeen enter. seuraavalle riville kirjailijan nimi.");
@@ -35,7 +49,7 @@ public class KomentoriviKayttoliittyma implements KayttoliittymaRajapinta{
         Viite uusi = new Viite();
         
         syote = lukija.nextLine();
-        while(!syote.equalsIgnoreCase("lopeta") || syote == null){
+        while(!syote.equalsIgnoreCase("lopeta")){
             tarkistaAakkoset(syote);
             uusi.lisaaTietoa(syote);
             syote = lukija.nextLine();
