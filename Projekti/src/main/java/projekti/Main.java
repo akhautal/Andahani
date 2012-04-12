@@ -11,7 +11,7 @@ package projekti;
 public class Main {
     public static void main(String[] args) {
         ViitteidenKasittelija kasittelija = new ViitteidenKasittelija
-                (new KomentoriviKayttoliittyma(), new CSVtallentaja());
+                (new KomentoriviKayttoliittyma(new KonsoliIO()), new CSVtallentaja());
         kasittelija.kaynnista();
     }
 }
