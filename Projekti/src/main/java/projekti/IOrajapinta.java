@@ -9,8 +9,6 @@ package projekti;
  * @author hanna
  */
 public interface IOrajapinta {
-    
-    void tulosta(String tuloste);
-    
-    String lue();
+    public void tulosta(String tuloste);
+    public String lue();
 }
