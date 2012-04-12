@@ -1,4 +1,4 @@
-/*
+/* 
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
@@ -43,13 +43,13 @@ public class KomentoriviKayttoliittyma implements KayttoliittymaRajapinta{
         if(syote.equalsIgnoreCase("lisaa")){
             io.tulosta("Kirjoita ensin, minkä tiedon viitteestä aiot antaa (esim \"author\"),"
                 + " ja sen jälkeen enter. seuraavalle riville kirjailijan nimi.");
-            io.tulosta("\"lopeta\" lopettaa.");
+            io.tulosta("tyhjä lopettaa.");
         }
         
         Viite uusi = new Viite();
         
         syote = io.lue();
-        while(!syote.equalsIgnoreCase("lopeta")){
+        while(!syote.equalsIgnoreCase("")){
             tarkistaAakkoset(syote);
             uusi.lisaaTietoa(syote);
             syote = io.lue();

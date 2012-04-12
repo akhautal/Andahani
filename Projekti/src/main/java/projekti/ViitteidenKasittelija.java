@@ -12,8 +12,8 @@ public class ViitteidenKasittelija {
     KayttoliittymaRajapinta kayttoliittyma;
     TallentajaRajapinta tallentaja;
     
-    public ViitteidenKasittelija(KayttoliittymaRajapinta kj, TallentajaRajapinta tallentaja){
-        this.kayttoliittyma = kj;
+    public ViitteidenKasittelija(KayttoliittymaRajapinta kl, TallentajaRajapinta tallentaja){
+        this.kayttoliittyma = kl;
         this.tallentaja = tallentaja;
     }
     
