@@ -3,45 +3,59 @@
  * and open the template in the editor.
  */
 package projekti;
-import java.util.Scanner;
+
 /**
  *
  * @author hanna
  */
 public class KomentoriviKayttoliittyma implements KayttoliittymaRajapinta{
-    private Scanner lukija;
+    private IOrajapinta io;
     
-    public KomentoriviKayttoliittyma(){
-        lukija = new Scanner(System.in);
+    public KomentoriviKayttoliittyma(IOrajapinta io){
+        this.io = io;
     }
 
     public void naytaOhjeet() {
-        System.out.println("\"lisaa\" aloittaa uuden viitteen lisäyksen.");
-        System.out.println("\"lopeta\" lopettaa.");
+        io.tulosta("\"lisaa\" aloittaa uuden viitteen lisäyksen.");
+        io.tulosta("\"lopeta\" lopettaa.");
     }
 
 
     public Viite annaViite() {
-        String syote = lukija.nextLine();
-        if(syote.equalsIgnoreCase("lopeta") || syote == null){
+        String syote;
+        
+        while(true){
+            syote = io.lue();
+            if(syote == null){
+                naytaOhjeet();
+                continue;
+            }
+            if(syote.equalsIgnoreCase("lopeta") || syote.equalsIgnoreCase("lisaa")){
+                break;
+            }
+            naytaOhjeet();
+        }
+        
+        if(syote.equalsIgnoreCase("lopeta")){
             return null;
         }
+        
         if(syote.equalsIgnoreCase("lisaa")){
-            System.out.println("Kirjoita ensin, minkä tiedon viitteestä aiot antaa (esim \"author\"),"
+            io.tulosta("Kirjoita ensin, minkä tiedon viitteestä aiot antaa (esim \"author\"),"
                 + " ja sen jälkeen enter. seuraavalle riville kirjailijan nimi.");
-            System.out.println("\"lopeta\" lopettaa.");
+            io.tulosta("\"lopeta\" lopettaa.");
         }
         
         Viite uusi = new Viite();
         
-        syote = lukija.nextLine();
-        while(!syote.equalsIgnoreCase("lopeta") || syote == null){
+        syote = io.lue();
+        while(!syote.equalsIgnoreCase("lopeta")){
             tarkistaAakkoset(syote);
             uusi.lisaaTietoa(syote);
-            syote = lukija.nextLine();
+            syote = io.lue();
         }
         
-        System.out.println("lisätään syöte järjestelmään.");
+        io.tulosta("lisätään syöte järjestelmään.");
         naytaOhjeet();
         return uusi;
     }
