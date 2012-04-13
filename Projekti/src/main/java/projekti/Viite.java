@@ -4,23 +4,32 @@
  */
 package projekti;
 
-import java.util.ArrayList;
 /**
  *
  * @author hanna
  */
 public class Viite {
-    private ArrayList<String> tiedot;
+   
+    private String[][] tiedot = {
+        {"author", ""},
+        {"title",  ""},
+        {"booktitle", ""},
+        {"journal", ""},
+        {"volume", ""}, 
+        {"number", ""},
+        {"year", ""},
+        {"pages", ""},
+        {"publisher", ""},
+        {"address", ""}
+    };
     
-    public Viite(){
-        tiedot = new ArrayList<String>();
+    public void lisaaTietoa(String command, String syote){
+       for(int i = 0; i < 10; i++) {
+           if(tiedot[i][0].equals(command)) tiedot[i][1] = syote; 
+       }
     }
     
-    public void lisaaTietoa(String syote){
-        tiedot.add(syote);
-    }
-    
-    public ArrayList<String> annaTiedot(){
+    public String[][] annaTiedot(){
         return tiedot;
     }
 }
