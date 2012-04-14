@@ -4,23 +4,39 @@
  */
 package projekti;
 
-import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Set;
 /**
  *
  * @author hanna
  */
 public class Viite {
-    private ArrayList<String> tiedot;
+    private HashMap<String, String> tiedot;
     
     public Viite(){
-        tiedot = new ArrayList<String>();
+        tiedot = new HashMap<String, String>();
     }
     
-    public void lisaaTietoa(String syote){
-        tiedot.add(syote);
+    public void lisaaTietoa(String kentta, String syote){
+        tiedot.put(kentta, syote);
     }
     
-    public ArrayList<String> annaTiedot(){
-        return tiedot;
+    public boolean onkoKenttaa(String kentta){
+        return tiedot.containsKey(kentta);
+    }
+    
+    public String getTieto(String kentta){
+        return tiedot.get(kentta);
+    }
+    public String[] getKentat(){
+        Object[] apukentat = tiedot.keySet().toArray();
+        String[] kentat = new String[apukentat.length];
+        
+        int i = 0;
+        while(i < kentat.length){
+            kentat[i] = (String)apukentat[i];
+            i++;
+        }
+        return kentat;
     }
 }

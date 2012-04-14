@@ -41,27 +41,52 @@ public class KomentoriviKayttoliittyma implements KayttoliittymaRajapinta{
         }
         
         if(syote.equalsIgnoreCase("lisaa")){
-            io.tulosta("Kirjoita ensin, minkä tiedon viitteestä aiot antaa (esim \"author\"),"
-                + " ja sen jälkeen enter. seuraavalle riville kirjailijan nimi.");
-            io.tulosta("tyhjä lopettaa.");
+            String millainenViite = kysyViitteenLaatu();
+            Viite uusi = kysySyotetta(millainenViite);
+            io.tulosta("\nLisätään syöte järjestelmään.");
+            naytaOhjeet();
+            return uusi;
         }
         
+        return null;
+    }
+    
+    
+    private Viite kysySyotetta(String millainenViite){
+        String[] kentat = {"label", "author", "title", "year", "publisher", "booktitle", "pages", 
+            "journal", "volume", "number",  "address"};
+        String syote;
         Viite uusi = new Viite();
+        int i = 0;
         
-        syote = io.lue();
-        while(!syote.equalsIgnoreCase("")){
-            tarkistaAakkoset(syote);
-            uusi.lisaaTietoa(syote);
+        uusi.lisaaTietoa("millainenViite", millainenViite);
+        while(i < kentat.length){
+            io.tulosta(kentat[i]);
             syote = io.lue();
+            if(syote != null && !syote.equals("")){
+                uusi.lisaaTietoa(kentat[i], syote);
+            }
+            i++;
         }
-        
-        io.tulosta("lisätään syöte järjestelmään.");
-        naytaOhjeet();
         return uusi;
     }
     
-    // tekee jotain jos syötteessä on ääkkösiä
-    private void tarkistaAakkoset(String syote){
-        
+    private String kysyViitteenLaatu(){
+        io.tulosta("Millaisen viitteen haluat lisätä?");
+        io.tulosta("(anna numero)");
+        io.tulosta("1. @inproceedings \n2. @book \n3. @article");
+        String vastaus = io.lue();
+        while(!vastaus.equals("1") && !vastaus.equals("2") && !vastaus.equals("3")){
+            io.tulosta("(anna numero)");
+            io.tulosta("1. @inproceedings \n2. @book \n3. @article");
+            vastaus = io.lue();
+        }
+        if(vastaus.equals("1")){
+            return "@inproceedings";
+        }
+        else if (vastaus.equals("2")){
+            return "@book";
+        }
+        return "@article";
     }
 }
