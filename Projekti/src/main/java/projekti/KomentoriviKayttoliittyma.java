@@ -11,18 +11,20 @@ package projekti;
 public class KomentoriviKayttoliittyma implements KayttoliittymaRajapinta{
     private IOrajapinta io;
     
-    public KomentoriviKayttoliittyma(IOrajapinta io){
+    public KomentoriviKayttoliittyma(IOrajapinta io) { 
         this.io = io;
     }
 
     public void naytaOhjeet() {
         io.tulosta("\"lisaa\" aloittaa uuden viitteen lisäyksen.");
         io.tulosta("\"lopeta\" lopettaa.");
+        io.tulosta("\"lista\" listaa kaikki viitteet.");
     }
 
 
     public Viite annaViite() {
         String syote;
+        String command;
         
         while(true){
             syote = io.lue();
@@ -33,33 +35,39 @@ public class KomentoriviKayttoliittyma implements KayttoliittymaRajapinta{
             if(syote.equalsIgnoreCase("lopeta") || syote.equalsIgnoreCase("lisaa")){
                 break;
             }
+            if(syote.equalsIgnoreCase("lista")){
+                CSVtallentaja tallentaja = new CSVtallentaja();
+                tallentaja.tulosta();
+            }
             naytaOhjeet();
         }
-        
+       
         if(syote.equalsIgnoreCase("lopeta")){
             return null;
         }
         
         if(syote.equalsIgnoreCase("lisaa")){
-            String millainenViite = kysyViitteenLaatu();
-            Viite uusi = kysySyotetta(millainenViite);
-            io.tulosta("\nLisätään syöte järjestelmään.");
-            naytaOhjeet();
-            return uusi;
+//            io.tulosta("Kirjoita ensin, minkä tiedon viitteestä aiot antaa (esim \"author\"),"
+//                + " ja sen jälkeen enter. seuraavalle riville kirjailijan nimi.");
+//            io.tulosta("tyhjä lopettaa.");
         }
         
-        return null;
+        Viite uusi = kysySyotetta();
+        
+        io.tulosta("lisätään syöte järjestelmään.");
+        naytaOhjeet();
+        return uusi;
     }
     
     
-    private Viite kysySyotetta(String millainenViite){
+    private Viite kysySyotetta(){
         String[] kentat = {"label", "author", "title", "year", "publisher", "booktitle", "pages", 
             "journal", "volume", "number",  "address"};
         String syote;
         Viite uusi = new Viite();
         int i = 0;
         
-        uusi.lisaaTietoa("millainenViite", millainenViite);
+        uusi.lisaaTietoa("millainenViite", viitteenLaatu());
         while(i < kentat.length){
             io.tulosta(kentat[i]);
             syote = io.lue();
@@ -71,7 +79,7 @@ public class KomentoriviKayttoliittyma implements KayttoliittymaRajapinta{
         return uusi;
     }
     
-    private String kysyViitteenLaatu(){
+    private String viitteenLaatu(){
         io.tulosta("Millaisen viitteen haluat lisätä?");
         io.tulosta("(anna numero)");
         io.tulosta("1. @inproceedings \n2. @book \n3. @article");
@@ -89,4 +97,7 @@ public class KomentoriviKayttoliittyma implements KayttoliittymaRajapinta{
         }
         return "@article";
     }
+
+    
+  
 }
