@@ -11,6 +11,8 @@ package projekti;
 public class Viite {
    
     private String[][] tiedot = {
+        {"millainenViite", ""},
+        {"label", ""},
         {"author", ""},
         {"title",  ""},
         {"booktitle", ""},
@@ -24,7 +26,7 @@ public class Viite {
     };
     
     public void lisaaTietoa(String command, String syote){
-       for(int i = 0; i < 10; i++) {
+       for(int i = 0; i < 12; i++) {
            if(tiedot[i][0].equals(command)) tiedot[i][1] = syote; 
        }
     }
