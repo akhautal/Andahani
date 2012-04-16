@@ -4,10 +4,13 @@
  */
 package projekti;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author hanna
  */
 public interface TallentajaRajapinta {
     public void tallenna(Viite viite);
+    public void tulosta();
 }

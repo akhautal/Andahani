@@ -11,18 +11,21 @@ package projekti;
 public class KomentoriviKayttoliittyma implements KayttoliittymaRajapinta{
     private IOrajapinta io;
     
-    public KomentoriviKayttoliittyma(IOrajapinta io){
+    //tarvitsee tallentajan? rivi 40
+    public KomentoriviKayttoliittyma(IOrajapinta io) { 
         this.io = io;
     }
 
     public void naytaOhjeet() {
         io.tulosta("\"lisaa\" aloittaa uuden viitteen lisäyksen.");
         io.tulosta("\"lopeta\" lopettaa.");
+        io.tulosta("\"lista\" listaa kaikki viitteet.");
     }
 
 
     public Viite annaViite() {
         String syote;
+        String command;
         
         while(true){
             syote = io.lue();
@@ -33,9 +36,13 @@ public class KomentoriviKayttoliittyma implements KayttoliittymaRajapinta{
             if(syote.equalsIgnoreCase("lopeta") || syote.equalsIgnoreCase("lisaa")){
                 break;
             }
+            if(syote.equalsIgnoreCase("lista")){
+                CSVtallentaja tallentaja = new CSVtallentaja();
+                tallentaja.tulosta();
+            }
             naytaOhjeet();
         }
-        
+       
         if(syote.equalsIgnoreCase("lopeta")){
             return null;
         }
@@ -48,11 +55,14 @@ public class KomentoriviKayttoliittyma implements KayttoliittymaRajapinta{
         
         Viite uusi = new Viite();
         
-        syote = io.lue();
-        while(!syote.equalsIgnoreCase("")){
-            tarkistaAakkoset(syote);
-            uusi.lisaaTietoa(syote);
+
+        command = io.lue();
+        while(!command.equalsIgnoreCase("")){
             syote = io.lue();
+            uusi.lisaaTietoa(command, syote);
+            command = io.lue();
+        //   tarkistaAakkoset(syote);
+        //    uusi.lisaaTietoa(syote);          
         }
         
         io.tulosta("lisätään syöte järjestelmään.");
