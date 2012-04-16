@@ -11,7 +11,6 @@ package projekti;
 public class KomentoriviKayttoliittyma implements KayttoliittymaRajapinta{
     private IOrajapinta io;
     
-    //tarvitsee tallentajan? rivi 40
     public KomentoriviKayttoliittyma(IOrajapinta io) { 
         this.io = io;
     }
@@ -48,30 +47,57 @@ public class KomentoriviKayttoliittyma implements KayttoliittymaRajapinta{
         }
         
         if(syote.equalsIgnoreCase("lisaa")){
-            io.tulosta("Kirjoita ensin, minkä tiedon viitteestä aiot antaa (esim \"author\"),"
-                + " ja sen jälkeen enter. seuraavalle riville kirjailijan nimi.");
-            io.tulosta("tyhjä lopettaa.");
+//            io.tulosta("Kirjoita ensin, minkä tiedon viitteestä aiot antaa (esim \"author\"),"
+//                + " ja sen jälkeen enter. seuraavalle riville kirjailijan nimi.");
+//            io.tulosta("tyhjä lopettaa.");
         }
         
-        Viite uusi = new Viite();
-        
-
-        command = io.lue();
-        while(!command.equalsIgnoreCase("")){
-            syote = io.lue();
-            uusi.lisaaTietoa(command, syote);
-            command = io.lue();
-        //   tarkistaAakkoset(syote);
-        //    uusi.lisaaTietoa(syote);          
-        }
+        Viite uusi = kysySyotetta();
         
         io.tulosta("lisätään syöte järjestelmään.");
         naytaOhjeet();
         return uusi;
     }
     
-    // tekee jotain jos syötteessä on ääkkösiä
-    private void tarkistaAakkoset(String syote){
+    
+    private Viite kysySyotetta(){
+        String[] kentat = {"label", "author", "title", "year", "publisher", "booktitle", "pages", 
+            "journal", "volume", "number",  "address"};
+        String syote;
+        Viite uusi = new Viite();
+        int i = 0;
         
+        uusi.lisaaTietoa("millainenViite", viitteenLaatu());
+        while(i < kentat.length){
+            io.tulosta(kentat[i]);
+            syote = io.lue();
+            if(syote != null && !syote.equals("")){
+                uusi.lisaaTietoa(kentat[i], syote);
+            }
+            i++;
+        }
+        return uusi;
     }
+    
+    private String viitteenLaatu(){
+        io.tulosta("Millaisen viitteen haluat lisätä?");
+        io.tulosta("(anna numero)");
+        io.tulosta("1. @inproceedings \n2. @book \n3. @article");
+        String vastaus = io.lue();
+        while(!vastaus.equals("1") && !vastaus.equals("2") && !vastaus.equals("3")){
+            io.tulosta("(anna numero)");
+            io.tulosta("1. @inproceedings \n2. @book \n3. @article");
+            vastaus = io.lue();
+        }
+        if(vastaus.equals("1")){
+            return "@inproceedings";
+        }
+        else if (vastaus.equals("2")){
+            return "@book";
+        }
+        return "@article";
+    }
+
+    
+  
 }
