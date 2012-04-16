@@ -55,6 +55,7 @@ public class KomentoriviKayttoliittyma implements KayttoliittymaRajapinta{
         
         Viite uusi = new Viite();
         
+
         command = io.lue();
         while(!command.equalsIgnoreCase("")){
             syote = io.lue();
