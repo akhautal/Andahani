@@ -10,6 +10,10 @@ package projekti;
  */
 public class KomentoriviKayttoliittyma implements KayttoliittymaRajapinta{
     private IOrajapinta io;
+    private TallentajaRajapinta tallentaja;public KomentoriviKayttoliittyma(IOrajapinta io, TallentajaRajapinta tallentaja) { 
+        this.io = io;
+        this.tallentaja = tallentaja;
+    }
     
     public KomentoriviKayttoliittyma(IOrajapinta io) { 
         this.io = io;
@@ -19,12 +23,34 @@ public class KomentoriviKayttoliittyma implements KayttoliittymaRajapinta{
         io.tulosta("\"lisaa\" aloittaa uuden viitteen lisäyksen.");
         io.tulosta("\"lopeta\" lopettaa.");
         io.tulosta("\"lista\" listaa kaikki viitteet.");
+        io.tulosta("\n");
+    }
+    
+    public void kaynnista(){
+        naytaOhjeet();
+        while(true){
+            String syote = io.lue();
+            if(syote == null){
+                naytaOhjeet();
+                continue;
+            }
+            if(syote.equalsIgnoreCase("lopeta")){
+                break;
+            }
+            else if(syote.equalsIgnoreCase("lista")){
+                listaa();
+            }
+            else if(syote.equalsIgnoreCase("lisaa")){
+                lisaa();
+            }
+            naytaOhjeet();
+            
+        }
     }
 
 
     public Viite annaViite() {
         String syote;
-        String command;
         
         while(true){
             syote = io.lue();
@@ -47,9 +73,6 @@ public class KomentoriviKayttoliittyma implements KayttoliittymaRajapinta{
         }
         
         if(syote.equalsIgnoreCase("lisaa")){
-//            io.tulosta("Kirjoita ensin, minkä tiedon viitteestä aiot antaa (esim \"author\"),"
-//                + " ja sen jälkeen enter. seuraavalle riville kirjailijan nimi.");
-//            io.tulosta("tyhjä lopettaa.");
         }
         
         Viite uusi = kysySyotetta();
@@ -57,6 +80,22 @@ public class KomentoriviKayttoliittyma implements KayttoliittymaRajapinta{
         io.tulosta("lisätään syöte järjestelmään.");
         naytaOhjeet();
         return uusi;
+    }
+    private void lisaa(){
+        Viite uusi = kysySyotetta();
+        if(onkoLabelJoKaytossa(uusi)){
+            io.tulosta("Tämä label on jo käytössä! Uutta viitettä ei lisätä.");
+        }
+        else{
+            io.tulosta("lisätään viite järjestelmään.");
+            tallentaja.tallenna(uusi);
+        }
+        
+    }
+    
+    private void listaa(){
+        //CSVtallentaja tallentaja = new CSVtallentaja();
+        tallentaja.tulosta();
     }
     
     
@@ -97,7 +136,11 @@ public class KomentoriviKayttoliittyma implements KayttoliittymaRajapinta{
         }
         return "@article";
     }
-
+    
+    private boolean onkoLabelJoKaytossa(Viite viite){
+        //??? vaatii CSV-tiedoston lukua
+        return false;
+    }
     
   
 }

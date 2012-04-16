@@ -30,6 +30,9 @@ public class Viite {
            if(tiedot[i][0].equals(command)) tiedot[i][1] = syote; 
        }
     }
+    public String getLabel(){
+        return tiedot[1][1];
+    }
     
     public String[][] annaTiedot(){
         return tiedot;

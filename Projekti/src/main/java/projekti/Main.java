@@ -10,8 +10,11 @@ package projekti;
  */
 public class Main {
     public static void main(String[] args) {
-        ViitteidenKasittelija kasittelija = new ViitteidenKasittelija
-                (new KomentoriviKayttoliittyma(new KonsoliIO()), new CSVtallentaja());
-        kasittelija.kaynnista();
+//        ViitteidenKasittelija kasittelija = new ViitteidenKasittelija
+//                (new KomentoriviKayttoliittyma(new KonsoliIO()), new CSVtallentaja());
+//        kasittelija.kaynnista();
+        KomentoriviKayttoliittyma kl = new KomentoriviKayttoliittyma(new KonsoliIO(), 
+                new CSVtallentaja());
+        kl.kaynnista();
     }
 }
