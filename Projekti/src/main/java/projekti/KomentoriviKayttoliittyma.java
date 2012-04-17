@@ -97,10 +97,10 @@ public class KomentoriviKayttoliittyma implements KayttoliittymaRajapinta{
     
     private void listaa(){
         //CSVtallentaja tallentaja = new CSVtallentaja();
-        tallentaja.tulosta();
+        //tallentaja.tulosta();
         
-        //ArrayList<Viite> viitteet = tallentaja.lue();
-        //tulostaViitteet(viitteet);
+        ArrayList<Viite> viitteet = tallentaja.lueViitteet();
+        tulostaViitteet(viitteet);
     }
     
     
@@ -178,6 +178,7 @@ public class KomentoriviKayttoliittyma implements KayttoliittymaRajapinta{
         int i = 0;
         int j = 0;
         String[][] tiedot;
+        
         while(i < viitteet.size()){
             tiedot = viitteet.get(i).annaTiedot();
             while(j < tiedot.length){
@@ -186,6 +187,8 @@ public class KomentoriviKayttoliittyma implements KayttoliittymaRajapinta{
                 }
                 j++;
             }
+            io.tulosta("");
+            j = 0;
             i++;
         }
     }
