@@ -174,5 +174,20 @@ public class KomentoriviKayttoliittyma implements KayttoliittymaRajapinta{
         return syote;
     }
     
+    private void tulostaViitteet(ArrayList<Viite> viitteet){
+        int i = 0;
+        int j = 0;
+        String[][] tiedot;
+        while(i < viitteet.size()){
+            tiedot = viitteet.get(i).annaTiedot();
+            while(j < tiedot.length){
+                if(!tiedot[j][1].equals("")){
+                    io.tulosta(tiedot[j][0] + " = " + tiedot[j][1]);
+                }
+                j++;
+            }
+            i++;
+        }
+    }
   
 }
