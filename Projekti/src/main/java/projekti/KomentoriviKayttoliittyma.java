@@ -98,6 +98,9 @@ public class KomentoriviKayttoliittyma implements KayttoliittymaRajapinta{
     private void listaa(){
         //CSVtallentaja tallentaja = new CSVtallentaja();
         tallentaja.tulosta();
+        
+        //ArrayList<Viite> viitteet = tallentaja.lue();
+        //tulostaViitteet(viitteet);
     }
     
     
@@ -144,7 +147,19 @@ public class KomentoriviKayttoliittyma implements KayttoliittymaRajapinta{
         //??? vaatii CSV-tiedoston lukua
         ArrayList<Viite> viitteet = new ArrayList<Viite>();
         
+        if(viitteet.isEmpty()){
+            return false;
+        }
+        int i = 0;
+        while(i < viitteet.size()){
+            if(viitteet.get(i).getLabel().equalsIgnoreCase(ehdotettuLabel)){
+                return true;
+            }
+            i++;
+        }
+        
         return false;
+        
     }
 
     private String annaLabel() {
