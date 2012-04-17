@@ -13,4 +13,5 @@ import java.util.ArrayList;
 public interface TallentajaRajapinta {
     public void tallenna(Viite viite);
     public void tulosta();
+    public ArrayList<Viite> lueViitteet();
 }
