@@ -44,7 +44,7 @@ public class Bibtallentaja {
     public void tulosta() {
           try {
             
-            File file = new File("viitteet.csv");
+            File file = new File("sigproc.bib");
             Viite viite = new Viite();
             String[][] kategoriat = viite.annaTiedot();
             BufferedReader bufRdr  = new BufferedReader(new InputStreamReader(new FileInputStream(file),"UTF8"));
