@@ -102,7 +102,8 @@ public class CSVtallentaja implements TallentajaRajapinta{
      
             bufRdr.close();
         } catch (IOException ex) {
-            Logger.getLogger(CSVtallentaja.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+           // Logger.getLogger(CSVtallentaja.class.getName()).log(Level.SEVERE, null, ex);
         }
           
         return viitteet;
