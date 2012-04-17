@@ -1,0 +1,9 @@
+
+Viitteen lisääminen
+
+scenario "käyttäjä pystyy lisäämään uusi viite, jos annetut tiedot on oikein", {
+    given 'käyttäjä on valinnut komennon lisää'
+    when 'kategoriannimi on jokin tietystä merkkijonoista ja on mielivaltainen merkkijono'
+    then 'Uusi viite on lisätty'
+}
+
