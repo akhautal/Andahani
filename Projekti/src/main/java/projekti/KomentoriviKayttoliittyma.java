@@ -4,13 +4,16 @@
  */
 package projekti;
 
+import java.util.ArrayList;
 /**
  *
  * @author hanna
  */
 public class KomentoriviKayttoliittyma implements KayttoliittymaRajapinta{
     private IOrajapinta io;
-    private TallentajaRajapinta tallentaja;public KomentoriviKayttoliittyma(IOrajapinta io, TallentajaRajapinta tallentaja) { 
+    private TallentajaRajapinta tallentaja;
+    
+    public KomentoriviKayttoliittyma(IOrajapinta io, TallentajaRajapinta tallentaja) { 
         this.io = io;
         this.tallentaja = tallentaja;
     }
@@ -81,15 +84,14 @@ public class KomentoriviKayttoliittyma implements KayttoliittymaRajapinta{
         naytaOhjeet();
         return uusi;
     }
+    
+    
     private void lisaa(){
         Viite uusi = kysySyotetta();
-        if(onkoLabelJoKaytossa(uusi)){
-            io.tulosta("Tämä label on jo käytössä! Uutta viitettä ei lisätä.");
-        }
-        else{
-            io.tulosta("lisätään viite järjestelmään.");
-            tallentaja.tallenna(uusi);
-        }
+        
+        io.tulosta("lisätään viite järjestelmään.");
+        tallentaja.tallenna(uusi);
+        
         
     }
     
@@ -100,15 +102,16 @@ public class KomentoriviKayttoliittyma implements KayttoliittymaRajapinta{
     
     
     private Viite kysySyotetta(){
-        String[] kentat = {"label", "author", "title", "year", "publisher", "booktitle", "pages", 
+        String[] kentat = {"author", "title", "year", "publisher", "booktitle", "pages", 
             "journal", "volume", "number",  "address"};
         String syote;
         Viite uusi = new Viite();
         int i = 0;
         
         uusi.lisaaTietoa("millainenViite", viitteenLaatu());
+        uusi.lisaaTietoa("label", annaLabel());
         while(i < kentat.length){
-            io.tulosta(kentat[i]);
+            io.tulosta(kentat[i] + ":");
             syote = io.lue();
             if(syote != null && !syote.equals("")){
                 uusi.lisaaTietoa(kentat[i], syote);
@@ -137,9 +140,23 @@ public class KomentoriviKayttoliittyma implements KayttoliittymaRajapinta{
         return "@article";
     }
     
-    private boolean onkoLabelJoKaytossa(Viite viite){
+    private boolean onkoLabelJoKaytossa(String ehdotettuLabel){
         //??? vaatii CSV-tiedoston lukua
+        ArrayList<Viite> viitteet = new ArrayList<Viite>();
+        
         return false;
+    }
+
+    private String annaLabel() {
+        io.tulosta("Label:");
+        String syote = io.lue();
+        while(onkoLabelJoKaytossa(syote)){
+            io.tulosta("Tämä label on jo käytössä!");
+            io.tulosta("Valitse toinen label.");
+            io.tulosta("Label:");
+            syote = io.lue();
+        }
+        return syote;
     }
     
   
