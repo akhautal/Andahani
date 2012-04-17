@@ -53,36 +53,36 @@ public class KomentoriviKayttoliittyma implements KayttoliittymaRajapinta{
 
 
     public Viite annaViite() {
-        String syote;
-        
-        while(true){
-            syote = io.lue();
-            if(syote == null){
-                naytaOhjeet();
-                continue;
-            }
-            if(syote.equalsIgnoreCase("lopeta") || syote.equalsIgnoreCase("lisaa")){
-                break;
-            }
-            if(syote.equalsIgnoreCase("lista")){
-                CSVtallentaja tallentaja = new CSVtallentaja();
-                tallentaja.tulosta();
-            }
-            naytaOhjeet();
-        }
-       
-        if(syote.equalsIgnoreCase("lopeta")){
-            return null;
-        }
-        
-        if(syote.equalsIgnoreCase("lisaa")){
-        }
-        
-        Viite uusi = kysySyotetta();
-        
-        io.tulosta("lisätään syöte järjestelmään.");
-        naytaOhjeet();
-        return uusi;
+//        String syote;
+//        
+//        while(true){
+//            syote = io.lue();
+//            if(syote == null){
+//                naytaOhjeet();
+//                continue;
+//            }
+//            if(syote.equalsIgnoreCase("lopeta") || syote.equalsIgnoreCase("lisaa")){
+//                break;
+//            }
+//            if(syote.equalsIgnoreCase("lista")){
+//                tallentaja.tulosta();
+//            }
+//            naytaOhjeet();
+//        }
+//       
+//        if(syote.equalsIgnoreCase("lopeta")){
+//            return null;
+//        }
+//        
+//        if(syote.equalsIgnoreCase("lisaa")){
+//        }
+//        
+//        Viite uusi = kysySyotetta();
+//        
+//        io.tulosta("lisätään syöte järjestelmään.");
+//        naytaOhjeet();
+//        return uusi;
+        return null;
     }
     
     
