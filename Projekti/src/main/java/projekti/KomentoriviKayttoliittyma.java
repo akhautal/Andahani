@@ -95,10 +95,7 @@ public class KomentoriviKayttoliittyma implements KayttoliittymaRajapinta{
         
     }
     
-    private void listaa(){
-        //CSVtallentaja tallentaja = new CSVtallentaja();
-        //tallentaja.tulosta();
-        
+    private void listaa(){        
         ArrayList<Viite> viitteet = tallentaja.lueViitteet();
         tulostaViitteet(viitteet);
     }
@@ -144,15 +141,14 @@ public class KomentoriviKayttoliittyma implements KayttoliittymaRajapinta{
     }
     
     private boolean onkoLabelJoKaytossa(String ehdotettuLabel){
-        //??? vaatii CSV-tiedoston lukua
-        ArrayList<Viite> viitteet = new ArrayList<Viite>();
+        ArrayList<Viite> viitteet = tallentaja.lueViitteet();
         
         if(viitteet.isEmpty()){
             return false;
         }
         int i = 0;
         while(i < viitteet.size()){
-            if(viitteet.get(i).getLabel().equalsIgnoreCase(ehdotettuLabel)){
+            if(viitteet.get(i).getLabel().equalsIgnoreCase("\"" + ehdotettuLabel + "\"")){
                 return true;
             }
             i++;
@@ -182,7 +178,7 @@ public class KomentoriviKayttoliittyma implements KayttoliittymaRajapinta{
         while(i < viitteet.size()){
             tiedot = viitteet.get(i).annaTiedot();
             while(j < tiedot.length){
-                if(!tiedot[j][1].equals("")){
+                if(!tiedot[j][1].equals("\"\"")){
                     io.tulosta(tiedot[j][0] + " = " + tiedot[j][1]);
                 }
                 j++;
