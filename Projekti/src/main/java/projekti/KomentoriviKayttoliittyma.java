@@ -11,11 +11,13 @@ import java.util.ArrayList;
  */
 public class KomentoriviKayttoliittyma implements KayttoliittymaRajapinta{
     private IOrajapinta io;
-    private TallentajaRajapinta tallentaja;
+    private TiedostonkasittelijaRajapinta tiedostonKasittelija;
+    private Bibtallentaja bibtallentaja;
     
-    public KomentoriviKayttoliittyma(IOrajapinta io, TallentajaRajapinta tallentaja) { 
+    public KomentoriviKayttoliittyma(IOrajapinta io, TiedostonkasittelijaRajapinta tallentaja) { 
         this.io = io;
-        this.tallentaja = tallentaja;
+        this.tiedostonKasittelija = tallentaja;
+        bibtallentaja = new Bibtallentaja();
     }
     
     public KomentoriviKayttoliittyma(IOrajapinta io) { 
@@ -26,6 +28,7 @@ public class KomentoriviKayttoliittyma implements KayttoliittymaRajapinta{
         io.tulosta("\"lisaa\" aloittaa uuden viitteen lisäyksen.");
         io.tulosta("\"lopeta\" lopettaa.");
         io.tulosta("\"lista\" listaa kaikki viitteet.");
+        io.tulosta("\"bib\" tulostaa kaikki viitteet bibtex-muodossa.");
         io.tulosta("\n");
     }
     
@@ -45,6 +48,9 @@ public class KomentoriviKayttoliittyma implements KayttoliittymaRajapinta{
             }
             else if(syote.equalsIgnoreCase("lisaa")){
                 lisaa();
+            }
+            else if(syote.equalsIgnoreCase("bib")){
+                bibTulostus();
             }
             naytaOhjeet();
             
@@ -90,16 +96,20 @@ public class KomentoriviKayttoliittyma implements KayttoliittymaRajapinta{
         Viite uusi = kysySyotetta();
         
         io.tulosta("lisätään viite järjestelmään.");
-        tallentaja.tallenna(uusi);
+        tiedostonKasittelija.tallenna(uusi);
         
         
     }
     
     private void listaa(){        
-        ArrayList<Viite> viitteet = tallentaja.lueViitteet();
+        ArrayList<Viite> viitteet = tiedostonKasittelija.lueViitteet();
         
-        if(viitteet != null) tulostaViitteet(viitteet);
-        else io.tulosta("Viitteita ei ole tai tiedosto ei ole olemassa.\n"); 
+        if(viitteet != null) {
+            tulostaViitteet(viitteet);
+        }
+        else {
+            io.tulosta("Viitteita ei ole tai tiedosto ei ole olemassa.\n");
+        } 
     }
     
     
@@ -143,14 +153,15 @@ public class KomentoriviKayttoliittyma implements KayttoliittymaRajapinta{
     }
     
     private boolean onkoLabelJoKaytossa(String ehdotettuLabel){
-        ArrayList<Viite> viitteet = tallentaja.lueViitteet();
+        ArrayList<Viite> viitteet = tiedostonKasittelija.lueViitteet();
         
         if(viitteet == null){
             return false;
         }
+        
         int i = 0;
         while(i < viitteet.size()){
-            if(viitteet.get(i).getLabel().equalsIgnoreCase("\"" + ehdotettuLabel + "\"")){
+            if(viitteet.get(i).getLabel().equalsIgnoreCase(ehdotettuLabel)){
                 return true;
             }
             i++;
@@ -189,6 +200,50 @@ public class KomentoriviKayttoliittyma implements KayttoliittymaRajapinta{
             j = 0;
             i++;
         }
+    }
+
+    private void bibTulostus() {
+        String tiedostonimi = bibTiedostonNimi();
+        
+        ArrayList<Viite> viitteet = tiedostonKasittelija.lueViitteet();
+        int i = 0;
+        while(i < viitteet.size()){
+            bibtallentaja.tallenna(viitteet.get(i));
+            //bibtallentaja.tallenna(viitteet.get(i), tiedostonimi);
+            i++;
+        }
+    }
+    private String bibTiedostonNimi(){
+        io.tulosta("Millä nimellä haluat tallentaa bibtex-tiedoston?");
+        String tiedostonimi = io.lue();
+        while(!onkoKelvollinenBibtexnimi(tiedostonimi)){
+            io.tulosta("Epäkelpo nimi!");
+            io.tulosta("Anna toinen nimi.");
+            tiedostonimi = io.lue();
+        }
+        
+        return tiedostonimi;
+    }
+    
+    private boolean onkoKelvollinenBibtexnimi(String ehdotus){
+        if(ehdotus == null || ehdotus.charAt(0) == '.') {
+            return false;
+        }
+        
+        int i = 0;
+        
+        while (i < ehdotus.length() && ehdotus.charAt(i) != '.'){
+            i++;
+        }
+        
+        if(i == ehdotus.length()){
+            return false;
+        }
+        if(!ehdotus.substring(i+1).equals("bib")){
+            return false;
+        }
+        
+        return true;
     }
   
 }

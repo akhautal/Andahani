@@ -14,7 +14,7 @@ public class Main {
 //                (new KomentoriviKayttoliittyma(new KonsoliIO()), new CSVtallentaja());
 //        kasittelija.kaynnista();
         KomentoriviKayttoliittyma kl = new KomentoriviKayttoliittyma(new KonsoliIO(), 
-                new CSVtallentaja());
+                new CSVtiedostonKasittelija());
         kl.kaynnista();
     }
 }
