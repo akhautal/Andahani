@@ -4,17 +4,27 @@
  */
 package projekti;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author hanna
  */
 public class ViitteidenKasittelija {
     KayttoliittymaRajapinta kayttoliittyma;
-    TallentajaRajapinta tallentaja;
+    TiedostonkasittelijaRajapinta tiedostonKasittelija;
+    Bibtallentaja bibtallentaja;
     
-    public ViitteidenKasittelija(KayttoliittymaRajapinta kl, TallentajaRajapinta tallentaja){
+    public ViitteidenKasittelija(KayttoliittymaRajapinta kl, TiedostonkasittelijaRajapinta tiedostonKasittelija){
         this.kayttoliittyma = kl;
-        this.tallentaja = tallentaja;
+        this.tiedostonKasittelija = tiedostonKasittelija;
+    }
+    
+    public ViitteidenKasittelija(KayttoliittymaRajapinta kl, TiedostonkasittelijaRajapinta tallentaja,
+            Bibtallentaja bibtallentaja){
+        this.kayttoliittyma = kl;
+        this.tiedostonKasittelija = tallentaja;
+        this.bibtallentaja = bibtallentaja;
     }
     
     public void kaynnista(){
@@ -23,10 +33,23 @@ public class ViitteidenKasittelija {
         Viite lisattava = kayttoliittyma.annaViite();
         
         while(lisattava != null){
-            tallentaja.tallenna(lisattava);
+            tiedostonKasittelija.tallenna(lisattava);
             lisattava = kayttoliittyma.annaViite();
         }
            
+    }
+    
+    
+    
+    
+    
+    private void bibTulostus() {
+        ArrayList<Viite> viitteet = tiedostonKasittelija.lueViitteet();
+        int i = 0;
+        while(i < viitteet.size()){
+            bibtallentaja.tallenna(viitteet.get(i));
+            i++;
+        }
     }
     
 }
