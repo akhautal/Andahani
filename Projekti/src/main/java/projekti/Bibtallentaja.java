@@ -4,10 +4,10 @@
  */
 package projekti;
 
-import java.io.*;
-import java.util.StringTokenizer;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.io.BufferedWriter;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
 
 /**
  *
@@ -17,17 +17,22 @@ public class Bibtallentaja {
     public void tallenna(Viite viite){
         try
 	{
-
+            //pitäisi aina tehdä uusi tiedosto, muuten samat viitteet tallentuvat monta kertaa 
+            //kun bibtiedosto-tallennusta kutsutaan monta kertaa
             BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("sigproc.bib", true),"UTF8"));
 
-            int i = 0;
+            int i = 2;
             String[][] lisattava = viite.annaTiedot();
             writer.append(lisattava[0][1]+"{");
             writer.append(lisattava[1][1]);
-            while(i < lisattava.length+2){
-                writer.append(lisattava[i][0] +" = ");
-                writer.append(lisattava[i][1]);
-                writer.append('\n');
+            writer.append(",\n");
+            while(i < lisattava.length){
+                if(!lisattava[i][1].equals("")){
+                    writer.append(lisattava[i][0] +" = {");
+                    writer.append(tarkistaAakkoset(lisattava[i][1]));
+                    writer.append("},");
+                    writer.append('\n');
+                }
                 i++;
             }
             writer.append("}");
@@ -40,40 +45,14 @@ public class Bibtallentaja {
             e.printStackTrace();
         }
     }
-
-    public void tulosta() {
-          try {
-            
-            File file = new File("sigproc.bib");
-            Viite viite = new Viite();
-            String[][] kategoriat = viite.annaTiedot();
-            BufferedReader bufRdr  = new BufferedReader(new InputStreamReader(new FileInputStream(file),"UTF8"));
-              
-            String line;
-     
-            //read each line of text file
-            int osa;
-            while((line = bufRdr.readLine()) != null)
-            {
-                    StringTokenizer st = new StringTokenizer(line,";");
-                    osa = 0;
-                    while (st.hasMoreTokens())
-                    {
-                        String str = st.nextToken();
-                        if(!str.equals("\"\"")) {
-                            str = kategoriat[osa][0] + " = " + str;
-                            System.out.println(str.replace("\"", ""));
-                        }    
-                        osa++;
-                    }
-                System.out.println("");
-            }
-     
-            bufRdr.close();
-        } catch (IOException ex) {
-            Logger.getLogger(CSVtallentaja.class.getName()).log(Level.SEVERE, null, ex);
-        }
+    
+    private String tarkistaAakkoset(String lisattava){
+        //muutettava ööt \"{o} :ksi ja äät \"{a} :ksi
+        //(ja ÖÖT \"{O} ja ÄÄT \"{A} :ksi)
+        return lisattava;
     }
+
+
 
 }   
    

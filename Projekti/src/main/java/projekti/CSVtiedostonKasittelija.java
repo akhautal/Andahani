@@ -7,14 +7,12 @@ package projekti;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.StringTokenizer;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
  * @author hanna
  */
-public class CSVtallentaja implements TallentajaRajapinta{
+public class CSVtiedostonKasittelija implements TiedostonkasittelijaRajapinta{
     public void tallenna(Viite viite){
         try
 	{
@@ -38,40 +36,6 @@ public class CSVtallentaja implements TallentajaRajapinta{
         }
     }
 
-    //return ArrayList<Viite>
-    public void tulosta() {
-//          try {
-//            
-//            File file = new File("viitteet.csv");
-//            String[][] kategoriat = (new Viite()).annaTiedot();
-//            BufferedReader bufRdr  = new BufferedReader(new InputStreamReader(new FileInputStream(file),"UTF8"));
-//              
-//            String line;
-//     
-//            //read each line of text file
-//            int osa;
-//            while((line = bufRdr.readLine()) != null)
-//            {
-//                    StringTokenizer st = new StringTokenizer(line,";");
-//                    osa = 0;
-//                    while (st.hasMoreTokens())
-//                    {
-//                        String str = st.nextToken();
-//                        if(!str.equals("\"\"")) {
-//                            str = kategoriat[osa][0] + " = " + str;
-//                            System.out.println(str.replace("\"", ""));
-//                        }    
-//                        osa++;
-//                    }
-//                System.out.println("");
-//            }
-//     
-//            bufRdr.close();
-//        } catch (IOException ex) {
-//            Logger.getLogger(CSVtallentaja.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-    }
-    
     
     public ArrayList<Viite> lueViitteet() {
           ArrayList<Viite> viitteet = new ArrayList<Viite>();
