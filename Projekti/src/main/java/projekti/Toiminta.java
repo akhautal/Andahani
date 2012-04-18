@@ -6,9 +6,8 @@ package projekti;
 
 /**
  *
- * @author hanna
+ * @author dasha
  */
-public interface KayttoliittymaRajapinta {
-    public void naytaOhjeet();
-    public Viite annaViite();
+public interface Toiminta {
+    void suorita();
 }
