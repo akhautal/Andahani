@@ -9,12 +9,14 @@ package projekti;
  * @author hanna
  */
 public class Main {
+    
+    private static String tiedosto = "viiitteet.csv";
+    
     public static void main(String[] args) {
-//        ViitteidenKasittelija kasittelija = new ViitteidenKasittelija
-//                (new KomentoriviKayttoliittyma(new KonsoliIO()), new CSVtallentaja());
-//        kasittelija.kaynnista();
-        KomentoriviKayttoliittyma kl = new KomentoriviKayttoliittyma(new KonsoliIO(), 
-                new CSVtiedostonKasittelija(), new Bibtallentaja());
+        KonsoliIO io = new KonsoliIO();
+        //kaksi io:ta?
+        KomentoriviKayttoliittyma kl = new KomentoriviKayttoliittyma(io, 
+                new CSVtiedostonKasittelija(io, tiedosto), new Bibtallentaja());
         kl.kaynnista();
     }
 }
