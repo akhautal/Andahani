@@ -4,10 +4,10 @@
  */
 package projekti.toiminnot;
 
-import projekti.Toiminta;
 import java.util.ArrayList;
 import projekti.IOrajapinta;
 import projekti.TiedostonkasittelijaRajapinta;
+import projekti.Toiminta;
 import projekti.Viite;
 
 /**

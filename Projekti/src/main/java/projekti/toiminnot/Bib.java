@@ -5,6 +5,7 @@
 package projekti.toiminnot;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import projekti.*;
 
 /**
@@ -39,6 +40,7 @@ public class Bib implements Toiminta{
      
     private String bibTiedostonNimi(){
         io.tulosta("Millä nimellä haluat tallentaa bibtex-tiedoston?");
+        io.tulosta("Anna muodossa tiedostonimi.bib");
         String tiedostonimi = io.lue();
         while(!onkoKelvollinenBibtexnimi(tiedostonimi)){
             io.tulosta("Epäkelpo nimi!");
@@ -54,9 +56,22 @@ public class Bib implements Toiminta{
             return false;
         }
         
+        HashSet<Character> kielletytMerkit = new HashSet<Character>();
+        kielletytMerkit.add('*');
+        kielletytMerkit.add('\\');
+        kielletytMerkit.add('?');
+        kielletytMerkit.add('*');
+        kielletytMerkit.add('|');
+        kielletytMerkit.add('<');
+        kielletytMerkit.add('>');
+        kielletytMerkit.add('\"');
+        kielletytMerkit.add(':');
         int i = 0;
         
         while (i < ehdotus.length() && ehdotus.charAt(i) != '.'){
+            if(kielletytMerkit.contains(ehdotus.charAt(i))){
+                return false;
+            }
             i++;
         }
         
