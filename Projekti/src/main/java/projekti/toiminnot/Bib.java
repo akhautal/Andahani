@@ -66,24 +66,13 @@ public class Bib implements Toiminta{
         kielletytMerkit.add('>');
         kielletytMerkit.add('\"');
         kielletytMerkit.add(':');
-        int i = 0;
         
-        while (i < ehdotus.length() && ehdotus.charAt(i) != '.'){
-            if(kielletytMerkit.contains(ehdotus.charAt(i))){
-                return false;
-            }
-            i++;
-        }
+        if(!ehdotus.endsWith(".bib")) return false;
         
-        if(i == ehdotus.length()){
-            return false;
-        }
-        if(!ehdotus.substring(i+1).equals("bib")){
-            return false;
+        for(char i: kielletytMerkit) {
+            if(ehdotus.contains(Character.toString(i))) return false; 
         }
         
         return true;
     }
-
-   
 }
