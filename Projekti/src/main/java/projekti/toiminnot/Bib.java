@@ -21,7 +21,6 @@ public class Bib implements Toiminta{
     public Bib(IOrajapinta io, TiedostonkasittelijaRajapinta tiedostonKasittelija, BibtallentajaRajapinta bibtallentaja) {
         this.io = io;
         this.tiedostonKasittelija = tiedostonKasittelija;
-      //  bibtallentaja = new Bibtallentaja(); 
         this.bibtallentaja = bibtallentaja;
     } 
     
@@ -34,7 +33,6 @@ public class Bib implements Toiminta{
         int i = 0;
         while(i < viitteet.size()){
             bibtallentaja.tallenna(viitteet.get(i), tiedostonimi);
-            //bibtallentaja.tallenna(viitteet.get(i), tiedostonimi);
             i++;
         }
     }

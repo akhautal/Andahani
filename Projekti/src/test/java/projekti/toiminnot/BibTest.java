@@ -77,6 +77,17 @@ public class BibTest {
         assertEquals(result, expResult);
     }
     
+    @Test
+    public void tiedostoaEiLuodaJosAnnetunTiedostonNiminLoppuOnVaarin4() {
+        input.add("vaaranim.ibib");
+        input.add("oikeanimi.bib");
+        
+        String expResult = "oikeanimi.bib";
+        instance.suorita();
+        String result = output;
+        assertEquals(result, expResult);
+    }
+    
     
     @Test
     public void tiedostoaEiLuodaJosAnnettuTiedostonNimiSisaltaaKiellettyMerkki() {
