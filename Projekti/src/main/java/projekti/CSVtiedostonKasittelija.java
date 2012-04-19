@@ -13,10 +13,15 @@ import java.util.StringTokenizer;
  * @author hanna
  */
 public class CSVtiedostonKasittelija implements TiedostonkasittelijaRajapinta{
+    private String tiedostonimi;
+    public CSVtiedostonKasittelija(String tiedostonimi){
+        this.tiedostonimi = tiedostonimi;
+    }
+    
     public void tallenna(Viite viite){
         try
 	{
-            BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("viitteet.csv", true),"UTF8"));
+            BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(tiedostonimi, true),"UTF8"));
 
             int i = 0;
             String[][] lisattava = viite.annaTiedot();
@@ -41,7 +46,7 @@ public class CSVtiedostonKasittelija implements TiedostonkasittelijaRajapinta{
         ArrayList<Viite> viitteet;
         
         try {
-            File file = new File("viitteet.csv");
+            File file = new File(tiedostonimi);
             BufferedReader bufRdr  = new BufferedReader(new InputStreamReader(new FileInputStream(file),"UTF8")); 
              viitteet = lueTiedosto(bufRdr);
             bufRdr.close();
