@@ -43,13 +43,13 @@ public class ViitteidenKasittelija {
     
     
     
-    private void bibTulostus() {
-        ArrayList<Viite> viitteet = tiedostonKasittelija.lueViitteet();
-        int i = 0;
-        while(i < viitteet.size()){
-            bibtallentaja.tallenna(viitteet.get(i));
-            i++;
-        }
-    }
+//    private void bibTulostus() {
+//        ArrayList<Viite> viitteet = tiedostonKasittelija.lueViitteet();
+//        int i = 0;
+//        while(i < viitteet.size()){
+//            bibtallentaja.tallenna(viitteet.get(i));
+//            i++;
+//        }
+//    }
     
 }

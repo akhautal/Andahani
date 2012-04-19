@@ -32,7 +32,7 @@ public class Bib implements Toiminta{
         ArrayList<Viite> viitteet = tiedostonKasittelija.lueViitteet();
         int i = 0;
         while(i < viitteet.size()){
-            bibtallentaja.tallenna(viitteet.get(i));
+            bibtallentaja.tallenna(viitteet.get(i), tiedostonimi);
             //bibtallentaja.tallenna(viitteet.get(i), tiedostonimi);
             i++;
         }
@@ -42,7 +42,7 @@ public class Bib implements Toiminta{
         io.tulosta("Millä nimellä haluat tallentaa bibtex-tiedoston?");
         io.tulosta("Anna muodossa tiedostonimi.bib");
         String tiedostonimi = io.lue();
-        while(!onkoKelvollinenBibtexnimi(tiedostonimi)){
+        while(!onKelvollinenBibtexnimi(tiedostonimi)){
             io.tulosta("Epäkelpo nimi!");
             io.tulosta("Anna toinen nimi.");
             tiedostonimi = io.lue();
@@ -51,7 +51,7 @@ public class Bib implements Toiminta{
         return tiedostonimi;
     }
     
-    private boolean onkoKelvollinenBibtexnimi(String ehdotus){
+    private boolean onKelvollinenBibtexnimi(String ehdotus){
         if(ehdotus == null || ehdotus.charAt(0) == '.') {
             return false;
         }

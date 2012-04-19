@@ -68,7 +68,7 @@ public class CSVtiedostonKasittelija implements TiedostonkasittelijaRajapinta{
             while (st.hasMoreTokens())
             {
                 String str = st.nextToken();
-                viite.lisaaTietoa(kategoriat[osa][0], str);
+                viite.lisaaTietoa(kategoriat[osa][0], new String(str.getBytes(),"UTF-8"));
                 osa++;
             }
             viitteet.add(viite);

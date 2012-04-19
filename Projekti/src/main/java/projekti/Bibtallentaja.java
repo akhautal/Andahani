@@ -14,12 +14,12 @@ import java.io.OutputStreamWriter;
  * @author hanna
  */
 public class Bibtallentaja {
-    public void tallenna(Viite viite){
+    public void tallenna(Viite viite, String tiedostonimi){
         try
 	{
             //pitäisi aina tehdä uusi tiedosto, muuten samat viitteet tallentuvat monta kertaa 
             //kun bibtiedosto-tallennusta kutsutaan monta kertaa
-            BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("sigproc.bib", true),"UTF8"));
+            BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(tiedostonimi, true),"UTF8"));
 
             int i = 2;
             String[][] lisattava = viite.annaTiedot();

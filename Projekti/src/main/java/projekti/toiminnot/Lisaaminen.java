@@ -36,22 +36,33 @@ public class Lisaaminen implements Toiminta{
     private Viite kysySyotetta(){      
         String syote;
         Viite uusi = new Viite();
-        int i = 0;
         
-        uusi.lisaaTietoa("millainenViite", viitteenLaatu());
-        uusi.lisaaTietoa("label", annaLabel());
+        String viite = annaViite();
+        String label = annaLabel();
+        uusi.lisaaTietoa("millainenViite", viite);
+        uusi.lisaaTietoa("label", label);
+        uusi = lisaaKentat(uusi);
+        
+        return uusi;
+    }
+    
+    private Viite lisaaKentat(Viite viite) {
+        int i = 0;
+        String syote;
+        
         while(i < kentat.length){
             io.tulosta(kentat[i] + ":");
             syote = io.lue();
             if(syote != null && !syote.equals("")){
-                uusi.lisaaTietoa(kentat[i], syote);
+                viite.lisaaTietoa(kentat[i], syote);
             }
             i++;
         }
-        return uusi;
+        
+        return viite;
     }
     
-     private String viitteenLaatu(){
+    private String annaViite(){
         io.tulosta("Millaisen viitteen haluat lisätä?");
         
         String vastaus;
@@ -75,6 +86,7 @@ public class Lisaaminen implements Toiminta{
     private String annaLabel() {
         io.tulosta("Label:");
         String syote = io.lue();
+
         while(labelOnJoKaytossa(syote)){
             io.tulosta("Tämä label on jo käytössä!");
             io.tulosta("Valitse toinen label.");
@@ -97,7 +109,6 @@ public class Lisaaminen implements Toiminta{
             i++;
         }
         
-        return false;
-        
+        return false;       
     }
 }
