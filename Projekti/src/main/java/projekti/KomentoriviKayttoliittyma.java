@@ -12,9 +12,9 @@ public class KomentoriviKayttoliittyma implements KayttoliittymaRajapinta{
     private IOrajapinta io;
     private Komentotehdas toiminnot;
     
-    public KomentoriviKayttoliittyma(IOrajapinta io, TiedostonkasittelijaRajapinta tallentaja) { 
+    public KomentoriviKayttoliittyma(IOrajapinta io, TiedostonkasittelijaRajapinta tallentaja, Bibtallentaja bibTallentaja) { 
         this.io = io;
-        toiminnot = new Komentotehdas(io, tallentaja);            
+        toiminnot = new Komentotehdas(io, tallentaja, bibTallentaja);            
     }
     
     public KomentoriviKayttoliittyma(IOrajapinta io) { 

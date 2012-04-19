@@ -21,14 +21,6 @@ public class CSVtiedostonKasittelija implements TiedostonkasittelijaRajapinta{
             int i = 0;
             String[][] lisattava = viite.annaTiedot();
             while(i < lisattava.length){
-                System.out.println("ö");
-                System.out.println(lisattava[i][1]);
-//                System.out.println(new String(lisattava[i][1].replace("ö", "\\\"{o}").getBytes(), "UTF-8"));
-//                lisattava[i][1] = lisattava[i][1].replace("ö", "\\\"{o}");
-//                
-//                lisattava[i][1] = lisattava[i][1].replace("Ö", "\\\"{O}");
-//                lisattava[i][1] = lisattava[i][1].replace("ä", "\\\"{a}");
-//                lisattava[i][1] = lisattava[i][1].replace("Ä", "\\\"{A}");  
                 writer.append(lisattava[i][1]);
                 writer.append(";");
                 i++;
