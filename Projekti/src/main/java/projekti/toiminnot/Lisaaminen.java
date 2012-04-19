@@ -46,6 +46,18 @@ public class Lisaaminen implements Toiminta{
         return uusi;
     }
     
+    private String korvaaAakkoset(String str) {
+        System.out.println(str + " enned");
+        str = str.replace("ö", "\\\"{o}");
+        System.out.println(str + " jalkeen");
+        str = str.replace("Ö", "\\\"{O}");
+        str = str.replace("ä", "\\\"{a}");
+        str = str.replace("Ä", "\\\"{A}");
+        
+        System.out.println(str);
+        return str;
+    }
+        
     private Viite lisaaKentat(Viite viite) {
         int i = 0;
         String syote;
@@ -53,6 +65,7 @@ public class Lisaaminen implements Toiminta{
         while(i < kentat.length){
             io.tulosta(kentat[i] + ":");
             syote = io.lue();
+            syote = korvaaAakkoset(syote);
             if(syote != null && !syote.equals("")){
                 viite.lisaaTietoa(kentat[i], syote);
             }
