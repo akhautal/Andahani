@@ -48,11 +48,12 @@ public class Bibtallentaja {
     
     private String tarkistaAakkoset(String lisattava){
         //muutettava ööt \"{o} :ksi ja äät \"{a} :ksi
-        //(ja ÖÖT \"{O} ja ÄÄT \"{A} :ksi)
+        //(ja ÖÖT \"{O} ja ÄÄT \"{A} :ksi)        
+        lisattava.replace("ö", "\\\"{o}");
+        lisattava.replace("Ö", "\\\"{O}");
+        lisattava.replace("ä", "\\\"{a}");
+        lisattava.replace("Ä", "\\\"{A}");        
         return lisattava;
     }
-
-
-
 }   
    
