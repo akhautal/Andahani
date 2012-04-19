@@ -10,5 +10,5 @@ package projekti;
  */
 public interface KayttoliittymaRajapinta {
     public void naytaOhjeet();
-    public Viite annaViite();
+    //public Viite annaViite();
 }

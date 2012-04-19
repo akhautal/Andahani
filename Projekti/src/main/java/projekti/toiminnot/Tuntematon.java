@@ -20,6 +20,6 @@ public class Tuntematon implements Toiminta {
  
     @Override
     public void suorita() {
-        io.tulosta("Sallitut komennot: lisaa, listaa ja lopeta.");
+        io.tulosta("Sallitut komennot: lisaa, listaa, bib ja lopeta.");
     }
 }
