@@ -17,6 +17,8 @@ import projekti.Viite;
 public class Lisaaminen implements Toiminta{
     private IOrajapinta io;
     private TiedostonkasittelijaRajapinta tiedostonKasittelija;
+    private  String[] kentat = {"author", "title", "year", "publisher", "booktitle", "pages", 
+            "journal", "volume", "number",  "address"};
     
     public Lisaaminen(IOrajapinta io, TiedostonkasittelijaRajapinta tiedostonKasittelija) {
         this.io = io;
@@ -31,9 +33,7 @@ public class Lisaaminen implements Toiminta{
         tiedostonKasittelija.tallenna(uusi);
     } 
     
-    private Viite kysySyotetta(){
-        String[] kentat = {"author", "title", "year", "publisher", "booktitle", "pages", 
-            "journal", "volume", "number",  "address"};
+    private Viite kysySyotetta(){      
         String syote;
         Viite uusi = new Viite();
         int i = 0;
@@ -53,14 +53,16 @@ public class Lisaaminen implements Toiminta{
     
      private String viitteenLaatu(){
         io.tulosta("Millaisen viitteen haluat lisätä?");
-        io.tulosta("(anna numero)");
-        io.tulosta("1. @inproceedings \n2. @book \n3. @article");
-        String vastaus = io.lue();
-        while(!vastaus.equals("1") && !vastaus.equals("2") && !vastaus.equals("3")){
+        
+        String vastaus;
+        do {
             io.tulosta("(anna numero)");
             io.tulosta("1. @inproceedings \n2. @book \n3. @article");
             vastaus = io.lue();
         }
+        while(!vastaus.equals("1") && !vastaus.equals("2") && !vastaus.equals("3"));
+         
+        
         if(vastaus.equals("1")){
             return "@inproceedings";
         }
@@ -73,7 +75,7 @@ public class Lisaaminen implements Toiminta{
     private String annaLabel() {
         io.tulosta("Label:");
         String syote = io.lue();
-        while(onkoLabelJoKaytossa(syote)){
+        while(labelOnJoKaytossa(syote)){
             io.tulosta("Tämä label on jo käytössä!");
             io.tulosta("Valitse toinen label.");
             io.tulosta("Label:");
@@ -82,12 +84,10 @@ public class Lisaaminen implements Toiminta{
         return syote;
     }
     
-    private boolean onkoLabelJoKaytossa(String ehdotettuLabel){
+    private boolean labelOnJoKaytossa(String ehdotettuLabel){
         ArrayList<Viite> viitteet = tiedostonKasittelija.lueViitteet();
         
-        if(viitteet == null){
-            return false;
-        }
+        if(viitteet == null) return false;
         
         int i = 0;
         while(i < viitteet.size()){

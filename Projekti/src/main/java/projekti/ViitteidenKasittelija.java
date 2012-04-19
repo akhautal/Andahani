@@ -28,14 +28,14 @@ public class ViitteidenKasittelija {
     }
     
     public void kaynnista(){
-        kayttoliittyma.naytaOhjeet();
-        
-        Viite lisattava = kayttoliittyma.annaViite();
-        
-        while(lisattava != null){
-            tiedostonKasittelija.tallenna(lisattava);
-            lisattava = kayttoliittyma.annaViite();
-        }
+//        kayttoliittyma.naytaOhjeet();
+//        
+//        Viite lisattava = kayttoliittyma.annaViite();
+//        
+//        while(lisattava != null){
+//            tiedostonKasittelija.tallenna(lisattava);
+//            lisattava = kayttoliittyma.annaViite();
+//        }
            
     }
     

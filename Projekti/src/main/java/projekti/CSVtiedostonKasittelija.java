@@ -38,41 +38,43 @@ public class CSVtiedostonKasittelija implements TiedostonkasittelijaRajapinta{
 
     
     public ArrayList<Viite> lueViitteet() {
-          ArrayList<Viite> viitteet = new ArrayList<Viite>();
-          Viite viite;
-            
-          try {
-            
+        ArrayList<Viite> viitteet;
+        
+        try {
             File file = new File("viitteet.csv");
-            String[][] kategoriat = (new Viite()).annaTiedot();
             BufferedReader bufRdr  = new BufferedReader(new InputStreamReader(new FileInputStream(file),"UTF8")); 
-            String line;
-            int osa;
-            
-            while((line = bufRdr.readLine()) != null)
-            {
-                    StringTokenizer st = new StringTokenizer(line,";");
-                    osa = 0;
-                    viite = new Viite();
-                    
-                    while (st.hasMoreTokens())
-                    {
-                        String str = st.nextToken();
-                        viite.lisaaTietoa(kategoriat[osa][0], str);
-                        osa++;
-                    }
-                viitteet.add(viite);
-            }
-     
+             viitteet = lueTiedosto(bufRdr);
             bufRdr.close();
         } catch (IOException ex) {
             return null;
-           // Logger.getLogger(CSVtallentaja.class.getName()).log(Level.SEVERE, null, ex);
         }
           
         return viitteet;
     }
     
+    private ArrayList<Viite> lueTiedosto(BufferedReader bufRdr) throws IOException {
+        ArrayList<Viite> viitteet = new ArrayList<Viite>();
+        Viite viite; 
+        String line;
+        int osa;
+        String[][] kategoriat = (new Viite()).annaTiedot();
+        
+        while((line = bufRdr.readLine()) != null)
+        {
+            StringTokenizer st = new StringTokenizer(line,";");
+            osa = 0;
+            viite = new Viite();
+
+            while (st.hasMoreTokens())
+            {
+                String str = st.nextToken();
+                viite.lisaaTietoa(kategoriat[osa][0], str);
+                osa++;
+            }
+            viitteet.add(viite);
+        }
+        return viitteet;
+    } 
     
 
 }   
