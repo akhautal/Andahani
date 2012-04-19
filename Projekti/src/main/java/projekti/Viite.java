@@ -25,6 +25,15 @@ public class Viite {
         {"address", ""}
     };
     
+    public Viite() {};
+    
+    //testausta varten
+    public Viite(String[][] tiedot) {
+        for(int i = 0; i < tiedot.length; i++) {
+            lisaaTietoa(tiedot[i][0], tiedot[i][1]);
+        }
+    }
+    
     public void lisaaTietoa(String command, String syote){
        for(int i = 0; i < 12; i++) {
            if(tiedot[i][0].equals(command)) tiedot[i][1] = syote; 

@@ -36,8 +36,7 @@ public class Listaaminen implements Toiminta{
     }
     
     private void tulostaViitteet(ArrayList<Viite> viitteet){
-        int i = 0;
-        int j = 0;
+        int i = 0, j = 0;
         String[][] tiedot;
         
         while(i < viitteet.size()){
