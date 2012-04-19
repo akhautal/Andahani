@@ -13,7 +13,7 @@ import java.io.OutputStreamWriter;
  *
  * @author hanna
  */
-public class Bibtallentaja {
+public class Bibtallentaja implements BibtallentajaRajapinta {
     public void tallenna(Viite viite, String tiedostonimi){
         try
 	{

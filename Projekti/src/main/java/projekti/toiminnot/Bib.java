@@ -15,13 +15,14 @@ import projekti.*;
 public class Bib implements Toiminta{
 
     private IOrajapinta io;
-    private Bibtallentaja bibtallentaja;
+    private BibtallentajaRajapinta bibtallentaja;
     private TiedostonkasittelijaRajapinta tiedostonKasittelija;
     
-    public Bib(IOrajapinta io, TiedostonkasittelijaRajapinta tiedostonKasittelija) {
+    public Bib(IOrajapinta io, TiedostonkasittelijaRajapinta tiedostonKasittelija, BibtallentajaRajapinta bibtallentaja) {
         this.io = io;
         this.tiedostonKasittelija = tiedostonKasittelija;
-        bibtallentaja = new Bibtallentaja();    
+      //  bibtallentaja = new Bibtallentaja(); 
+        this.bibtallentaja = bibtallentaja;
     } 
     
   
@@ -52,10 +53,9 @@ public class Bib implements Toiminta{
     }
     
     private boolean onKelvollinenBibtexnimi(String ehdotus){
-        if(ehdotus == null || ehdotus.charAt(0) == '.') {
-            return false;
-        }
-        
+        if(ehdotus.equals("")) return false;
+        if(ehdotus.charAt(0) == '.') return false;
+              
         HashSet<Character> kielletytMerkit = new HashSet<Character>();
         kielletytMerkit.add('*');
         kielletytMerkit.add('\\');

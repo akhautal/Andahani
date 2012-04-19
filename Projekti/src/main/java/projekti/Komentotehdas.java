@@ -14,11 +14,11 @@ import projekti.toiminnot.*;
 public class Komentotehdas {
     private HashMap<String, Toiminta> toiminnot;
  
-    public Komentotehdas(IOrajapinta io, TiedostonkasittelijaRajapinta tallentaja) {
+    public Komentotehdas(IOrajapinta io, TiedostonkasittelijaRajapinta tallentaja, BibtallentajaRajapinta bib) {
         toiminnot = new HashMap<String, Toiminta>();
         toiminnot.put("lisaa", new Lisaaminen(io, tallentaja));
         toiminnot.put("lista", new Listaaminen(io, tallentaja));
-        toiminnot.put("bib", new Bib(io, tallentaja));
+        toiminnot.put("bib", new Bib(io, tallentaja, bib));
         toiminnot.put("lopeta", new Lopeta(io));
         toiminnot.put("tuntematon", new Tuntematon(io));
     }

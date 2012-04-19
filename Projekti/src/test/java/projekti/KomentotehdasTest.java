@@ -16,34 +16,32 @@ import projekti.toiminnot.*;
 public class KomentotehdasTest {
     
     Komentotehdas komentotehdas;    
-    ArrayList<String> input; 
     
     IOrajapinta ioStub = new IOrajapinta() {
 
-        public void tulosta(String tuloste) {
-            throw new UnsupportedOperationException("Not supported yet.");
-        }
+        public void tulosta(String tuloste) {}
 
         public String lue() {
-            throw new UnsupportedOperationException("Not supported yet.");
+            return null;
         }
     };
             
     TiedostonkasittelijaRajapinta tallentajaStub = new TiedostonkasittelijaRajapinta() {
 
-        public void tallenna(Viite viite) {
-            throw new UnsupportedOperationException("Not supported yet.");
-        }
+        public void tallenna(Viite viite) {}
 
         public ArrayList<Viite> lueViitteet() {
-            throw new UnsupportedOperationException("Not supported yet.");
+            return null;
         }
+    };
+    
+    BibtallentajaRajapinta bibStub = new BibtallentajaRajapinta() {
+        public void tallenna(Viite viite, String tiedostonimi) {}
     };
             
     @Before
     public void setUp() {
-        input = new ArrayList<String>();
-        komentotehdas = new Komentotehdas(ioStub, tallentajaStub);
+        komentotehdas = new Komentotehdas(ioStub, tallentajaStub, bibStub);
     }
     
     @Test
@@ -69,7 +67,7 @@ public class KomentotehdasTest {
      
     @Test
     public void bibTesti() {
-        Bib expResult = new Bib(ioStub, tallentajaStub);
+        Bib expResult = new Bib(ioStub, tallentajaStub, bibStub);
         Toiminta result = komentotehdas.hae("bib");        
         assertEquals(result.getClass(), result.getClass());
     }
