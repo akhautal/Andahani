@@ -10,12 +10,10 @@ package projekti;
  */
 public class KomentoriviKayttoliittyma implements KayttoliittymaRajapinta{
     private IOrajapinta io;
-    private TiedostonkasittelijaRajapinta tiedostonKasittelija;
     private Komentotehdas toiminnot;
     
     public KomentoriviKayttoliittyma(IOrajapinta io, TiedostonkasittelijaRajapinta tallentaja) { 
         this.io = io;
-        this.tiedostonKasittelija = tallentaja;
         toiminnot = new Komentotehdas(io, tallentaja);            
     }
     
