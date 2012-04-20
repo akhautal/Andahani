@@ -47,14 +47,14 @@ public class Lisaaminen implements Toiminta{
     }
     
     private String korvaaAakkoset(String str) {
-        System.out.println(str + " enned");
+        //System.out.println(str + " enned");
         str = str.replace("ö", "\\\"{o}");
-        System.out.println(str + " jalkeen");
+        //System.out.println(str + " jalkeen");
         str = str.replace("Ö", "\\\"{O}");
         str = str.replace("ä", "\\\"{a}");
         str = str.replace("Ä", "\\\"{A}");
         
-        System.out.println(str);
+        //System.out.println(str);
         return str;
     }
         
