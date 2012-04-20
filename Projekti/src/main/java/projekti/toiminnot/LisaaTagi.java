@@ -37,7 +37,6 @@ public class LisaaTagi implements Toiminta {
             io.tulosta("Tämä viite ei ole olemassa! Anna toinen label:");
             label = io.lue();
         }
-
         io.tulosta("Viite on löydetty. Nyt anna tägejä (tyhja rivi lopeta).");
         
         String uusTagi = io.lue();

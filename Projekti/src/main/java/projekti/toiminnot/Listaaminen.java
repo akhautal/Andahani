@@ -27,13 +27,13 @@ public class Listaaminen implements Toiminta{
     @Override
     public void suorita() {
         ArrayList<Viite> viitteet = tiedostonKasittelija.lueViitteet();
-       
-        if(viitteet != null) {
-            tulostaViitteet(viitteet);
+        
+        if(viitteet == null || viitteet.isEmpty()) {
+            io.tulosta("Viitteita ei ole tai tiedosto ei ole olemassa.\n");
         }
         else {
-            io.tulosta("Viitteita ei ole tai tiedosto ei ole olemassa.\n");
-        } 
+            tulostaViitteet(viitteet);
+        }
     }
     
     private void tulostaViitteet(ArrayList<Viite> viitteet){

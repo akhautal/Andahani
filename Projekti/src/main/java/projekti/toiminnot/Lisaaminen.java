@@ -87,15 +87,15 @@ public class Lisaaminen implements Toiminta{
     
     private String annaViite(){
         io.tulosta("Millaisen viitteen haluat lisätä?");
-        
-        String vastaus;
-        do {
+        io.tulosta("(anna numero)");
+        io.tulosta("1. @inproceedings \n2. @book \n3. @article");
+            
+        String vastaus = io.lue();
+        while(!vastaus.equals("1") && !vastaus.equals("2") && !vastaus.equals("3")) {
             io.tulosta("(anna numero)");
             io.tulosta("1. @inproceedings \n2. @book \n3. @article");
             vastaus = io.lue();
         }
-        while(!vastaus.equals("1") && !vastaus.equals("2") && !vastaus.equals("3"));
-         
         
         if(vastaus.equals("1")){
             return "@inproceedings";
