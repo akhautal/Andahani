@@ -33,6 +33,14 @@ public class KomentotehdasTest {
         public ArrayList<Viite> lueViitteet() {
             return null;
         }
+
+        public boolean labelOnOlemassa(String label) {
+            throw new UnsupportedOperationException("Not supported yet.");
+        }
+
+        public void lisaaTagitTiedostoon(String label, ArrayList<String> tagit) {
+            throw new UnsupportedOperationException("Not supported yet.");
+        }
     };
     
     BibtallentajaRajapinta bibStub = new BibtallentajaRajapinta() {

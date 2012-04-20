@@ -77,17 +77,6 @@ public class BibTest {
         assertEquals(result, expResult);
     }
     
-    @Test
-    public void tiedostoaEiLuodaJosAnnetunTiedostonNiminLoppuOnVaarin4() {
-        input.add("vaaranim.ibib");
-        input.add("oikeanimi.bib");
-        
-        String expResult = "oikeanimi.bib";
-        instance.suorita();
-        String result = output;
-        assertEquals(result, expResult);
-    }
-    
     
     @Test
     public void tiedostoaEiLuodaJosAnnettuTiedostonNimiSisaltaaKiellettyMerkki() {
@@ -139,6 +128,14 @@ public class BibTest {
             
             viitteet.add(new Viite(eka));
             return viitteet;
+        }
+
+        public boolean labelOnOlemassa(String label) {
+            throw new UnsupportedOperationException("Not supported yet.");
+        }
+
+        public void lisaaTagitTiedostoon(String label, ArrayList<String> tagit) {
+            throw new UnsupportedOperationException("Not supported yet.");
         }
     };
     

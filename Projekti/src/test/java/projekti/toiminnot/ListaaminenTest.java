@@ -98,5 +98,13 @@ class tiedostoKasittelijaStub2 implements projekti.TiedostonkasittelijaRajapinta
         viitteet.add(uusi);
         return viitteet;
     }
+
+    public boolean labelOnOlemassa(String label) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    public void lisaaTagitTiedostoon(String label, ArrayList<String> tagit) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
     
 }

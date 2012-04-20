@@ -39,7 +39,7 @@ public class LisaaminenTest {
      * Test of suorita method, of class Lisaaminen.
      */
     @Test
-    public void viiteLisataan() {
+    public void viiteLisataanEiTageja() {
         Lisaaminen instance = new Lisaaminen(new ioStub(), new tiedostoKasittelijaStub());
         instance.suorita();
         String[][] lisatytTiedot = tuloste.annaTiedot();
@@ -54,7 +54,7 @@ public class LisaaminenTest {
 
 class ioStub implements projekti.IOrajapinta{
     private String[] tuloste = {"1", "testilabel", "Pekka", "Otsikko", "", "", 
-        "", "", "", "", "", ""};
+        "", "", "", "", "", "", ""};
     private int i = 0;
     
     public void tulosta(String tuloste) {
@@ -76,6 +76,14 @@ class tiedostoKasittelijaStub implements projekti.TiedostonkasittelijaRajapinta{
 
     public ArrayList<Viite> lueViitteet() {
         return null;
+    }
+
+    public boolean labelOnOlemassa(String label) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    public void lisaaTagitTiedostoon(String label, ArrayList<String> tagit) {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
     
 }

@@ -10,6 +10,7 @@ import projekti.TiedostonkasittelijaRajapinta;
 import projekti.Toiminta;
 import projekti.Viite;
 
+    
 /**
  *
  * @author dasha
@@ -26,7 +27,7 @@ public class Listaaminen implements Toiminta{
     @Override
     public void suorita() {
         ArrayList<Viite> viitteet = tiedostonKasittelija.lueViitteet();
-        
+       
         if(viitteet != null) {
             tulostaViitteet(viitteet);
         }
@@ -47,9 +48,22 @@ public class Listaaminen implements Toiminta{
                 }
                 j++;
             }
+            
+            ArrayList<String> tagit = viitteet.get(i).getTags();
+            if(!tagit.isEmpty()) tulostaTagit(tagit);
+            
             io.tulosta("");
+            
             j = 0;
             i++;
         }
     }
+    
+    private void tulostaTagit(ArrayList<String> tagit) {
+        String output = "";
+        for(String tagi: tagit) {
+            output += tagi + ",";
+        }
+        io.tulosta("tagit: " + output.substring(0, output.length() - 1) + ".");
+    }   
 }
