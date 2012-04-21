@@ -47,7 +47,7 @@ public class Bib implements Toiminta{
         io.tulosta("Millä nimellä haluat tallentaa bibtex-tiedoston?");
         io.tulosta("Anna muodossa tiedostonimi.bib");
         String tiedostonimi = io.lue();
-        System.out.println(tiedostonimi);
+
         while(!onKelvollinenBibtexnimi(tiedostonimi)){
             io.tulosta("Epäkelpo nimi!");
             io.tulosta("Anna toinen nimi.");

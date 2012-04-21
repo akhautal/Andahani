@@ -1,4 +1,8 @@
 import projekti.*
+import projekti.kayttoliittyma.KomentoriviKayttoliittyma
+import projekti.io.StubIO
+import projekti.tiedostonkasittely.StubTK
+import projekti.bibtex.StubBib
 import projekti.toiminnot.*
 
 description """Kayttaja pystyy lisaamaan uusi viite jarjestelmaan"""
@@ -38,3 +42,4 @@ scenario "kayttaja ei pystyy lisaamaan uusi viite, jos annettu label on jo olema
         io.getOutput().shouldHave("Tama label on jo kaytossa!")
     }
 }
+
