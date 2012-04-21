@@ -44,20 +44,20 @@ public class BibtallentajaTest {
         BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(file),"UTF8"));
     }
 
-    @Test
-    public void testTallennaJosTiedostoEiOleOlemassaTaiEiVoiLukea2() throws UnsupportedEncodingException, FileNotFoundException, IOException {
-        Viite uusi = new Viite();
-        uusi.lisaaTietoa("millainenViite", "@book");
-        uusi.lisaaTietoa("label", "testilabel");
-        uusi.lisaaTietoa("author", "Pekka2");
-        uusi.lisaaTietoa("title", "Otsikko4");       
-        bib.tallenna(uusi, "testi.csv");
-       
-        File file = new File("testi.csv");
-        file.setReadable(true);
-        BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(file),"UTF8"));
-        assertEquals("@book{testilabel,\n", reader.readLine());
-    }
+//    @Test
+//    public void testTallennaJosTiedostoEiOleOlemassaTaiEiVoiLukea2() throws UnsupportedEncodingException, FileNotFoundException, IOException {
+//        Viite uusi = new Viite();
+//        uusi.lisaaTietoa("millainenViite", "@book");
+//        uusi.lisaaTietoa("label", "testilabel");
+//        uusi.lisaaTietoa("author", "Pekka2");
+//        uusi.lisaaTietoa("title", "Otsikko4");       
+//        bib.tallenna(uusi, "testi.csv");
+//       
+//        File file = new File("testi.csv");
+//        file.setReadable(true);
+//        BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(file),"UTF8"));
+//        assertEquals("@book{testilabel,\n", reader.readLine());
+//    }
     
     @Test
     public void tarkistaAakosetTest() {

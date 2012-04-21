@@ -28,9 +28,8 @@ public class Lisaaminen implements Toiminta{
     @Override
     public void suorita() {
         Viite uusi = kysySyotetta();
-        
-        io.tulosta("lisätään viite järjestelmään.");
         tiedostonKasittelija.tallenna(uusi);
+        io.tulosta("Uusi viite lisatty jarjestelmaan.");
     } 
     
     private Viite kysySyotetta(){      
@@ -39,11 +38,11 @@ public class Lisaaminen implements Toiminta{
         
         String viite = annaViite();
         String label = annaLabel();
+        io.tulosta(label);
         uusi.lisaaTietoa("millainenViite", viite);
         uusi.lisaaTietoa("label", label);
         uusi = lisaaKentat(uusi);
         uusi = lisaaTagit(uusi);
-        
         return uusi;
     }
     
@@ -111,7 +110,7 @@ public class Lisaaminen implements Toiminta{
         String syote = io.lue();
 
         while(labelOnJoKaytossa(syote)){
-            io.tulosta("Tämä label on jo käytössä!");
+            io.tulosta("Tama label on jo kaytossa!");
             io.tulosta("Valitse toinen label.");
             io.tulosta("Label:");
             syote = io.lue();

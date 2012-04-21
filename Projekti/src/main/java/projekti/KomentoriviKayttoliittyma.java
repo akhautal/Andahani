@@ -21,6 +21,11 @@ public class KomentoriviKayttoliittyma implements KayttoliittymaRajapinta{
         naytaOhjeet();
         while(true){
             String syote = io.lue();
+            
+            if (syote.isEmpty()) {
+                break;
+            }
+            
             toiminnot.hae(syote).suorita();
             naytaOhjeet();
         }
