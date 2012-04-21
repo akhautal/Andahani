@@ -2,7 +2,12 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package projekti;
+package projekti.kayttoliittyma;
+
+import projekti.Komentotehdas;
+import projekti.bibtex.BibtallentajaRajapinta;
+import projekti.tiedostonkasittely.TiedostonkasittelijaRajapinta;
+import projekti.io.IOrajapinta;
 
 /**
  *

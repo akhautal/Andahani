@@ -4,6 +4,10 @@
  */
 package projekti;
 
+import projekti.kayttoliittyma.KomentoriviKayttoliittyma;
+import projekti.bibtex.BibtallentajaRajapinta;
+import projekti.tiedostonkasittely.TiedostonkasittelijaRajapinta;
+import projekti.io.IOrajapinta;
 import java.util.ArrayList;
 import org.junit.*;
 import static org.junit.Assert.*;

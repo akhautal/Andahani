@@ -2,9 +2,11 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package projekti;
+package projekti.tiedostonkasittely;
 
+import projekti.tiedostonkasittely.TiedostonkasittelijaRajapinta;
 import java.util.ArrayList;
+import projekti.Viite;
 
 /**
  *

@@ -7,7 +7,7 @@ package projekti.toiminnot;
 import java.util.ArrayList;
 import org.junit.*;
 import static org.junit.Assert.*;
-import projekti.IOrajapinta;
+import projekti.io.IOrajapinta;
 import projekti.Viite;
 
 /**

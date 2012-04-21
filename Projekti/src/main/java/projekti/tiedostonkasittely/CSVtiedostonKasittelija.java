@@ -2,13 +2,15 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package projekti;
+package projekti.tiedostonkasittely;
 
+import projekti.tiedostonkasittely.TiedostonkasittelijaRajapinta;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.StringTokenizer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import projekti.Viite;
 
 /**
  *

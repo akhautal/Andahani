@@ -2,10 +2,12 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package projekti;
+package projekti.bibtex;
 
+import projekti.bibtex.Bibtallentaja;
 import java.io.*;
 import org.junit.*;
+import projekti.Viite;
 import static org.junit.Assert.*;
 
 /**

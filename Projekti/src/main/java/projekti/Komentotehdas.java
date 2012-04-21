@@ -4,6 +4,9 @@
  */
 package projekti;
 
+import projekti.bibtex.BibtallentajaRajapinta;
+import projekti.tiedostonkasittely.TiedostonkasittelijaRajapinta;
+import projekti.io.IOrajapinta;
 import java.util.HashMap;
 import projekti.toiminnot.*;
 
