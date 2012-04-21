@@ -25,7 +25,7 @@ scenario "kayttaja pystyy lisaamaan uusi viite, jos annetut tiedot on oikein", {
     }
 }
 
-scenario "kayttaja ei pystyy lisaamaan uusi viite, jos annettu label on jo olemassa", {
+scenario "kayttaja ei pysty lisaamaan uusi viite, jos annettu label on jo olemassa", {
 
     given 'kayttaja on valinnut komennon lisaa' , {
         io = new StubIO("lisaa", "2", "label10", "abc", "cdf", "","","","","","","", "", "", "lisaa","1", "label10", "oikealabel")
@@ -41,5 +41,17 @@ scenario "kayttaja ei pystyy lisaamaan uusi viite, jos annettu label on jo olema
     then 'Uusi viite on lisatty', {
         io.getOutput().shouldHave("Tama label on jo kaytossa!")
     }
+}
+
+scenario "kayttaja ei pysty antaamaan vaaraa viitteen tyyppia", {
+    given 'kayttaja on valinnut komennon lisaa'
+    when 'kayttaja antaa vaara viitten tyyppi (ei 1,2,3)'
+    then 'Jarjestelma pyytaa antamaan toinen tyyppi'
+}
+
+scenario "kayttaja pystyy lisamaan tageja uuteen viitteeseen", {
+    given 'kayttaja on valinnut komennon lisaa'
+    when 'kayttaja lisaa tageja viitteeseen'
+    then 'tageja on lisatty viitteeseen'
 }
 

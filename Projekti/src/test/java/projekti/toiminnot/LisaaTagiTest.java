@@ -26,8 +26,6 @@ public class LisaaTagiTest {
     @Before
     public void setUp() {
         io = new StubIO();
-        
-        
         tk = new StubTK();
         instance = new LisaaTagi(io, tk);
     }
