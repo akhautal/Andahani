@@ -4,6 +4,9 @@
  */
 package projekti.toiminnot;
 
+import projekti.bibtex.BibtallentajaRajapinta;
+import projekti.tiedostonkasittely.TiedostonkasittelijaRajapinta;
+import projekti.io.IOrajapinta;
 import java.util.ArrayList;
 import java.util.HashSet;
 import projekti.*;

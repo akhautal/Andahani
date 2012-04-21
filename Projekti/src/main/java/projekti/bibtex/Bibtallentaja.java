@@ -2,12 +2,10 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package projekti;
+package projekti.bibtex;
 
-import java.io.BufferedWriter;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStreamWriter;
+import java.io.*;
+import projekti.Viite;
 
 /**
  *
@@ -41,7 +39,11 @@ public class Bibtallentaja implements BibtallentajaRajapinta {
 	    writer.flush();
 	    writer.close();
 	}
-        catch (IOException e){
+        catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (UnsupportedEncodingException e){
+            e.printStackTrace();
+        } catch (IOException e){
             e.printStackTrace();
         }
     }
@@ -49,10 +51,10 @@ public class Bibtallentaja implements BibtallentajaRajapinta {
     private String tarkistaAakkoset(String lisattava){
         //muutettava ööt \"{o} :ksi ja äät \"{a} :ksi
         //(ja ÖÖT \"{O} ja ÄÄT \"{A} :ksi)        
-        lisattava.replace("ö", "\\\"{o}");
-        lisattava.replace("Ö", "\\\"{O}");
-        lisattava.replace("ä", "\\\"{a}");
-        lisattava.replace("Ä", "\\\"{A}");        
+//        lisattava.replace("ö", "\\\"{o}");
+//        lisattava.replace("Ö", "\\\"{O}");
+//        lisattava.replace("ä", "\\\"{a}");
+//        lisattava.replace("Ä", "\\\"{A}");        
         return lisattava;
     }
 }   

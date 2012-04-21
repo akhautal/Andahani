@@ -51,10 +51,6 @@ public class Viite {
         if(tagit.contains(tagi)) tagit.remove(tagi);
     }
     
-    public String[][] getTiedot() {
-        return tiedot;
-    }
-    
     public String getLabel(){
         return tiedot[1][1];
     }
@@ -69,20 +65,5 @@ public class Viite {
     
     public String[][] annaTiedot(){
         return tiedot;
-    }
-
-    public boolean equalsTo(Viite toinenViite) {
-        String[][] toisetTiedot = toinenViite.getTiedot();
-        for(int i = 0; i < 12; i++) {
-            if(!tiedot[i][1].equals(toisetTiedot[i][1])) return false;
-        }
-        
-        if(tagit.size() != toinenViite.getTags().size()) return false;
-        
-        for(String str: tagit) {
-            if(!toinenViite.getTags().contains(str)) return false;
-        } 
-        
-        return true;
     }
 }

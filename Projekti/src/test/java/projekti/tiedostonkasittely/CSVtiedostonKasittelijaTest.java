@@ -2,12 +2,14 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package projekti;
+package projekti.tiedostonkasittely;
 
+import projekti.tiedostonkasittely.CSVtiedostonKasittelija;
 import java.io.*;
 import java.util.ArrayList;
 import static org.junit.Assert.assertEquals;
 import org.junit.*;
+import projekti.Viite;
 
 /**
  *
@@ -32,6 +34,8 @@ public class CSVtiedostonKasittelijaTest {
     
     @After
     public void tearDown() {
+        File file = new File("testi2.csv");
+        if(file.exists()) file.delete();
     }
 
     /**
@@ -40,7 +44,7 @@ public class CSVtiedostonKasittelijaTest {
     @Test
     public void testTallenna() {
         Viite uusi = new Viite();
-        CSVtiedostonKasittelija instance = new CSVtiedostonKasittelija("testi.csv");
+        CSVtiedostonKasittelija instance = new CSVtiedostonKasittelija("testi2.csv");
         
         uusi.lisaaTietoa("millainenViite", "@book");
         uusi.lisaaTietoa("label", "testi");
@@ -50,14 +54,12 @@ public class CSVtiedostonKasittelijaTest {
         
         String rivi = null;
         try {
-            FileInputStream fstream = new FileInputStream("testi.csv");
+            FileInputStream fstream = new FileInputStream("testi2.csv");
             DataInputStream in = new DataInputStream(fstream);
             BufferedReader br = new BufferedReader(new InputStreamReader(in));
             String strLine;
-            while ((strLine = br.readLine()) != null) {
-                rivi = strLine;
-            }
-            in.close();
+            rivi = br.readLine();
+            br.close();
             File file = new File("testi.csv");
             file.delete();
         } catch (Exception e) {
@@ -68,7 +70,7 @@ public class CSVtiedostonKasittelijaTest {
     @Test
     public void viitteidenLuku(){
         Viite uusi = new Viite();
-        CSVtiedostonKasittelija instance = new CSVtiedostonKasittelija("testi.csv");
+        CSVtiedostonKasittelija instance = new CSVtiedostonKasittelija("testi2.csv");
         
         uusi.lisaaTietoa("millainenViite", "@book");
         uusi.lisaaTietoa("label", "testi");

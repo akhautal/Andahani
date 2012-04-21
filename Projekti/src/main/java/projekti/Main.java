@@ -4,6 +4,11 @@
  */
 package projekti;
 
+import projekti.kayttoliittyma.KomentoriviKayttoliittyma;
+import projekti.bibtex.Bibtallentaja;
+import projekti.tiedostonkasittely.CSVtiedostonKasittelija;
+import projekti.io.KonsoliIO;
+
 /**
  *
  * @author hanna
