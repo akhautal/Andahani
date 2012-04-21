@@ -13,4 +13,7 @@ import java.util.ArrayList;
 public interface TiedostonkasittelijaRajapinta {
     public void tallenna(Viite viite);
     public ArrayList<Viite> lueViitteet();
+    //public Viite haeViite(String label);
+    public boolean labelOnOlemassa(String label);
+    public void lisaaTagitTiedostoon(String label, ArrayList<String> tagit);
 }

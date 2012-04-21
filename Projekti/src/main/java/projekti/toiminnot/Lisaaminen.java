@@ -42,17 +42,16 @@ public class Lisaaminen implements Toiminta{
         uusi.lisaaTietoa("millainenViite", viite);
         uusi.lisaaTietoa("label", label);
         uusi = lisaaKentat(uusi);
+        uusi = lisaaTagit(uusi);
         
         return uusi;
     }
     
     private String korvaaAakkoset(String str) {
-        //System.out.println(str + " enned");
-        str = str.replace("ö", "\\\"{o}");
-        //System.out.println(str + " jalkeen");
-        str = str.replace("Ö", "\\\"{O}");
-        str = str.replace("ä", "\\\"{a}");
-        str = str.replace("Ä", "\\\"{A}");
+        str = str.replaceAll("ö", "\\\"{o}");
+        str = str.replaceAll("Ö", "\\\"{O}");
+        str = str.replaceAll("ä", "\\\"{a}");
+        str = str.replaceAll("Ä", "\\\"{A}");
         
         //System.out.println(str);
         return str;
@@ -66,7 +65,7 @@ public class Lisaaminen implements Toiminta{
             io.tulosta(kentat[i] + ":");
             syote = io.lue();
             syote = korvaaAakkoset(syote);
-            if(syote != null && !syote.equals("")){
+            if(!syote.equals("")){
                 viite.lisaaTietoa(kentat[i], syote);
             }
             i++;
@@ -75,17 +74,28 @@ public class Lisaaminen implements Toiminta{
         return viite;
     }
     
+    private Viite lisaaTagit(Viite viite) {
+        io.tulosta("Nyt voit lisätä viitteeseen tägejä. Tyhjä rivi lopeta.");
+        
+        String tagi = io.lue();
+        while(!tagi.equals("")) {
+            viite.lisaaTagi(tagi);
+            tagi = io.lue();
+        }
+        return viite;
+    }
+    
     private String annaViite(){
         io.tulosta("Millaisen viitteen haluat lisätä?");
-        
-        String vastaus;
-        do {
+        io.tulosta("(anna numero)");
+        io.tulosta("1. @inproceedings \n2. @book \n3. @article");
+            
+        String vastaus = io.lue();
+        while(!vastaus.equals("1") && !vastaus.equals("2") && !vastaus.equals("3")) {
             io.tulosta("(anna numero)");
             io.tulosta("1. @inproceedings \n2. @book \n3. @article");
             vastaus = io.lue();
         }
-        while(!vastaus.equals("1") && !vastaus.equals("2") && !vastaus.equals("3"));
-         
         
         if(vastaus.equals("1")){
             return "@inproceedings";
