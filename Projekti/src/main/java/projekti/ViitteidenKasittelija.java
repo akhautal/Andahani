@@ -4,6 +4,9 @@
  */
 package projekti;
 
+import projekti.kayttoliittyma.KayttoliittymaRajapinta;
+import projekti.bibtex.Bibtallentaja;
+import projekti.tiedostonkasittely.TiedostonkasittelijaRajapinta;
 import java.util.ArrayList;
 
 /**

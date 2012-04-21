@@ -5,7 +5,7 @@
 package projekti.toiminnot;
 
 import projekti.Toiminta;
-import projekti.IOrajapinta;
+import projekti.io.IOrajapinta;
 
 /**
  *

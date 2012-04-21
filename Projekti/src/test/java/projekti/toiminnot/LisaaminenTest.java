@@ -7,7 +7,7 @@ package projekti.toiminnot;
 import java.util.ArrayList;
 import org.junit.*;
 import static org.junit.Assert.*;
-import projekti.IOrajapinta;
+import projekti.io.IOrajapinta;
 import projekti.Viite;
 
 /**
@@ -205,7 +205,7 @@ public class LisaaminenTest {
     };
 }
 
- class tiedostoKasittelijaStub implements projekti.TiedostonkasittelijaRajapinta {
+ class tiedostoKasittelijaStub implements projekti.tiedostonkasittely.TiedostonkasittelijaRajapinta {
         private ArrayList<Viite> tiedosto = new ArrayList<Viite>();
 
         public void tallenna(Viite viite) {

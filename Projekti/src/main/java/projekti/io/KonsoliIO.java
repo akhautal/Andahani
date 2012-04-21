@@ -2,7 +2,8 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package projekti;
+package projekti.io;
+import projekti.io.IOrajapinta;
 import java.util.Scanner;
 /**
  *

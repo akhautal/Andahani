@@ -7,8 +7,8 @@ package projekti.toiminnot;
 import java.util.ArrayList;
 import org.junit.*;
 import static org.junit.Assert.*;
-import projekti.IOrajapinta;
-import projekti.TiedostonkasittelijaRajapinta;
+import projekti.io.IOrajapinta;
+import projekti.tiedostonkasittely.TiedostonkasittelijaRajapinta;
 import projekti.Viite;
 
 /**
@@ -129,7 +129,7 @@ class ioStub2 implements IOrajapinta {
 };
 
 
- class tiedostoKasittelijaStub2 implements projekti.TiedostonkasittelijaRajapinta {
+ class tiedostoKasittelijaStub2 implements projekti.tiedostonkasittely.TiedostonkasittelijaRajapinta {
         private ArrayList<Viite> tiedosto = new ArrayList<Viite>();
 
         public void tallenna(Viite viite) {
