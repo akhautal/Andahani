@@ -123,6 +123,7 @@ public class Lisaaminen implements Toiminta{
         ArrayList<Viite> viitteet = tiedostonKasittelija.lueViitteet();
         
         if(viitteet == null) return false;
+        if(ehdotettuLabel.equals("")) return true;
         
         int i = 0;
         while(i < viitteet.size()){

@@ -86,4 +86,61 @@ public class ViiteTest {
         
         assertEquals(viite.getLabel(), "testilabel");
     }
+    
+    @Test
+    public void viitteeseenVoiLisataTagi() {
+        Viite viite = new Viite();
+        viite.lisaaTagi("tagi");
+        assertEquals(viite.getTags().get(0), "tagi");
+        assertEquals(viite.getTags().size(), 1);
+    }
+    
+    @Test
+    public void eiVoiLisataJoOlemassaolevaTagi() {
+        Viite viite = new Viite();
+        viite.lisaaTagi("tagi");
+        viite.lisaaTagi("tagi");
+        assertEquals(viite.getTags().size(), 1);
+    }
+    
+    @Test
+    public void kayttajaVoiPoistaTagi() {
+        Viite viite = new Viite();
+        viite.lisaaTagi("tagi");
+        viite.poistaTagi("tagi");
+        assertEquals(viite.getTags().size(), 0);
+    }
+    
+    @Test
+    public void kayttajaEiVoiPoistaTagiJokaEiOleOlemassa() {
+        Viite viite = new Viite();
+        viite.lisaaTagi("tagi");
+        viite.poistaTagi("tagi10");
+        assertEquals(viite.getTags().size(), 1);
+    }
+    
+    @Test
+    public void kayttajaVoiHakeaTagi() {
+        Viite viite = new Viite();
+        viite.lisaaTagi("tagi");
+        boolean result = viite.hasTag("tagi");
+        assertTrue(result);
+    }
+    
+    @Test
+    public void tiedotPalautetaanOikein() {
+        Viite viite = new Viite();
+        viite.lisaaTietoa("millainenViite", "@book");
+        viite.lisaaTietoa("label", "testilabel");
+        viite.lisaaTietoa("author", "Pekka2");
+        viite.lisaaTietoa("title", "Otsikko4");
+        viite.lisaaTietoa("address", "address 1");
+        
+        String[][] tiedot = viite.annaTiedot();
+        assertEquals("@book", tiedot[0][1]);
+        assertEquals("testilabel", tiedot[1][1]);
+        assertEquals("Pekka2", tiedot[2][1]);
+        assertEquals("Otsikko4", tiedot[3][1]);
+        assertEquals("address 1", tiedot[11][1]);
+    }
 }

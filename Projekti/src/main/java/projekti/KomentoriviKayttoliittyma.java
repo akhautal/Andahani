@@ -12,13 +12,9 @@ public class KomentoriviKayttoliittyma implements KayttoliittymaRajapinta{
     private IOrajapinta io;
     private Komentotehdas toiminnot;
     
-    public KomentoriviKayttoliittyma(IOrajapinta io, TiedostonkasittelijaRajapinta tallentaja, Bibtallentaja bibTallentaja) { 
+    public KomentoriviKayttoliittyma(IOrajapinta io, TiedostonkasittelijaRajapinta tallentaja, BibtallentajaRajapinta bibTallentaja) { 
         this.io = io;
         toiminnot = new Komentotehdas(io, tallentaja, bibTallentaja);            
-    }
-    
-    public KomentoriviKayttoliittyma(IOrajapinta io) { 
-        this.io = io;
     }
  
     public void kaynnista(){
@@ -38,38 +34,4 @@ public class KomentoriviKayttoliittyma implements KayttoliittymaRajapinta{
         io.tulosta("\"bib\" tulostaa kaikki viitteet bibtex-muodossa.");
         io.tulosta("\n");
     }
-
-    public Viite annaViite() {
-//        String syote;
-//        
-//        while(true){
-//            syote = io.lue();
-//            if(syote == null){
-//                naytaOhjeet();
-//                continue;
-//            }
-//            if(syote.equalsIgnoreCase("lopeta") || syote.equalsIgnoreCase("lisaa")){
-//                break;
-//            }
-//            if(syote.equalsIgnoreCase("lista")){
-//                tallentaja.tulosta();
-//            }
-//            naytaOhjeet();
-//        }
-//       
-//        if(syote.equalsIgnoreCase("lopeta")){
-//            return null;
-//        }
-//        
-//        if(syote.equalsIgnoreCase("lisaa")){
-//        }
-//        
-//        Viite uusi = kysySyotetta();
-//        
-//        io.tulosta("lisätään syöte järjestelmään.");
-//        naytaOhjeet();
-//        return uusi;
-        return null;
-    }
-   
 }
