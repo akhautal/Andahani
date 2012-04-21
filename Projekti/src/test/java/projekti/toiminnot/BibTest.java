@@ -18,10 +18,10 @@ import projekti.Viite;
  */
 public class BibTest {
     
-    Bib instance;
-    ArrayList<String> input = new ArrayList<String>();
+    private Bib instance;
+    private ArrayList<String> input = new ArrayList<String>();
     //ArrayList<String> output = new ArrayList<String>();
-    String output;
+    private String output;
     
     @Before
     public void setUp() {
@@ -76,7 +76,17 @@ public class BibTest {
         String result = output;
         assertEquals(result, expResult);
     }
-    
+        
+    @Test
+    public void tiedostoaEiLuodaJosAnnetunTiedostonNiminAlussaOnPiste() {
+        input.add(".vaaranimi.doc");
+        input.add("oikeanimi.bib");
+        
+        String expResult = "oikeanimi.bib";
+        instance.suorita();
+        String result = output;
+        assertEquals(result, expResult);
+    }
     
     @Test
     public void tiedostoaEiLuodaJosAnnettuTiedostonNimiSisaltaaKiellettyMerkki() {
@@ -128,6 +138,14 @@ public class BibTest {
             
             viitteet.add(new Viite(eka));
             return viitteet;
+        }
+
+        public boolean labelOnOlemassa(String label) {
+            throw new UnsupportedOperationException("Not supported yet.");
+        }
+
+        public void lisaaTagitTiedostoon(String label, ArrayList<String> tagit) {
+            throw new UnsupportedOperationException("Not supported yet.");
         }
     };
     
