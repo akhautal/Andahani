@@ -4,11 +4,11 @@
  */
 package projekti.bibtex;
 
-import projekti.bibtex.Bibtallentaja;
 import java.io.*;
-import org.junit.*;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
 import projekti.Viite;
-import static org.junit.Assert.*;
 
 /**
  *
