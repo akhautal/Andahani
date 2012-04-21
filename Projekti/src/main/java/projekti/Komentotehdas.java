@@ -17,6 +17,7 @@ public class Komentotehdas {
     public Komentotehdas(IOrajapinta io, TiedostonkasittelijaRajapinta tallentaja, BibtallentajaRajapinta bib) {
         toiminnot = new HashMap<String, Toiminta>();
         toiminnot.put("lisaa", new Lisaaminen(io, tallentaja));
+        toiminnot.put("tagi", new LisaaTagi(io, tallentaja));
         toiminnot.put("lista", new Listaaminen(io, tallentaja));
         toiminnot.put("bib", new Bib(io, tallentaja, bib));
         toiminnot.put("lopeta", new Lopeta(io));

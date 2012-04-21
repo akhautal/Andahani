@@ -62,7 +62,7 @@ public class CSVtiedostonKasittelijaTest {
             file.delete();
         } catch (Exception e) {
         }
-        assertEquals(rivi, "@book;testi;Pekka;Otsikko;;;;;;;;;");
+        assertEquals(rivi, "@book;testi;Pekka;Otsikko;-;-;-;-;-;-;-;-;");
     }
 
     @Test

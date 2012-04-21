@@ -1,0 +1,49 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package projekti.toiminnot;
+
+import java.util.ArrayList;
+import projekti.IOrajapinta;
+import projekti.TiedostonkasittelijaRajapinta;
+import projekti.Toiminta;
+import projekti.Viite;
+
+/**
+ *
+ * @author dasha
+ */
+public class LisaaTagi implements Toiminta {
+    private IOrajapinta io;
+    private TiedostonkasittelijaRajapinta tiedostonKasittelija;
+   // private  String[] kentat = {"author", "title", "year", "publisher", "booktitle", "pages", 
+     //       "journal", "volume", "number",  "address"};
+    
+    public LisaaTagi(IOrajapinta io, TiedostonkasittelijaRajapinta tiedostonKasittelija) {
+        this.io = io;
+        this.tiedostonKasittelija = tiedostonKasittelija;
+    }
+ 
+    @Override
+    public void suorita() {
+        ArrayList<String> tagit = new ArrayList<String>();
+        
+        io.tulosta("Kirjoita viitteen label:");
+
+        String label = io.lue();
+        //Viite haettuViite = tiedostonKasittelija.haeViite(label);
+        while(!tiedostonKasittelija.labelOnOlemassa(label)) {
+            io.tulosta("Tämä viite ei ole olemassa! Anna toinen label:");
+            label = io.lue();
+        }
+        io.tulosta("Viite on löydetty. Nyt anna tägejä (tyhja rivi lopeta).");
+        
+        String uusTagi = io.lue();
+        while(!uusTagi.equals("")) {
+            tagit.add(uusTagi);
+            uusTagi = io.lue();
+        }        
+        tiedostonKasittelija.lisaaTagitTiedostoon(label, tagit);
+    } 
+}
