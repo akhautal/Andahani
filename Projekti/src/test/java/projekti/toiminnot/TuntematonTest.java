@@ -5,10 +5,11 @@
 package projekti.toiminnot;
 
 import java.util.ArrayList;
-import org.junit.*;
-import static org.junit.Assert.*;
-import projekti.io.IOrajapinta;
-import projekti.Viite;
+import org.junit.After;
+import static org.junit.Assert.assertEquals;
+import org.junit.Before;
+import org.junit.Test;
+import projekti.io.StubIO;
 
 /**
  *
@@ -16,20 +17,11 @@ import projekti.Viite;
  */
 public class TuntematonTest {
     private String[] tulosteet = new String[10];
-    
-    public TuntematonTest() {
-    }
+    private StubIO io = new StubIO();
 
-    @BeforeClass
-    public static void setUpClass() throws Exception {
-    }
-
-    @AfterClass
-    public static void tearDownClass() throws Exception {
-    }
-    
     @Before
     public void setUp() {
+        io = new StubIO();
     }
     
     @After
@@ -41,24 +33,13 @@ public class TuntematonTest {
      */
     @Test
     public void testSuorita() {
-        Tuntematon instance = new Tuntematon(ioStub);
+        Tuntematon instance = new Tuntematon(io);
         instance.suorita();
-        assertEquals("Sallitut komennot: lisaa, listaa, bib, tagi ja lopeta.", tulosteet[0]);
-        assertNull(tulosteet[1]);
+        ArrayList<String> output = io.getOutput();
+        
+        assertEquals("Sallitut komennot: lisaa, listaa, bib, tagi ja lopeta.", output.get(0));
+        assertEquals(1, output.size());
     }
-    
-    IOrajapinta ioStub = new IOrajapinta() {
-        private int i = 0;
-
-        public void tulosta(String tuloste) {
-            tulosteet[i] = tuloste;
-            i++;
-        }
-
-        public String lue() {
-            return null;
-        }
-    };
 }
 
 
