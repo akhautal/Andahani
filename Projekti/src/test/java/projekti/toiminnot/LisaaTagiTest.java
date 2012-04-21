@@ -7,32 +7,29 @@ package projekti.toiminnot;
 import java.util.ArrayList;
 import org.junit.*;
 import static org.junit.Assert.*;
-import projekti.io.IOrajapinta;
-import projekti.tiedostonkasittely.TiedostonkasittelijaRajapinta;
 import projekti.Viite;
+import projekti.bibtex.StubBib;
+import projekti.io.StubIO;
+import projekti.tiedostonkasittely.StubTK;
 
 /**
  *
  * @author dasha
  */
 public class LisaaTagiTest {
-    private ArrayList<String> input = new ArrayList<String>();
+    
+    private StubIO io;
+    private StubTK tk;
+    private LisaaTagi instance;
     public ArrayList<String> tagit = new ArrayList<String>();
-    public String output = new String();
-    
-    public LisaaTagiTest() {
-    }
 
-    @BeforeClass
-    public static void setUpClass() throws Exception {
-    }
-
-    @AfterClass
-    public static void tearDownClass() throws Exception {
-    }
-    
     @Before
     public void setUp() {
+        io = new StubIO();
+        
+        
+        tk = new StubTK();
+        instance = new LisaaTagi(io, tk);
     }
     
     @After
@@ -40,61 +37,20 @@ public class LisaaTagiTest {
     }
     
     @Test
-    public void uusTest() {
-        LisaaTagi instance = new LisaaTagi(ioStub, tkStub);
-        
-        //Adding one reference to the file
+    public void lisaaTagiTest() {
+        tk = new StubTK();
         Viite uusi = new Viite();
         uusi.lisaaTietoa("millainenViite", "@book");
         uusi.lisaaTietoa("label", "testilabel");
         uusi.lisaaTietoa("author", "Pekka2");
         uusi.lisaaTietoa("title", "Otsikko4");
-        tkStub.tallenna(uusi);
+        tk.tallenna(uusi);
         
-        //now trying to search for unexistant reference
-        input.add("testilabel4");
-        input.add("testilabel");
-        input.add("tagi");
-        input.add("tagi4");
-        input.add("");
-        
+        io = new StubIO("testlabel4", "testilabel", "tagi", "tagi4");
+        instance = new LisaaTagi(io, tk);
+
         instance.suorita();
-        assertEquals("tagi", output);
+        assertEquals("tagi", tk.annaTagit().get(0));
+        assertEquals(2, tk.annaTagit().size());
     }
-    
-    IOrajapinta ioStub = new IOrajapinta() {
- 
-        public void tulosta(String tuloste) {
-        
-        }
-
-        public String lue() {
-            if(input.isEmpty()) return null;
-
-            return input.remove(0);
-        }
-    };
-    
-    TiedostonkasittelijaRajapinta tkStub = new TiedostonkasittelijaRajapinta() {
-        private ArrayList<Viite> tiedosto = new ArrayList<Viite>();
-
-        public void tallenna(Viite viite) {
-            tiedosto.add(viite);
-        }
-
-        public ArrayList<Viite> lueViitteet() {
-            return tiedosto;
-        }
-        
-        public boolean labelOnOlemassa(String label) {
-            for(Viite viite: tiedosto) {
-                if(viite.getLabel().equals(label)) return true;
-            }
-            return false;
-        }
-
-        public void lisaaTagitTiedostoon(String label, ArrayList<String> tagit) {
-            output = tagit.get(0);
-        }
-    };
 }

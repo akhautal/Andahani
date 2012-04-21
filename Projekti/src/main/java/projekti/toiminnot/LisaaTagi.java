@@ -17,8 +17,6 @@ import projekti.Viite;
 public class LisaaTagi implements Toiminta {
     private IOrajapinta io;
     private TiedostonkasittelijaRajapinta tiedostonKasittelija;
-   // private  String[] kentat = {"author", "title", "year", "publisher", "booktitle", "pages", 
-     //       "journal", "volume", "number",  "address"};
     
     public LisaaTagi(IOrajapinta io, TiedostonkasittelijaRajapinta tiedostonKasittelija) {
         this.io = io;

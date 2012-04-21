@@ -4,7 +4,6 @@
  */
 package projekti.tiedostonkasittely;
 
-import projekti.tiedostonkasittely.CSVtiedostonKasittelija;
 import java.io.*;
 import java.util.ArrayList;
 import static org.junit.Assert.assertEquals;
