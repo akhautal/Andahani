@@ -46,10 +46,11 @@ public class KomentoriviKayttoliittymaTest {
         ArrayList<String> output = io.getOutput();
         assertEquals("\"lisaa\" aloittaa uuden viitteen lisäyksen.", output.get(0));
         assertEquals("\"tagi\" aloittaa uuden tagin lisäyksen olemassaolevaan viitteeseen.", output.get(1));
-        assertEquals("\"lopeta\" lopettaa.", output.get(2));
+        assertEquals("\"haku\" hakee tagilla.", output.get(2));       
         assertEquals("\"lista\" listaa kaikki viitteet.", output.get(3));
         assertEquals("\"bib\" tulostaa kaikki viitteet bibtex-muodossa.", output.get(4));
-        assertEquals("\n", output.get(5));
-        assertEquals(output.size(), 6);
+        assertEquals("\"lopeta\" lopettaa.", output.get(5));
+        assertEquals("\n", output.get(6));
+        assertEquals(output.size(), 7);
     }
 }

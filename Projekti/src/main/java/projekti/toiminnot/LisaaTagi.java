@@ -42,5 +42,7 @@ public class LisaaTagi implements Toiminta {
             uusTagi = io.lue();
         }        
         tiedostonKasittelija.lisaaTagitTiedostoon(label, tagit);
+        
+        io.tulosta("Tagit lisatty.\n");
     } 
 }
