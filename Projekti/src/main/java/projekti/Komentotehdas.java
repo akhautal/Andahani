@@ -4,10 +4,10 @@
  */
 package projekti;
 
-import projekti.bibtex.BibtallentajaRajapinta;
-import projekti.tiedostonkasittely.TiedostonkasittelijaRajapinta;
-import projekti.io.IOrajapinta;
 import java.util.HashMap;
+import projekti.bibtex.BibtallentajaRajapinta;
+import projekti.io.IOrajapinta;
+import projekti.tiedostonkasittely.TiedostonkasittelijaRajapinta;
 import projekti.toiminnot.*;
 
 /**
@@ -23,6 +23,7 @@ public class Komentotehdas {
         toiminnot.put("tagi", new LisaaTagi(io, tallentaja));
         toiminnot.put("lista", new Listaaminen(io, tallentaja));
         toiminnot.put("bib", new Bib(io, tallentaja, bib));
+        toiminnot.put("haku", new TagiHaku(io, tallentaja));
         toiminnot.put("lopeta", new Lopeta(io));
         toiminnot.put("tuntematon", new Tuntematon(io));
     }
