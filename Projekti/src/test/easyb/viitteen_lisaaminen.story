@@ -13,7 +13,7 @@ scenario "kayttaja pystyy lisaamaan uusi viite, jos annetut tiedot on oikein", {
         io = new StubIO("lisaa", "2", "label10", "abc", "cdf")
         tk = new StubTK()
         bib = new StubBib()
-        kayttoliittyma = new KomentoriviKayttoliittyma(io, tk, bib);
+        kayttoliittyma = new KomentoriviKayttoliittyma(io, tk, bib)
     }
 
     when 'label on mielivaltainen merkkijono joka ei viela ole olemassa jarjestelmassa' , {
@@ -31,7 +31,7 @@ scenario "kayttaja ei pysty lisaamaan uusi viite, jos annettu label on jo olemas
         io = new StubIO("lisaa", "2", "label10", "abc", "cdf", "","","","","","","", "", "", "lisaa","1", "label10", "oikealabel")
         tk = new StubTK()
         bib = new StubBib()
-        kayttoliittyma = new KomentoriviKayttoliittyma(io, tk, bib);
+        kayttoliittyma = new KomentoriviKayttoliittyma(io, tk, bib)
     }
 
     when 'label on mielivaltainen merkkijono joka ei viela ole olemassa jarjestelmassa' , {
@@ -44,9 +44,21 @@ scenario "kayttaja ei pysty lisaamaan uusi viite, jos annettu label on jo olemas
 }
 
 scenario "kayttaja ei pysty antaamaan vaaraa viitteen tyyppia", {
-    given 'kayttaja on valinnut komennon lisaa'
-    when 'kayttaja antaa vaara viitten tyyppi (ei 1,2,3)'
-    then 'Jarjestelma pyytaa antamaan toinen tyyppi'
+
+    given 'kayttaja on valinnut komennon lisaa', {
+        io = new StubIO("lisaa", "vaaratyyppi", "2", "label", "abc", "cdf")
+        tk = new StubTK()
+        bib = new StubBib()
+        kayttoliittyma = new KomentoriviKayttoliittyma(io, tk, bib)
+    }
+
+    when 'kayttaja antaa vaara viitten tyyppi (ei 1,2,3)', {
+        kayttoliittyma.kaynnista()
+    }
+
+    then 'Jarjestelma pyytaa antamaan toinen tyyppi', {
+        io.getOutput().shouldHave("Vaara syote!")
+    }
 }
 
 scenario "kayttaja pystyy lisamaan tageja uuteen viitteeseen", {

@@ -7,7 +7,6 @@ package projekti.toiminnot;
 import java.util.ArrayList;
 import projekti.io.IOrajapinta;
 import projekti.tiedostonkasittely.TiedostonkasittelijaRajapinta;
-import projekti.Toiminta;
 import projekti.Viite;
 
 /**
@@ -91,6 +90,7 @@ public class Lisaaminen implements Toiminta{
             
         String vastaus = io.lue();
         while(!vastaus.equals("1") && !vastaus.equals("2") && !vastaus.equals("3")) {
+            io.tulosta("Vaara syote!");
             io.tulosta("(anna numero)");
             io.tulosta("1. @inproceedings \n2. @book \n3. @article");
             vastaus = io.lue();

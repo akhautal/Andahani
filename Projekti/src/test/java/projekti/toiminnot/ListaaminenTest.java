@@ -7,8 +7,6 @@ package projekti.toiminnot;
 import java.util.ArrayList;
 import org.junit.*;
 import static org.junit.Assert.*;
-import projekti.io.IOrajapinta;
-import projekti.tiedostonkasittely.TiedostonkasittelijaRajapinta;
 import projekti.Viite;
 import projekti.io.StubIO;
 import projekti.tiedostonkasittely.StubTK;
@@ -18,7 +16,7 @@ import projekti.tiedostonkasittely.StubTK;
  * @author hanna
  */
 public class ListaaminenTest {
-    public static String[] tuloste = new String[10];
+
     private StubIO io;
     private StubTK tk;
     private Listaaminen instance;
@@ -28,7 +26,6 @@ public class ListaaminenTest {
         tk = new StubTK();
         io = new StubIO();
         instance = new Listaaminen(io, tk);
-        //tuloste = new String[10];
     }
     
     @After
@@ -40,12 +37,6 @@ public class ListaaminenTest {
      */
     @Test
     public void testListaaminen() {
-        
-        //tiedostoKasittelijaStub2 tkStub = new tiedostoKasittelijaStub2();
-        //instance = new Listaaminen(new ioStub2(), tkStub);
-        
-       // ArrayList<Viite> viitteet = new ArrayList<Viite>();
-        
         Viite uusi = new Viite();
         uusi.lisaaTietoa("millainenViite", "@book");
         uusi.lisaaTietoa("label", "testi");
@@ -115,46 +106,4 @@ public class ListaaminenTest {
         assertEquals("", output.get(5));
     }
 }
-
-
-
-class ioStub2 implements IOrajapinta {
-    private int i = 0;
-
-    public void tulosta(String tuloste) {
-        ListaaminenTest.tuloste[i] = tuloste;
-        i++;
-    }
-
-    public String lue() {
-        return null;
-    }
-};
-
-
- class tiedostoKasittelijaStub2 implements projekti.tiedostonkasittely.TiedostonkasittelijaRajapinta {
-        private ArrayList<Viite> tiedosto = new ArrayList<Viite>();
-
-        public void tallenna(Viite viite) {
-            tiedosto.add(viite);
-        }
-
-        public ArrayList<Viite> lueViitteet() {
-            return tiedosto;
-        }
-        
-        public void poistaTiedosto() {
-            tiedosto = null;
-        }
-        
-        public boolean labelOnOlemassa(String label) {
-            throw new UnsupportedOperationException("Not supported yet.");
-        }
-
-        public void lisaaTagitTiedostoon(String label, ArrayList<String> tagit) {
-            throw new UnsupportedOperationException("Not supported yet.");
-        }
-    };
-
-
 
