@@ -37,7 +37,7 @@ public class Lisaaminen implements Toiminta{
         
         String viite = annaViite();
         String label = annaLabel();
-        io.tulosta(label);
+        //io.tulosta(label);
         uusi.lisaaTietoa("millainenViite", viite);
         uusi.lisaaTietoa("label", label);
         uusi = lisaaKentat(uusi);

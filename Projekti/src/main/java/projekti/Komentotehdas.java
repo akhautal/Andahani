@@ -23,6 +23,7 @@ public class Komentotehdas {
         toiminnot.put("tagi", new LisaaTagi(io, tallentaja));
         toiminnot.put("lista", new Listaaminen(io, tallentaja));
         toiminnot.put("bib", new Bib(io, tallentaja, bib));
+        toiminnot.put("haku", new TagiHaku(io, tallentaja));
         toiminnot.put("lopeta", new Lopeta(io));
         toiminnot.put("tuntematon", new Tuntematon(io));
     }

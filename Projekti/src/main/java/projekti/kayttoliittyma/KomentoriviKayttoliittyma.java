@@ -39,9 +39,10 @@ public class KomentoriviKayttoliittyma implements KayttoliittymaRajapinta{
     public void naytaOhjeet() {
         io.tulosta("\"lisaa\" aloittaa uuden viitteen lisäyksen.");
         io.tulosta("\"tagi\" aloittaa uuden tagin lisäyksen olemassaolevaan viitteeseen.");
-        io.tulosta("\"lopeta\" lopettaa.");
+        io.tulosta("\"haku\" hakee tagilla.");
         io.tulosta("\"lista\" listaa kaikki viitteet.");
         io.tulosta("\"bib\" tulostaa kaikki viitteet bibtex-muodossa.");
+        io.tulosta("\"lopeta\" lopettaa.");
         io.tulosta("\n");
     }
 }
