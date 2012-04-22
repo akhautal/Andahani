@@ -27,7 +27,6 @@ public class Listaaminen implements Toiminta{
     @Override
     public void suorita() {
         ArrayList<Viite> viitteet = tiedostonKasittelija.lueViitteet();
-        
         if(viitteet == null || viitteet.isEmpty()) {
             io.tulosta("Viitteita ei ole tai tiedosto ei ole olemassa.\n");
         }
@@ -39,7 +38,7 @@ public class Listaaminen implements Toiminta{
     private void tulostaViitteet(ArrayList<Viite> viitteet){
         int i = 0, j = 0;
         String[][] tiedot;
-        
+        System.out.println(viitteet.size() + " ?");
         while(i < viitteet.size()){
             tiedot = viitteet.get(i).annaTiedot();
             while(j < tiedot.length){

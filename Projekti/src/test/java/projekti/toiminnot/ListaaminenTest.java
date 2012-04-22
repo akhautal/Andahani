@@ -10,6 +10,8 @@ import static org.junit.Assert.*;
 import projekti.io.IOrajapinta;
 import projekti.tiedostonkasittely.TiedostonkasittelijaRajapinta;
 import projekti.Viite;
+import projekti.io.StubIO;
+import projekti.tiedostonkasittely.StubTK;
 
 /**
  *
@@ -17,13 +19,16 @@ import projekti.Viite;
  */
 public class ListaaminenTest {
     public static String[] tuloste = new String[10];
-   // private ArrayList<Viite> tiedosto = new ArrayList<Viite>();
+    private StubIO io;
+    private StubTK tk;
     private Listaaminen instance;
     
     @Before
     public void setUp() {
-       // instance = new Listaaminen(ioStub, tiedostoKasittelijaStub);
-        tuloste = new String[10];
+        tk = new StubTK();
+        io = new StubIO();
+        instance = new Listaaminen(io, tk);
+        //tuloste = new String[10];
     }
     
     @After
@@ -36,63 +41,59 @@ public class ListaaminenTest {
     @Test
     public void testListaaminen() {
         
-        tiedostoKasittelijaStub2 tkStub = new tiedostoKasittelijaStub2();
-        instance = new Listaaminen(new ioStub2(), tkStub);
+        //tiedostoKasittelijaStub2 tkStub = new tiedostoKasittelijaStub2();
+        //instance = new Listaaminen(new ioStub2(), tkStub);
         
-        ArrayList<Viite> viitteet = new ArrayList<Viite>();
+       // ArrayList<Viite> viitteet = new ArrayList<Viite>();
         
         Viite uusi = new Viite();
         uusi.lisaaTietoa("millainenViite", "@book");
         uusi.lisaaTietoa("label", "testi");
         uusi.lisaaTietoa("author", "Pekka");
-        uusi.lisaaTietoa("title", "Otsikko");
-        
-        tkStub.tallenna(uusi);
+        uusi.lisaaTietoa("title", "Otsikko");        
+        tk.tallenna(uusi);
         
         uusi = new Viite();
         uusi.lisaaTietoa("millainenViite", "@article");
         uusi.lisaaTietoa("label", "testilabel");
         uusi.lisaaTietoa("author", "Matti");
-        uusi.lisaaTietoa("title", "Otsikko2");
+        uusi.lisaaTietoa("title", "Otsikko2");        
+        tk.tallenna(uusi);
         
-        tkStub.tallenna(uusi);
+        instance = new Listaaminen(io, tk);
+        instance.suorita();
         
-        instance.suorita();        
-        assertEquals(tuloste[0], "millainenViite = @book");
-        assertEquals(tuloste[1], "label = testi");
-        assertEquals(tuloste[2], "author = Pekka");
-        assertEquals(tuloste[3], "title = Otsikko");
-        assertEquals(tuloste[4], "");
-        assertEquals(tuloste[5], "millainenViite = @article");
-        assertEquals(tuloste[6], "label = testilabel");
-        assertEquals(tuloste[7], "author = Matti");
-        assertEquals(tuloste[8], "title = Otsikko2");
-        assertEquals(tuloste[9], "");
+        ArrayList<String> output = io.getOutput();
+        assertEquals("millainenViite = @book", output.get(0));
+        assertEquals("label = testi", output.get(1));
+        assertEquals("author = Pekka", output.get(2));
+        assertEquals("title = Otsikko", output.get(3));
+        assertEquals("", output.get(4));
+        assertEquals("millainenViite = @article", output.get(5));
+        assertEquals("label = testilabel", output.get(6));
+        assertEquals("author = Matti", output.get(7));
+        assertEquals("title = Otsikko2", output.get(8));
+        assertEquals("", output.get(9));
     }
     
     @Test
     public void testTyhjaListaaminen() {
-         instance = new Listaaminen(new ioStub2(), new tiedostoKasittelijaStub2());
         instance.suorita();      
-        assertEquals("Viitteita ei ole tai tiedosto ei ole olemassa.\n", tuloste[0]);
+        assertEquals("Viitteita ei ole tai tiedosto ei ole olemassa.\n", io.getOutput().get(0));
     }
     
     @Test
     public void testTiedostoEiOleOlemassa() {
-        tiedostoKasittelijaStub2 tkStub = new tiedostoKasittelijaStub2();
-        instance = new Listaaminen(new ioStub2(), tkStub);
+        tk.poistaTiedosto();
+        instance = new Listaaminen(io, tk);
         
-        tkStub.poistaTiedosto();
         instance.suorita();      
-        assertEquals("Viitteita ei ole tai tiedosto ei ole olemassa.\n", tuloste[0]);
+        assertEquals("Viitteita ei ole tai tiedosto ei ole olemassa.\n", io.getOutput().get(0));
     }  
     
     @Test
     public void testListaaminenTagienKanssa() {
-        
-        tiedostoKasittelijaStub2 tkStub = new tiedostoKasittelijaStub2();
-        instance = new Listaaminen(new ioStub2(), tkStub);
-               
+
         Viite uusi = new Viite();
         uusi.lisaaTietoa("millainenViite", "@book");
         uusi.lisaaTietoa("label", "testi");
@@ -101,15 +102,17 @@ public class ListaaminenTest {
         uusi.lisaaTagi("tagi1");
         uusi.lisaaTagi("tagi2");
         uusi.lisaaTagi("tagi3");
-        tkStub.tallenna(uusi);
+        tk.tallenna(uusi);
+        instance = new Listaaminen(io, tk);
         
-        instance.suorita();        
-        assertEquals(tuloste[0], "millainenViite = @book");
-        assertEquals(tuloste[1], "label = testi");
-        assertEquals(tuloste[2], "author = Pekka");
-        assertEquals(tuloste[3], "title = Otsikko");
-        assertEquals(tuloste[4], "tagit: tagi1,tagi2,tagi3.");
-        assertEquals(tuloste[5], "");
+        instance.suorita();
+        ArrayList<String> output = io.getOutput();
+        assertEquals("millainenViite = @book", output.get(0));
+        assertEquals("label = testi", output.get(1));
+        assertEquals("author = Pekka", output.get(2));
+        assertEquals("title = Otsikko", output.get(3));
+        assertEquals("tagit: tagi1,tagi2,tagi3.", output.get(4));
+        assertEquals("", output.get(5));
     }
 }
 

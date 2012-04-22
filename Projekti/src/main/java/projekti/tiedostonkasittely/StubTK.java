@@ -15,6 +15,7 @@ import projekti.Viite;
 public class StubTK implements TiedostonkasittelijaRajapinta {
 
     private ArrayList<Viite> viitteet = new ArrayList<Viite>();
+    private ArrayList<String> tagit;
     
     public void tallenna(Viite viite) {
         viitteet.add(viite);
@@ -31,8 +32,15 @@ public class StubTK implements TiedostonkasittelijaRajapinta {
         return false;
     }
 
-    public void lisaaTagitTiedostoon(String label, ArrayList<String> tagit) {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public void poistaTiedosto() {
+        viitteet = null;
     }
     
+    public void lisaaTagitTiedostoon(String label, ArrayList<String> tagit) {
+        this.tagit = tagit;
+    }
+    
+    public ArrayList<String> annaTagit() {
+        return tagit;
+    }
 }

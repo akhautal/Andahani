@@ -7,10 +7,10 @@ package projekti.toiminnot;
 import java.util.ArrayList;
 import org.junit.*;
 import static org.junit.Assert.*;
-import projekti.bibtex.BibtallentajaRajapinta;
-import projekti.io.IOrajapinta;
-import projekti.tiedostonkasittely.TiedostonkasittelijaRajapinta;
 import projekti.Viite;
+import projekti.bibtex.StubBib;
+import projekti.io.StubIO;
+import projekti.tiedostonkasittely.StubTK;
 
 /**
  *
@@ -18,16 +18,23 @@ import projekti.Viite;
  */
 public class BibTest {
     
+    private StubIO io;
+    private StubTK tk;
+    private StubBib bib;
     private Bib instance;
-    private ArrayList<String> input = new ArrayList<String>();
-    //ArrayList<String> output = new ArrayList<String>();
-    private String output;
     
     @Before
     public void setUp() {
-        input = new ArrayList<String>();
-        output = null;
-        instance = new Bib(ioStub, tallentajaStub, bibStub);
+        io = new StubIO();
+        
+        //Need to be non-empty folder, else Bib will not write to folder
+        tk = new StubTK();
+        Viite uusi = new Viite();
+        uusi.lisaaTietoa("millainenViite", "@book");
+        uusi.lisaaTietoa("label", "testilabel");
+        uusi.lisaaTietoa("author", "Pekka2");
+        uusi.lisaaTietoa("title", "Otsikko4");
+        tk.tallenna(uusi);
     }
     
     @After
@@ -36,124 +43,99 @@ public class BibTest {
     
     @Test
     public void tiedostoLuodaanJosAnnetuTiedostonNimiOnKelvollinen() {
-        input.add("oikeanimi.bib");
-                
+        io = new StubIO("bib", "oikeanimi.bib");
+        bib = new StubBib();
+        instance = new Bib(io, tk, bib);
+            
         String expResult = "oikeanimi.bib";
         instance.suorita();
-        String result = output;
-        assertEquals(result, expResult);
+        String result = bib.annaTiedostonimet().get(0);
+        
+        assertEquals(expResult, result);
+        assertEquals(1, bib.annaTiedostonimet().size());
     }
     
     @Test
     public void tiedostoaEiLuodaJosAnnetunTiedostonNiminLoppuOnVaarin1() {
-        input.add("vaaranimi.bi");
-        input.add("oikea.bib");
+        io = new StubIO("vaaranimi.bi", "oikeanimi.bib");
+        bib = new StubBib();
+        instance = new Bib(io, tk, bib);
         
-        String expResult = "oikea.bib";
+        String expResult = "oikeanimi.bib";
         instance.suorita();
-        String result = output;
-        assertEquals(result, expResult);
+        String result = bib.annaTiedostonimet().get(0);
+        
+        assertEquals(expResult, result);
+        assertEquals(1, bib.annaTiedostonimet().size());
     }
     
     @Test
     public void tiedostoaEiLuodaJosAnnetunTiedostonNiminLoppuOnVaarin2() {
-        input.add("vaaranimi");
-        input.add("oikeanimi.bib");
+        io = new StubIO("vaaranimi", "oikeanimi.bib");
+        bib = new StubBib();
+        instance = new Bib(io, tk, bib);
         
         String expResult = "oikeanimi.bib";
         instance.suorita();
-        String result = output;
-        assertEquals(result, expResult);
+        String result = bib.annaTiedostonimet().get(0);
+        
+        assertEquals(expResult, result);
+        assertEquals(1, bib.annaTiedostonimet().size());
     }
     
     @Test
     public void tiedostoaEiLuodaJosAnnetunTiedostonNiminLoppuOnVaarin3() {
-        input.add("vaaranimi.doc");
-        input.add("oikeanimi.bib");
+        io = new StubIO("vaaranimi.doc", "oikeanimi.bib");
+        bib = new StubBib();
+        instance = new Bib(io, tk, bib);
         
         String expResult = "oikeanimi.bib";
         instance.suorita();
-        String result = output;
-        assertEquals(result, expResult);
+        String result = bib.annaTiedostonimet().get(0);
+        
+        assertEquals(expResult, result);
+        assertEquals(1, bib.annaTiedostonimet().size());
     }
         
     @Test
     public void tiedostoaEiLuodaJosAnnetunTiedostonNiminAlussaOnPiste() {
-        input.add(".vaaranimi.doc");
-        input.add("oikeanimi.bib");
+        io = new StubIO(".vaaranimi", "oikeanimi.bib");
+        bib = new StubBib();
+        instance = new Bib(io, tk, bib);
         
         String expResult = "oikeanimi.bib";
         instance.suorita();
-        String result = output;
-        assertEquals(result, expResult);
+        String result = bib.annaTiedostonimet().get(0);
+        
+        assertEquals(expResult, result);
+        assertEquals(1, bib.annaTiedostonimet().size());
     }
     
     @Test
     public void tiedostoaEiLuodaJosAnnettuTiedostonNimiSisaltaaKiellettyMerkki() {
-        input.add("vaaranimi*.doc");
-        input.add("oikeanimi.bib");
+        io = new StubIO("vaaranimi*", "oikeanimi.bib");
+        bib = new StubBib();
+        instance = new Bib(io, tk, bib);
         
         String expResult = "oikeanimi.bib";
         instance.suorita();
-        String result = output;
-        assertEquals(result, expResult);
+        String result = bib.annaTiedostonimet().get(0);
+        
+        assertEquals(expResult, result);
+        assertEquals(1, bib.annaTiedostonimet().size());
     }
     
     @Test
     public void tiedostoaEiLuodaJosAnnettuTiedostonNimiOnTyhja() {
-        input.add("");
-        input.add("oikeanimi.bib");
+        io = new StubIO("", "oikeanimi.bib");
+        bib = new StubBib();
+        instance = new Bib(io, tk, bib);
         
         String expResult = "oikeanimi.bib";
         instance.suorita();
-        String result = output;
-        assertEquals(result, expResult);
+        String result = bib.annaTiedostonimet().get(0);
+        
+        assertEquals(expResult, result);
+        assertEquals(1, bib.annaTiedostonimet().size());
     }
-    
-    
-    IOrajapinta ioStub = new IOrajapinta() {
- 
-        public void tulosta(String tuloste) {
-        
-        }
-
-        public String lue() {
-            if(input.isEmpty()) return null;
-
-            return input.remove(0);
-        }
-    };
-            
-    TiedostonkasittelijaRajapinta tallentajaStub = new TiedostonkasittelijaRajapinta() {
-
-        public void tallenna(Viite viite) {}
-
-        public ArrayList<Viite> lueViitteet() {
-            ArrayList<Viite> viitteet = new ArrayList<Viite>();
-            
-            String[][] eka = {{"millainenViite", "2"},
-                              {"label", "Discworld"},
-                              {"author", "Pratchett, Terry"},
-                              {"title",  "Discworld"}};
-            
-            viitteet.add(new Viite(eka));
-            return viitteet;
-        }
-
-        public boolean labelOnOlemassa(String label) {
-            throw new UnsupportedOperationException("Not supported yet.");
-        }
-
-        public void lisaaTagitTiedostoon(String label, ArrayList<String> tagit) {
-            throw new UnsupportedOperationException("Not supported yet.");
-        }
-    };
-    
-    BibtallentajaRajapinta bibStub = new BibtallentajaRajapinta() {
-
-        public void tallenna(Viite viite, String tiedostonimi) {
-            output = tiedostonimi;
-        }
-        
-    };
 }

@@ -4,12 +4,12 @@
  */
 package projekti;
 
-import projekti.bibtex.BibtallentajaRajapinta;
-import projekti.tiedostonkasittely.TiedostonkasittelijaRajapinta;
-import projekti.io.IOrajapinta;
-import java.util.ArrayList;
-import org.junit.*;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import org.junit.Before;
+import org.junit.Test;
+import projekti.bibtex.StubBib;
+import projekti.io.StubIO;
+import projekti.tiedostonkasittely.StubTK;
 import projekti.toiminnot.*;
 
 /**
@@ -18,142 +18,58 @@ import projekti.toiminnot.*;
  */
 public class KomentotehdasTest {
     
-    Komentotehdas komentotehdas;    
-    
-    IOrajapinta ioStub = new IOrajapinta() {
-
-        public void tulosta(String tuloste) {}
-
-        public String lue() {
-            return null;
-        }
-    };
-            
-    TiedostonkasittelijaRajapinta tallentajaStub = new TiedostonkasittelijaRajapinta() {
-
-        public void tallenna(Viite viite) {}
-
-        public ArrayList<Viite> lueViitteet() {
-            return null;
-        }
-
-        public boolean labelOnOlemassa(String label) {
-            throw new UnsupportedOperationException("Not supported yet.");
-        }
-
-        public void lisaaTagitTiedostoon(String label, ArrayList<String> tagit) {
-            throw new UnsupportedOperationException("Not supported yet.");
-        }
-    };
-    
-    BibtallentajaRajapinta bibStub = new BibtallentajaRajapinta() {
-        public void tallenna(Viite viite, String tiedostonimi) {}
-    };
+    private StubIO io;
+    private StubTK tk;
+    private StubBib bib;
+    private Komentotehdas komentotehdas;    
             
     @Before
     public void setUp() {
-        komentotehdas = new Komentotehdas(ioStub, tallentajaStub, bibStub);
+        io = new StubIO();
+        tk = new StubTK();
+        bib = new StubBib();
+        komentotehdas = new Komentotehdas(io, tk, bib);
     }
     
     @Test
     public void lisaaTesti() {
-        Lisaaminen expResult = new Lisaaminen(ioStub, tallentajaStub);
+        Lisaaminen expResult = new Lisaaminen(io, tk);
         Toiminta result = komentotehdas.hae("lisaa");        
-        assertEquals(result.getClass(), expResult.getClass());
+        assertEquals(expResult.getClass(), expResult.getClass());
     }
      
     @Test
     public void listaTesti() {
-        Listaaminen expResult = new Listaaminen(ioStub, tallentajaStub);
+        Listaaminen expResult = new Listaaminen(io, tk);
         Toiminta result = komentotehdas.hae("lista");        
-        assertEquals(result.getClass(), expResult.getClass());
+        assertEquals(expResult.getClass(), expResult.getClass());
     }
     
     @Test
     public void lopetaTesti() {
-        Lopeta expResult = new Lopeta(ioStub);
+        Lopeta expResult = new Lopeta(io);
         Toiminta result = komentotehdas.hae("lopeta");        
-        assertEquals(result.getClass(), expResult.getClass());
+        assertEquals(expResult.getClass(), expResult.getClass());
     }
      
     @Test
     public void bibTesti() {
-        Bib expResult = new Bib(ioStub, tallentajaStub, bibStub);
+        Bib expResult = new Bib(io, tk, bib);
         Toiminta result = komentotehdas.hae("bib");        
-        assertEquals(result.getClass(), result.getClass());
+        assertEquals(expResult.getClass(), result.getClass());
     }
       
     @Test
     public void tuntematonKomentoTesti() {
-        Tuntematon expResult = new Tuntematon(ioStub);
+        Tuntematon expResult = new Tuntematon(io);
         Toiminta result = komentotehdas.hae("unexistentcommand!");        
-        assertEquals(result.getClass(), result.getClass());
+        assertEquals(expResult.getClass(), result.getClass());
     }
     
     @Test
     public void tyhjaKomentoTesti() {
-        Tuntematon expResult = new Tuntematon(ioStub);
+        Tuntematon expResult = new Tuntematon(io);
         Toiminta result = komentotehdas.hae("");        
-        assertEquals(result.getClass(), result.getClass());
+        assertEquals(expResult.getClass(), result.getClass());
     }
 }
-
-
-//ArrayList<String> input; 
-//    
-//    IOrajapinta ioStub = new IOrajapinta() {
-//
-//        public void tulosta(String tuloste) {
-//            throw new UnsupportedOperationException("Not supported yet.");
-//        }
-//
-//        public String lue() {
-//            return input.remove(0);
-//        }
-//        
-//    };
-//            
-//    TiedostonkasittelijaRajapinta tallentajaStub = new TiedostonkasittelijaRajapinta() {
-//
-//        public void tallenna(Viite viite) {
-//            throw new UnsupportedOperationException("Not supported yet.");
-//        }
-//
-//        public ArrayList<Viite> lueViitteet() {
-//            ArrayList<Viite> viitteet = new ArrayList<Viite>();
-//            
-//            String[][] eka = {{"millainenViite", "2"},
-//                                   {"label", "Discworld"},
-//                                   {"author", "Pratchett, Terry"},
-//                                   {"title",  "Discworld"}};
-//
-//            String[][] toka = {{"millainenViite", "1"},
-//                                    {"label", "Tokalabel"},
-//                                    {"author", "Larsson, Stieg"},
-//                                    {"title",  "Dragon Tattoo"},
-//                                    {"booktitle", "title"},
-//                                    {"journal", "-"},
-//                                    {"volume", "2"}, 
-//                                    {"number", "4"},
-//                                    {"year", "1995"},
-//                                    {"pages", "600"},
-//                                    {"publisher", "Weinerstrom"},
-//                                    {"address", "Helsinki, 07078, jokukatu 12c46"}};
-//            
-//            String[][] kolmas = {{"millainenViite", "1"},
-//                                    {"label", "Tokalabel"},
-//                                    {"author", "Larsson, Stieg"},
-//                                    {"title",  "Dragon Tattoo"},
-//                                    {"journal", "-"},
-//                                    {"volume", "2"}, 
-//                                    {"number", "4"},
-//                                    {"year", "1995"},
-//                                    {"pages", "600"}};
-//            
-//            viitteet.add(new Viite(eka));
-//            viitteet.add(new Viite(toka));
-//            viitteet.add(new Viite(kolmas));
-//            return viitteet;
-//        }
-//        
-//    };

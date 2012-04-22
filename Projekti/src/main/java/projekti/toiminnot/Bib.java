@@ -32,7 +32,7 @@ public class Bib implements Toiminta{
     
     public void suorita() {
         String tiedostonimi = bibTiedostonNimi();
-        
+        System.out.println(tiedostonimi);
         ArrayList<Viite> viitteet = tiedostonKasittelija.lueViitteet();
         int i = 0;
         while(i < viitteet.size()){
@@ -40,12 +40,14 @@ public class Bib implements Toiminta{
             //bibtallentaja.tallenna(viitteet.get(i), tiedostonimi);
             i++;
         }
+        io.tulosta("Viitteet tallennettu tiedostoon " + tiedostonimi);
     }
      
     private String bibTiedostonNimi(){
         io.tulosta("Millä nimellä haluat tallentaa bibtex-tiedoston?");
         io.tulosta("Anna muodossa tiedostonimi.bib");
         String tiedostonimi = io.lue();
+
         while(!onKelvollinenBibtexnimi(tiedostonimi)){
             io.tulosta("Epäkelpo nimi!");
             io.tulosta("Anna toinen nimi.");

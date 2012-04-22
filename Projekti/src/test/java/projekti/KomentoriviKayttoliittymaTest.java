@@ -4,14 +4,15 @@
  */
 package projekti;
 
-import projekti.kayttoliittyma.KomentoriviKayttoliittyma;
-import projekti.bibtex.BibtallentajaRajapinta;
-import projekti.tiedostonkasittely.TiedostonkasittelijaRajapinta;
-import projekti.io.IOrajapinta;
 import java.util.ArrayList;
-import org.junit.*;
-import static org.junit.Assert.*;
-import projekti.toiminnot.Bib;
+import org.junit.After;
+import static org.junit.Assert.assertEquals;
+import org.junit.Before;
+import org.junit.Test;
+import projekti.bibtex.StubBib;
+import projekti.io.StubIO;
+import projekti.kayttoliittyma.KomentoriviKayttoliittyma;
+import projekti.tiedostonkasittely.StubTK;
 
 /**
  *
@@ -19,15 +20,17 @@ import projekti.toiminnot.Bib;
  */
 public class KomentoriviKayttoliittymaTest {
     
+    private StubIO io;
+    private StubTK tk;
+    private StubBib bib;
     private KomentoriviKayttoliittyma instance;
-    private ArrayList<String> input;
-    private ArrayList<String> output;
-        
+      
     @Before
     public void setUp() {
-        instance = new KomentoriviKayttoliittyma(ioStub, tkStub, bibStub);
-        input = new ArrayList<String>();
-        output = new ArrayList<String>();
+        io = new StubIO();
+        tk = new StubTK();
+        bib = new StubBib();
+        instance = new KomentoriviKayttoliittyma(io, tk, bib);
     }
     
     @After
@@ -40,7 +43,7 @@ public class KomentoriviKayttoliittymaTest {
     @Test
     public void testNaytaOhjeet() {
         instance.naytaOhjeet();
-        
+        ArrayList<String> output = io.getOutput();
         assertEquals("\"lisaa\" aloittaa uuden viitteen lisäyksen.", output.get(0));
         assertEquals("\"tagi\" aloittaa uuden tagin lisäyksen olemassaolevaan viitteeseen.", output.get(1));
         assertEquals("\"lopeta\" lopettaa.", output.get(2));
@@ -49,43 +52,4 @@ public class KomentoriviKayttoliittymaTest {
         assertEquals("\n", output.get(5));
         assertEquals(output.size(), 6);
     }
-    
-    IOrajapinta ioStub = new IOrajapinta() {
- 
-        public void tulosta(String tuloste) {
-            output.add(tuloste);
-        }
-
-        public String lue() {
-            if(input.isEmpty()) return null;
-
-            return input.remove(0);
-        }
-    };
-            
-    TiedostonkasittelijaRajapinta tkStub = new TiedostonkasittelijaRajapinta() {
-
-        public void tallenna(Viite viite) {
-        }
-
-        public boolean labelOnOlemassa(String label) {
-            throw new UnsupportedOperationException("Not supported yet.");
-        }
-
-        public void lisaaTagitTiedostoon(String label, ArrayList<String> tagit) {
-            throw new UnsupportedOperationException("Not supported yet.");
-        }
-
-        public ArrayList<Viite> lueViitteet() {
-            throw new UnsupportedOperationException("Not supported yet.");
-        }
-    };
-    
-    BibtallentajaRajapinta bibStub = new BibtallentajaRajapinta() {
-
-        public void tallenna(Viite viite, String tiedostonimi) {
-         //   output = tiedostonimi;
-        }
-        
-    };
 }
