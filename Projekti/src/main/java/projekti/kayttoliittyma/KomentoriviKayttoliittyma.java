@@ -6,8 +6,8 @@ package projekti.kayttoliittyma;
 
 import projekti.Komentotehdas;
 import projekti.bibtex.BibtallentajaRajapinta;
-import projekti.tiedostonkasittely.TiedostonkasittelijaRajapinta;
 import projekti.io.IOrajapinta;
+import projekti.tiedostonkasittely.TiedostonkasittelijaRajapinta;
 
 /**
  *

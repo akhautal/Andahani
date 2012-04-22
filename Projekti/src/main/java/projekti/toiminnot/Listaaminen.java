@@ -7,7 +7,6 @@ package projekti.toiminnot;
 import java.util.ArrayList;
 import projekti.io.IOrajapinta;
 import projekti.tiedostonkasittely.TiedostonkasittelijaRajapinta;
-import projekti.Toiminta;
 import projekti.Viite;
 
     
@@ -38,7 +37,7 @@ public class Listaaminen implements Toiminta{
     private void tulostaViitteet(ArrayList<Viite> viitteet){
         int i = 0, j = 0;
         String[][] tiedot;
-        System.out.println(viitteet.size() + " ?");
+        
         while(i < viitteet.size()){
             tiedot = viitteet.get(i).annaTiedot();
             while(j < tiedot.length){
