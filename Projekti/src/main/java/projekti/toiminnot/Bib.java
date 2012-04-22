@@ -24,20 +24,15 @@ public class Bib implements Toiminta{
     public Bib(IOrajapinta io, TiedostonkasittelijaRajapinta tiedostonKasittelija, BibtallentajaRajapinta bibtallentaja) {
         this.io = io;
         this.tiedostonKasittelija = tiedostonKasittelija;
-      //  bibtallentaja = new Bibtallentaja(); 
         this.bibtallentaja = bibtallentaja;
     } 
-    
-  
-    
+     
     public void suorita() {
         String tiedostonimi = bibTiedostonNimi();
-        System.out.println(tiedostonimi);
         ArrayList<Viite> viitteet = tiedostonKasittelija.lueViitteet();
         int i = 0;
         while(i < viitteet.size()){
             bibtallentaja.tallenna(viitteet.get(i), tiedostonimi);
-            //bibtallentaja.tallenna(viitteet.get(i), tiedostonimi);
             i++;
         }
         io.tulosta("Viitteet tallennettu tiedostoon " + tiedostonimi);

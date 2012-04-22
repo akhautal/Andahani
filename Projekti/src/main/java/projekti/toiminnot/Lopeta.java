@@ -4,7 +4,6 @@
  */
 package projekti.toiminnot;
 
-import projekti.Toiminta;
 import projekti.io.IOrajapinta;
 
 /**
@@ -22,6 +21,5 @@ public class Lopeta implements Toiminta {
     public void suorita() {
         io.tulosta("Suoritus loppuu.");
         System.exit(0);
-    }
- 
+    } 
 }

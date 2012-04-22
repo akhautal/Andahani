@@ -4,10 +4,10 @@
  */
 package projekti;
 
-import projekti.bibtex.BibtallentajaRajapinta;
-import projekti.tiedostonkasittely.TiedostonkasittelijaRajapinta;
-import projekti.io.IOrajapinta;
 import java.util.HashMap;
+import projekti.bibtex.BibtallentajaRajapinta;
+import projekti.io.IOrajapinta;
+import projekti.tiedostonkasittely.TiedostonkasittelijaRajapinta;
 import projekti.toiminnot.*;
 
 /**
