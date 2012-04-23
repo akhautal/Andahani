@@ -62,8 +62,20 @@ scenario "kayttaja ei pysty antaamaan vaaraa viitteen tyyppia", {
 }
 
 scenario "kayttaja pystyy lisamaan tageja uuteen viitteeseen", {
-    given 'kayttaja on valinnut komennon lisaa'
-    when 'kayttaja lisaa tageja viitteeseen'
-    then 'tageja on lisatty viitteeseen'
+    
+    given 'kayttaja on valinnut komennon lisaa', {
+        io = new StubIO("lisaa", "2", "label", "abc", "cdf", "","","","","","","","", "tagi1","tagi2")
+        tk = new StubTK()
+        bib = new StubBib()
+        kayttoliittyma = new KomentoriviKayttoliittyma(io, tk, bib)
+    }
+    
+    when 'kayttaja lisaa tageja viitteeseen', {
+        kayttoliittyma.kaynnista()
+    }
+    
+    then 'tageja on lisatty viitteeseen', {
+        io.getOutput().shouldHave("Uusi viite lisatty jarjestelmaan.")
+    }
 }
 
