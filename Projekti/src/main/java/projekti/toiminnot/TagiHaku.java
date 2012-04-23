@@ -5,7 +5,7 @@
 package projekti.toiminnot;
 
 import java.util.ArrayList;
-import projekti.Toiminta;
+import projekti.toiminnot.Toiminta;
 import projekti.Viite;
 import projekti.io.IOrajapinta;
 import projekti.tiedostonkasittely.TiedostonkasittelijaRajapinta;
