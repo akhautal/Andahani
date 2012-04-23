@@ -5,7 +5,7 @@ import projekti.tiedostonkasittely.StubTK
 import projekti.bibtex.StubBib
 import projekti.toiminnot.*
 
-description """Kayttaja pystyy listaamaan kaikki viitteet"""
+description """Kayttaja pystyy luomaan viitteista bib-tiedosto"""
 
 
 scenario "kayttaja pystyy luomaan uusi bibtext tiedosto, jos han antaa kelvollinen tiedoston nimi", {

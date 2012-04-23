@@ -31,7 +31,7 @@ public class LisaaTagi implements Toiminta {
         String label = io.lue();
         //Viite haettuViite = tiedostonKasittelija.haeViite(label);
         while(!tiedostonKasittelija.labelOnOlemassa(label)) {
-            io.tulosta("Tämä viite ei ole olemassa! Anna toinen label:");
+            io.tulosta("Viite ei ole olemassa! Anna toinen label:");
             label = io.lue();
         }
         io.tulosta("Viite on löydetty. Nyt anna tägejä (tyhja rivi lopeta).");
@@ -42,5 +42,7 @@ public class LisaaTagi implements Toiminta {
             uusTagi = io.lue();
         }        
         tiedostonKasittelija.lisaaTagitTiedostoon(label, tagit);
+        
+        io.tulosta("Tagit lisatty.\n");
     } 
 }

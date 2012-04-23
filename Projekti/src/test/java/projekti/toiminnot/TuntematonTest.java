@@ -37,7 +37,7 @@ public class TuntematonTest {
         instance.suorita();
         ArrayList<String> output = io.getOutput();
         
-        assertEquals("Sallitut komennot: lisaa, listaa, bib, tagi ja lopeta.", output.get(0));
+        assertEquals("Sallitut komennot: lisaa, listaa, bib, tagi, haku ja lopeta.", output.get(0));
         assertEquals(1, output.size());
     }
 }

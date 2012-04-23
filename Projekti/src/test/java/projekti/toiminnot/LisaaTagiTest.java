@@ -51,4 +51,21 @@ public class LisaaTagiTest {
         assertEquals("tagi", tk.annaTagit().get(0));
         assertEquals(2, tk.annaTagit().size());
     }
+    
+    @Test
+    public void lisaaTyhjaTagiTest() {
+        tk = new StubTK();
+        Viite uusi = new Viite();
+        uusi.lisaaTietoa("millainenViite", "@book");
+        uusi.lisaaTietoa("label", "testilabel");
+        uusi.lisaaTietoa("author", "Pekka2");
+        uusi.lisaaTietoa("title", "Otsikko4");
+        tk.tallenna(uusi);
+        
+        io = new StubIO("testlabel4", "testilabel", "");
+        instance = new LisaaTagi(io, tk);
+
+        instance.suorita();
+        assertEquals(0, tk.annaTagit().size());
+    }
 }
