@@ -33,25 +33,35 @@
 
 
   <build>
-   	<plugins>
-       		<plugin>
-       			<groupId>org.easyb</groupId>
-         		 <artifactId>maven-easyb-plugin</artifactId>
-          		<version>0.9.7-1</version>
-	  		<executions>
-                    		<execution>
-                        		<phase>integration-test</phase>
-                        		<goals>
-                            			<goal>test</goal>
-                        		</goals>
-                    		</execution>
-                	</executions>
-                	<configuration>
-                    		<storyType>html</storyType>
-                    		<storyReport>${basedir}/target/easyb/easyb-report.html
-	           		</storyReport>
-                	</configuration>
-        	</plugin>
+    <plugins>
+        
+        <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>2.3.2</version>
+                <configuration>
+                    <source>1.6</source>
+                    <target>1.6</target>
+                </configuration>
+        </plugin>
+            
+        <plugin>
+            <groupId>org.easyb</groupId>
+            <artifactId>maven-easyb-plugin</artifactId>
+            <version>0.9.7-1</version>
+            <executions>
+                <execution>
+                    <phase>integration-test</phase>
+                    <goals>
+                        <goal>test</goal>
+                    </goals>
+                </execution>
+           </executions>
+           <configuration>
+               <storyType>html</storyType>
+               <storyReport>${basedir}/target/easyb/easyb-report.html
+	       </storyReport>
+           </configuration>
+        </plugin>
 
         <plugin>
             <groupId>org.codehaus.mojo</groupId>
