@@ -15,7 +15,7 @@ import projekti.Viite;
 public class StubTK implements TiedostonkasittelijaRajapinta {
 
     private ArrayList<Viite> viitteet = new ArrayList<Viite>();
-    private ArrayList<String> tagit;
+    private ArrayList<String> tagit = new ArrayList<String>();
     
     public void tallenna(Viite viite) {
         viitteet.add(viite);
