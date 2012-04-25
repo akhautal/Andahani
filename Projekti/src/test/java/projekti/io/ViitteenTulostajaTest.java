@@ -39,11 +39,6 @@ public class ViitteenTulostajaTest {
      */
     @Test
     public void testTulostaViitteet() {
-//        System.out.println("tulostaViitteet");
-//        ArrayList<Viite> viitteet = null;
-//        ViitteenTulostaja instance = null;
-//        instance.tulostaViitteet(viitteet);
-//        // TODO review the generated test code and remove the default call to fail.
-////        fail("The test case is a prototype.");
+        
     }
 }
