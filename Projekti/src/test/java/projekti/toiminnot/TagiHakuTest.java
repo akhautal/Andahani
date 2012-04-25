@@ -11,15 +11,25 @@ import projekti.Viite;
 import projekti.io.StubIO;
 import projekti.tiedostonkasittely.StubTK;
 
- /**
+/**
+ *
  * @author hanna
  */
-    
 public class TagiHakuTest {
-
     private StubIO io;
     private StubTK tk;
     private TagiHaku instance;
+    
+    public TagiHakuTest() {
+    }
+
+    @BeforeClass
+    public static void setUpClass() throws Exception {
+    }
+
+    @AfterClass
+    public static void tearDownClass() throws Exception {
+    }
     
     @Before
     public void setUp() {
@@ -31,85 +41,7 @@ public class TagiHakuTest {
     @After
     public void tearDown() {
     }
-    
-    @Test
-    public void tagiHakuJosTiedostoOnTyhjaTesti() {
-        io = new StubIO("tagi");
-        instance = new TagiHaku(io, tk);
-        
-        instance.suorita();
-        
-        ArrayList<String> result = io.getOutput();
-        assertEquals("Viitteita ei ole tai tiedosto ei ole olemassa.\n", result.get(0));     
-    }
-    
-    @Test
-    public void tagiHakuJosTiedostoEiOleOlemassaTesti() {
-        io = new StubIO("tagi");
-        tk.poistaTiedosto();
-        instance = new TagiHaku(io, tk);
-        
-        instance.suorita();
-        
-        ArrayList<String> result = io.getOutput();
-        assertEquals("Viitteita ei ole tai tiedosto ei ole olemassa.\n", result.get(0));     
-    }
-    
-    @Test
-    public void tagiHakuJosTiedostoOnEpatyhjaJaTagiOnOlemassaTesti() {
-        io = new StubIO("tagi");
-        
-        tk = new StubTK();
-        Viite uusi = new Viite();
-        uusi.lisaaTietoa("millainenViite", "@book");
-        uusi.lisaaTietoa("label", "testilabel");
-        uusi.lisaaTietoa("author", "Pekka2");
-        uusi.lisaaTagi("tagi");
-        tk.tallenna(uusi);
-        
-        uusi = new Viite();
-        uusi.lisaaTietoa("millainenViite", "@inproceedings");
-        uusi.lisaaTietoa("label", "label2");
-        uusi.lisaaTietoa("author", "Dasha");
-        uusi.lisaaTagi("tagi");
-        tk.tallenna(uusi);
-        
-        instance = new TagiHaku(io, tk);
-        
-        instance.suorita();
-        
-        ArrayList<String> result = io.getOutput();
-        assertEquals("millainenViite = @book", result.get(1)); 
-        assertEquals("label = testilabel", result.get(2)); 
-        assertEquals("author = Pekka2", result.get(3)); 
-        assertEquals("tagit: tagi.", result.get(4));
-        
-        assertEquals("millainenViite = @inproceedings", result.get(6)); 
-        assertEquals("label = label2", result.get(7)); 
-        assertEquals("author = Dasha", result.get(8)); 
-        assertEquals("tagit: tagi.", result.get(9));
-    }
-    
-    @Test
-    public void tagiEiLoydyTiedostossaTesti() {
-        io = new StubIO("tagi2");
-        
-        tk = new StubTK();
-        Viite uusi = new Viite();
-        uusi.lisaaTietoa("millainenViite", "@book");
-        uusi.lisaaTietoa("label", "testilabel");
-        uusi.lisaaTietoa("author", "Pekka2");
-        uusi.lisaaTagi("tagi");
-        tk.tallenna(uusi);
-        
-        instance = new TagiHaku(io, tk);
-        
-        instance.suorita();
-        
-        ArrayList<String> result = io.getOutput();
-        assertEquals("Millään viitteellä ei ole tagia tagi2.", result.get(1) );
-    }
-    
+
     /**
      * Test of suorita method, of class TagiHaku.
      */
@@ -118,8 +50,7 @@ public class TagiHakuTest {
         Viite uusi = new Viite();
         uusi.lisaaTietoa("millainenViite", "@book");
         uusi.lisaaTietoa("label", "testi");
-        uusi.lisaaTietoa("author", "Pekka");
-        uusi.lisaaTietoa("title", "Otsikko"); 
+        uusi.lisaaTietoa("author", "Pekka"); 
         uusi.lisaaTagi("tagi1");
         uusi.lisaaTagi("tagi2");
         tk.tallenna(uusi);
@@ -127,8 +58,7 @@ public class TagiHakuTest {
         uusi = new Viite();
         uusi.lisaaTietoa("millainenViite", "@article");
         uusi.lisaaTietoa("label", "testilabel");
-        uusi.lisaaTietoa("author", "Matti");
-        uusi.lisaaTietoa("title", "Otsikko2");        
+        uusi.lisaaTietoa("author", "Matti");       
         uusi.lisaaTagi("tagi1");
         tk.tallenna(uusi);
         
@@ -137,19 +67,14 @@ public class TagiHakuTest {
         instance.suorita();
         
         ArrayList<String> output = io.getOutput();
-//        assertEquals("Millä tagilla haluat hakea?", output.get(0));
-//        assertEquals("millainenViite = @book", output.get(1));
-//        assertEquals("label = testi", output.get(2));
-//        assertEquals("author = Pekka", output.get(3));
-//        assertEquals("title = Otsikko", output.get(4));
-//        assertEquals("tagit: tagi1,tagi2.", output.get(5));
-//        assertEquals("", output.get(6));
-//        assertEquals("millainenViite = @article", output.get(7));
-//        assertEquals("label = testilabel", output.get(8));
-//        assertEquals("author = Matti", output.get(9));
-//        assertEquals("title = Otsikko2", output.get(10));
-//        assertEquals("tagit: tagi1.", output.get(11));
-//        assertEquals("", output.get(12));
+        assertEquals("Millä tagilla haluat hakea?", output.get(0));
+        assertEquals("millainenViite = @book"+ "\n" + "label = testi" + "\n" +
+                        "author = Pekka" + "\n" +  
+                        "tagit: tagi1,tagi2." + "\n" + "\n" +
+                        "millainenViite = @article" + "\n" + "label = testilabel" + "\n"
+                        + "author = Matti" + "\n" 
+                        + "tagit: tagi1." + "\n\n" , output.get(1)); 
+        assertEquals(2, output.size());
     }
     
     @Test
@@ -157,8 +82,7 @@ public class TagiHakuTest {
         Viite uusi = new Viite();
         uusi.lisaaTietoa("millainenViite", "@book");
         uusi.lisaaTietoa("label", "testi");
-        uusi.lisaaTietoa("author", "Pekka");
-        uusi.lisaaTietoa("title", "Otsikko"); 
+        uusi.lisaaTietoa("author", "Pekka"); 
         uusi.lisaaTagi("tagi1");
         uusi.lisaaTagi("tagi2");
         tk.tallenna(uusi);
@@ -166,14 +90,13 @@ public class TagiHakuTest {
         uusi = new Viite();
         uusi.lisaaTietoa("millainenViite", "@article");
         uusi.lisaaTietoa("label", "testilabel");
-        uusi.lisaaTietoa("author", "Matti");
-        uusi.lisaaTietoa("title", "Otsikko2");        
+        uusi.lisaaTietoa("author", "Matti");     
         uusi.lisaaTagi("tagi1");
         tk.tallenna(uusi);
         
         uusi = new Viite();
         uusi.lisaaTietoa("millainenViite", "@article");
-        uusi.lisaaTietoa("label", "testilabel");
+        uusi.lisaaTietoa("label", "testilabel2");
         uusi.lisaaTietoa("author", "Matti");
         uusi.lisaaTietoa("title", "Otsikko2");        
         uusi.lisaaTagi("testitagi");
@@ -184,29 +107,22 @@ public class TagiHakuTest {
         instance.suorita();
         
         ArrayList<String> output = io.getOutput();
-//        assertEquals("Millä tagilla haluat hakea?", output.get(0));
-//        assertEquals("millainenViite = @book", output.get(1));
-//        assertEquals("label = testi", output.get(2));
-//        assertEquals("author = Pekka", output.get(3));
-//        assertEquals("title = Otsikko", output.get(4));
-//        assertEquals("tagit: tagi1,tagi2.", output.get(5));
-//        assertEquals("", output.get(6));
-//        assertEquals("millainenViite = @article", output.get(7));
-//        assertEquals("label = testilabel", output.get(8));
-//        assertEquals("author = Matti", output.get(9));
-//        assertEquals("title = Otsikko2", output.get(10));
-//        assertEquals("tagit: tagi1.", output.get(11));
-//        assertEquals("", output.get(12));
-//        assertEquals(13, output.size());
+        assertEquals("Millä tagilla haluat hakea?", output.get(0));
+        assertEquals("millainenViite = @book"+ "\n" + "label = testi" + "\n" +
+                        "author = Pekka" + "\n" +  
+                        "tagit: tagi1,tagi2." + "\n" + "\n" +
+                        "millainenViite = @article" + "\n" + "label = testilabel" + "\n"
+                        + "author = Matti" + "\n" 
+                        + "tagit: tagi1." + "\n\n" , output.get(1)); 
+        assertEquals(2, output.size());
     }
     
     @Test
     public void testTyhjaListaaminen() {
         io = new StubIO("tagi1");
         instance = new TagiHaku(io, tk);
-        instance.suorita(); 
-        assertEquals("Millä tagilla haluat hakea?", io.getOutput().get(0));
-        assertEquals("Viitteita ei ole tai tiedosto ei ole olemassa.\n", io.getOutput().get(1));
+        instance.suorita();
+        assertEquals("Viitteita ei ole tai tiedosto ei ole olemassa.\n", io.getOutput().get(0));
     }
     
     @Test
@@ -233,8 +149,7 @@ public class TagiHakuTest {
         io = new StubIO("tagi1");
         instance = new TagiHaku(io, tk);
         
-        instance.suorita();      
-        assertEquals("Millä tagilla haluat hakea?", io.getOutput().get(0));
-        assertEquals("Viitteita ei ole tai tiedosto ei ole olemassa.\n", io.getOutput().get(1));
+        instance.suorita(); 
+        assertEquals("Viitteita ei ole tai tiedosto ei ole olemassa.\n", io.getOutput().get(0));
     }
 }
