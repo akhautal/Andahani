@@ -15,9 +15,6 @@ import projekti.io.KonsoliIO;
  */
 public class Main {
     public static void main(String[] args) {
-//        ViitteidenKasittelija kasittelija = new ViitteidenKasittelija
-//                (new KomentoriviKayttoliittyma(new KonsoliIO()), new CSVtallentaja());
-//        kasittelija.kaynnista();
         KomentoriviKayttoliittyma kl = new KomentoriviKayttoliittyma(new KonsoliIO(), 
                 new CSVtiedostonKasittelija("viitteet.csv"), new Bibtallentaja());
         kl.kaynnista();
