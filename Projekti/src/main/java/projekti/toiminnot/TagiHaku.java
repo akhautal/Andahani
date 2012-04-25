@@ -50,7 +50,7 @@ public class TagiHaku  implements Toiminta{
         }
         else{
             ViitteenTulostaja tulostaja = new ViitteenTulostaja(io);
-            tulostaja.tulostaViitteet(tagiOn);
+            tulostaja.annaTuloste(tagiOn);
             //tulostaViitteet(tagiOn);
         }
     }
