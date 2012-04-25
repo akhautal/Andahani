@@ -43,4 +43,8 @@ public class StubTK implements TiedostonkasittelijaRajapinta {
     public ArrayList<String> annaTagit() {
         return tagit;
     }
+       
+    public void poistaViiteTiedostosta(String label){
+        
+    }
 }

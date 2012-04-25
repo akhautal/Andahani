@@ -140,7 +140,7 @@ public class CSVtiedostonKasittelija implements TiedostonkasittelijaRajapinta{
         } 
    }
    
-   public void poistaViiteTiedostosta(String label, ArrayList<String> tagit) {
+   public void poistaViiteTiedostosta(String label) {
       
         try {
             File file = new File(tiedostonimi);

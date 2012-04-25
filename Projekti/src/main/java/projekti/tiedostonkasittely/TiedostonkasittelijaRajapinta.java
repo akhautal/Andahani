@@ -17,4 +17,5 @@ public interface TiedostonkasittelijaRajapinta {
     //public Viite haeViite(String label);
     public boolean labelOnOlemassa(String label);
     public void lisaaTagitTiedostoon(String label, ArrayList<String> tagit);
+    public void poistaViiteTiedostosta(String label);
 }

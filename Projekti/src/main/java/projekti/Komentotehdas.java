@@ -26,6 +26,7 @@ public class Komentotehdas {
         toiminnot.put("haku", new TagiHaku(io, tallentaja));
         toiminnot.put("lopeta", new Lopeta(io));
         toiminnot.put("tuntematon", new Tuntematon(io));
+        toiminnot.put("poista", new PoistaViite(io, tallentaja));
     }
  
     public Toiminta hae(String operaatio) {

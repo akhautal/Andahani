@@ -42,6 +42,7 @@ public class KomentoriviKayttoliittyma implements KayttoliittymaRajapinta{
         io.tulosta("\"haku\" hakee tagilla.");
         io.tulosta("\"lista\" listaa kaikki viitteet.");
         io.tulosta("\"bib\" tulostaa kaikki viitteet bibtex-muodossa.");
+        io.tulosta("\"poista\" poistaa haluamasi viitteen labelin perusteella.");
         io.tulosta("\"lopeta\" lopettaa.");
         io.tulosta("\n");
     }
