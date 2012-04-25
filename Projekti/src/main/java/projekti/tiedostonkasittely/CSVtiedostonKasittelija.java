@@ -104,26 +104,9 @@ public class CSVtiedostonKasittelija implements TiedostonkasittelijaRajapinta{
             
             BufferedReader bufRdr  = new BufferedReader(new InputStreamReader(new FileInputStream(file),"UTF8"));
             BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("tempfile.csv", true),"UTF8"));
-
-            String line;
-            String toAdd = "";
-            for(String tagi: tagit) {
-                toAdd += tagi + ";";
-            }
                 
-            while((line = bufRdr.readLine()) != null)
-            {            
-                StringTokenizer st = new StringTokenizer(line,";");
-
-                if(st.countTokens() >= 2) {
-                    String type = st.nextToken();
-                    String luettuLabel = st.nextToken();
-                    if(luettuLabel.equals(label)) {
-                        line = line.replaceAll(line, line + toAdd);
-                    }
-                }
-                writer.append(line + "\n");
-            }                     
+            lisaaTagit(bufRdr, writer, label, tagit);
+            
             bufRdr.close();
             writer.flush();
 	    writer.close();
@@ -135,6 +118,67 @@ public class CSVtiedostonKasittelija implements TiedostonkasittelijaRajapinta{
         }       
     }
    
+   private void lisaaTagit(BufferedReader bufRdr, BufferedWriter writer, String label, ArrayList<String> tagit) throws IOException {
+       String line;
+       String toAdd = "";
+       for(String tagi: tagit) {
+           toAdd += tagi + ";";
+       }
+
+       while((line = bufRdr.readLine()) != null)
+        {            
+            StringTokenizer st = new StringTokenizer(line,";");
+
+            if(st.countTokens() >= 2) {
+                String type = st.nextToken();
+                String luettuLabel = st.nextToken();
+                if(luettuLabel.equals(label)) {
+                    line = line.replaceAll(line, line + toAdd);
+                }
+            }
+            writer.append(line + "\n");
+        } 
+   }
+   
+   public void poistaViiteTiedostosta(String label, ArrayList<String> tagit) {
+      
+        try {
+            File file = new File(tiedostonimi);
+            File tempfile = new File("tempfile.csv");
+            if(tempfile.exists()) tempfile.delete();
+            
+            BufferedReader bufRdr  = new BufferedReader(new InputStreamReader(new FileInputStream(file),"UTF8"));
+            BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("tempfile.csv", true),"UTF8"));
+
+            deleteLine(bufRdr, writer, label);
+                                                
+            bufRdr.close();
+            writer.flush();
+	    writer.close();
+            
+            tempfile.renameTo(file);
+            
+        } catch (Exception ex) {
+            Logger.getLogger(CSVtiedostonKasittelija.class.getName()).log(Level.SEVERE, null, ex);
+        }       
+    }
+      
+    private void deleteLine(BufferedReader bufRdr, BufferedWriter writer, String label) throws IOException {
+        String line;
+        while((line = bufRdr.readLine()) != null)
+            {            
+                StringTokenizer st = new StringTokenizer(line,";");
+
+                String luettuLabel = "";
+                if(st.countTokens() >= 2) {
+                    String type = st.nextToken();
+                    luettuLabel = st.nextToken();
+                }
+                
+                if(!luettuLabel.equals(label)) writer.append(line + "\n");
+            } 
+    }
+   
     public boolean labelOnOlemassa(String label) {
         ArrayList<Viite> viitteet = lueViitteet();
         
@@ -144,54 +188,3 @@ public class CSVtiedostonKasittelija implements TiedostonkasittelijaRajapinta{
         return false;
     }
 }       
-
-
-        
-//    public Viite haeViite(String label) {
-//        
-//         ArrayList<Viite> viitteet;
-//        
-//        try {
-//            File file = new File(tiedostonimi);
-//            BufferedReader bufRdr  = new BufferedReader(new InputStreamReader(new FileInputStream(file),"UTF8")); 
-//            Viite luettuViite = new Viite();
-//            String line;
-//            int osa = 2;
-//            String[][] kategoriat = (new Viite()).annaTiedot();
-//        
-//            while((line = bufRdr.readLine()) != null)
-//            {
-//                StringTokenizer st = new StringTokenizer(line,";");
-//
-//                if(st.countTokens() >= 2) {
-//                    String type = st.nextToken();
-//                    String luettuLabel = st.nextToken();
-//                    if(luettuLabel.equals(label)) {
-//                        
-//                        luettuViite.lisaaTietoa(kategoriat[0][0], type);
-//                        luettuViite.lisaaTietoa(kategoriat[1][0], luettuLabel);
-//                        while (st.hasMoreTokens()) {
-//                            String str = st.nextToken();
-//                            if(osa < 12) {
-//                                if(!str.equals("-")) luettuViite.lisaaTietoa(kategoriat[osa][0], new String(str.getBytes(),"UTF-8"));
-//                            }
-//                            else luettuViite.lisaaTagi(str);
-//                    
-//                            osa++;
-//                        }  
-//                        return luettuViite;
-//                    }
-//                }
-//            }          
-//            
-//            bufRdr.close();
-//        } catch (IOException ex) {
-//            return null;
-//        }
-//          
-//        return null;
-//       
-//    }
-//    
-
-   
