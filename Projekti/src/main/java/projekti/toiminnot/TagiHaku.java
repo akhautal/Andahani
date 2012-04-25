@@ -26,17 +26,18 @@ public class TagiHaku  implements Toiminta{
     
     @Override
     public void suorita() {
-        io.tulosta("Millä tagilla haluat hakea?");
-        String haettava = io.lue();
-        
+        System.out.println("123");
         ArrayList<Viite> viitteet = tiedostonKasittelija.lueViitteet();
-        
+        System.out.println("456");
         if(viitteet == null || viitteet.isEmpty()) {
             io.tulosta("Viitteita ei ole tai tiedosto ei ole olemassa.\n");
+            return;
         }
-        else{
-            haeTagilla(viitteet, haettava);
-        }
+        
+        io.tulosta("Millä tagilla haluat hakea?");
+        String haettava = io.lue();
+        haeTagilla(viitteet, haettava);
+        
     }
     
     private void haeTagilla(ArrayList<Viite> viitteet, String haettavaTagi){
