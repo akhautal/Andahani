@@ -50,8 +50,7 @@ public class TagiHakuTest {
         Viite uusi = new Viite();
         uusi.lisaaTietoa("millainenViite", "@book");
         uusi.lisaaTietoa("label", "testi");
-        uusi.lisaaTietoa("author", "Pekka");
-        uusi.lisaaTietoa("title", "Otsikko"); 
+        uusi.lisaaTietoa("author", "Pekka"); 
         uusi.lisaaTagi("tagi1");
         uusi.lisaaTagi("tagi2");
         tk.tallenna(uusi);
@@ -59,8 +58,7 @@ public class TagiHakuTest {
         uusi = new Viite();
         uusi.lisaaTietoa("millainenViite", "@article");
         uusi.lisaaTietoa("label", "testilabel");
-        uusi.lisaaTietoa("author", "Matti");
-        uusi.lisaaTietoa("title", "Otsikko2");        
+        uusi.lisaaTietoa("author", "Matti");       
         uusi.lisaaTagi("tagi1");
         tk.tallenna(uusi);
         
@@ -69,19 +67,14 @@ public class TagiHakuTest {
         instance.suorita();
         
         ArrayList<String> output = io.getOutput();
-//        assertEquals("Millä tagilla haluat hakea?", output.get(0));
-//        assertEquals("millainenViite = @book", output.get(1));
-//        assertEquals("label = testi", output.get(2));
-//        assertEquals("author = Pekka", output.get(3));
-//        assertEquals("title = Otsikko", output.get(4));
-//        assertEquals("tagit: tagi1,tagi2.", output.get(5));
-//        assertEquals("", output.get(6));
-//        assertEquals("millainenViite = @article", output.get(7));
-//        assertEquals("label = testilabel", output.get(8));
-//        assertEquals("author = Matti", output.get(9));
-//        assertEquals("title = Otsikko2", output.get(10));
-//        assertEquals("tagit: tagi1.", output.get(11));
-//        assertEquals("", output.get(12));
+        assertEquals("Millä tagilla haluat hakea?", output.get(0));
+        assertEquals("millainenViite = @book"+ "\n" + "label = testi" + "\n" +
+                        "author = Pekka" + "\n" +  
+                        "tagit: tagi1,tagi2." + "\n" + "\n" +
+                        "millainenViite = @article" + "\n" + "label = testilabel" + "\n"
+                        + "author = Matti" + "\n" 
+                        + "tagit: tagi1." + "\n\n" , output.get(1)); 
+        assertEquals(2, output.size());
     }
     
     @Test
@@ -89,8 +82,7 @@ public class TagiHakuTest {
         Viite uusi = new Viite();
         uusi.lisaaTietoa("millainenViite", "@book");
         uusi.lisaaTietoa("label", "testi");
-        uusi.lisaaTietoa("author", "Pekka");
-        uusi.lisaaTietoa("title", "Otsikko"); 
+        uusi.lisaaTietoa("author", "Pekka"); 
         uusi.lisaaTagi("tagi1");
         uusi.lisaaTagi("tagi2");
         tk.tallenna(uusi);
@@ -98,14 +90,13 @@ public class TagiHakuTest {
         uusi = new Viite();
         uusi.lisaaTietoa("millainenViite", "@article");
         uusi.lisaaTietoa("label", "testilabel");
-        uusi.lisaaTietoa("author", "Matti");
-        uusi.lisaaTietoa("title", "Otsikko2");        
+        uusi.lisaaTietoa("author", "Matti");     
         uusi.lisaaTagi("tagi1");
         tk.tallenna(uusi);
         
         uusi = new Viite();
         uusi.lisaaTietoa("millainenViite", "@article");
-        uusi.lisaaTietoa("label", "testilabel");
+        uusi.lisaaTietoa("label", "testilabel2");
         uusi.lisaaTietoa("author", "Matti");
         uusi.lisaaTietoa("title", "Otsikko2");        
         uusi.lisaaTagi("testitagi");
@@ -116,20 +107,14 @@ public class TagiHakuTest {
         instance.suorita();
         
         ArrayList<String> output = io.getOutput();
-//        assertEquals("Millä tagilla haluat hakea?", output.get(0));
-//        assertEquals("millainenViite = @book", output.get(1));
-//        assertEquals("label = testi", output.get(2));
-//        assertEquals("author = Pekka", output.get(3));
-//        assertEquals("title = Otsikko", output.get(4));
-//        assertEquals("tagit: tagi1,tagi2.", output.get(5));
-//        assertEquals("", output.get(6));
-//        assertEquals("millainenViite = @article", output.get(7));
-//        assertEquals("label = testilabel", output.get(8));
-//        assertEquals("author = Matti", output.get(9));
-//        assertEquals("title = Otsikko2", output.get(10));
-//        assertEquals("tagit: tagi1.", output.get(11));
-//        assertEquals("", output.get(12));
-//        assertEquals(13, output.size());
+        assertEquals("Millä tagilla haluat hakea?", output.get(0));
+        assertEquals("millainenViite = @book"+ "\n" + "label = testi" + "\n" +
+                        "author = Pekka" + "\n" +  
+                        "tagit: tagi1,tagi2." + "\n" + "\n" +
+                        "millainenViite = @article" + "\n" + "label = testilabel" + "\n"
+                        + "author = Matti" + "\n" 
+                        + "tagit: tagi1." + "\n\n" , output.get(1)); 
+        assertEquals(2, output.size());
     }
     
     @Test

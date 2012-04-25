@@ -49,8 +49,8 @@ public class TagiHaku  implements Toiminta{
             io.tulosta("Millään viitteellä ei ole tagia " + haettavaTagi + ".");
         }
         else{
-            ViitteenTulostaja tulostaja = new ViitteenTulostaja(io);
-            tulostaja.annaTuloste(tagiOn);
+            ViitteenTulostaja tulostaja = new ViitteenTulostaja();
+            io.tulosta(tulostaja.annaTuloste(tagiOn));
             //tulostaViitteet(tagiOn);
         }
     }
