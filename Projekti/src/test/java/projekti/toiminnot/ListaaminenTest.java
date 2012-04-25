@@ -40,31 +40,25 @@ public class ListaaminenTest {
         Viite uusi = new Viite();
         uusi.lisaaTietoa("millainenViite", "@book");
         uusi.lisaaTietoa("label", "testi");
-        uusi.lisaaTietoa("author", "Pekka");
-        uusi.lisaaTietoa("title", "Otsikko");        
+        uusi.lisaaTietoa("author", "Pekka"); 
         tk.tallenna(uusi);
         
         uusi = new Viite();
         uusi.lisaaTietoa("millainenViite", "@article");
         uusi.lisaaTietoa("label", "testilabel");
         uusi.lisaaTietoa("author", "Matti");
-        uusi.lisaaTietoa("title", "Otsikko2");        
         tk.tallenna(uusi);
         
+        io = new StubIO();
         instance = new Listaaminen(io, tk);
         instance.suorita();
         
         ArrayList<String> output = io.getOutput();
-        assertEquals("millainenViite = @book", output.get(0));
-        assertEquals("label = testi", output.get(1));
-        assertEquals("author = Pekka", output.get(2));
-        assertEquals("title = Otsikko", output.get(3));
-        assertEquals("", output.get(4));
-        assertEquals("millainenViite = @article", output.get(5));
-        assertEquals("label = testilabel", output.get(6));
-        assertEquals("author = Matti", output.get(7));
-        assertEquals("title = Otsikko2", output.get(8));
-        assertEquals("", output.get(9));
+        System.err.println(io.getOutput().get(0));
+        assertEquals("millainenViite = @book"+ "\n" + "label = testi" + "\n" +
+                        "author = Pekka" +  "\n" + "\n" +
+                        "millainenViite = @article" + "\n" + "label = testilabel" + "\n"
+                        + "author = Matti" + "\n\n" , output.get(0));
     }
     
     @Test
@@ -84,26 +78,32 @@ public class ListaaminenTest {
     
     @Test
     public void testListaaminenTagienKanssa() {
-
         Viite uusi = new Viite();
         uusi.lisaaTietoa("millainenViite", "@book");
         uusi.lisaaTietoa("label", "testi");
-        uusi.lisaaTietoa("author", "Pekka");
-        uusi.lisaaTietoa("title", "Otsikko");
+        uusi.lisaaTietoa("author", "Pekka"); 
         uusi.lisaaTagi("tagi1");
         uusi.lisaaTagi("tagi2");
-        uusi.lisaaTagi("tagi3");
         tk.tallenna(uusi);
-        instance = new Listaaminen(io, tk);
         
+        uusi = new Viite();
+        uusi.lisaaTietoa("millainenViite", "@article");
+        uusi.lisaaTietoa("label", "testilabel");
+        uusi.lisaaTietoa("author", "Matti");       
+        uusi.lisaaTagi("tagi1");
+        tk.tallenna(uusi);
+        
+        io = new StubIO("tagi1");
+        instance = new Listaaminen(io, tk);
         instance.suorita();
+        
         ArrayList<String> output = io.getOutput();
-        assertEquals("millainenViite = @book", output.get(0));
-        assertEquals("label = testi", output.get(1));
-        assertEquals("author = Pekka", output.get(2));
-        assertEquals("title = Otsikko", output.get(3));
-        assertEquals("tagit: tagi1,tagi2,tagi3.", output.get(4));
-        assertEquals("", output.get(5));
+        assertEquals("millainenViite = @book"+ "\n" + "label = testi" + "\n" +
+                        "author = Pekka" + "\n" +  
+                        "tagit: tagi1,tagi2." + "\n" + "\n" +
+                        "millainenViite = @article" + "\n" + "label = testilabel" + "\n"
+                        + "author = Matti" + "\n" 
+                        + "tagit: tagi1." + "\n\n" , output.get(0)); 
     }
 }
 
