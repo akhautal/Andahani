@@ -69,7 +69,7 @@ public class ViitteenTulostaja {
                 output += tulostaTagit2(tagit);
             }
             else{
-                output = output.substring(0, output.length()-2);
+                output = output.substring(0, output.length()-1);
             }
             
             output += "\n\n";
