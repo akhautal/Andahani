@@ -26,9 +26,9 @@ public class TagiHaku  implements Toiminta{
     
     @Override
     public void suorita() {
-        System.out.println("123");
+        //System.out.println("123");
         ArrayList<Viite> viitteet = tiedostonKasittelija.lueViitteet();
-        System.out.println("456");
+        //System.out.println("456");
         if(viitteet == null || viitteet.isEmpty()) {
             io.tulosta("Viitteita ei ole tai tiedosto ei ole olemassa.\n");
             return;
@@ -51,7 +51,7 @@ public class TagiHaku  implements Toiminta{
         }
         else{
             ViitteenTulostaja tulostaja = new ViitteenTulostaja(io);
-            tulostaja.annaTuloste(tagiOn);
+            io.tulosta(tulostaja.annaTuloste(tagiOn));
             //tulostaViitteet(tagiOn);
         }
     }
