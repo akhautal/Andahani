@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import projekti.toiminnot.Toiminta;
 import projekti.Viite;
 import projekti.io.IOrajapinta;
+import projekti.io.ViitteenTulostaja;
 import projekti.tiedostonkasittely.TiedostonkasittelijaRajapinta;
 
 /**
@@ -48,39 +49,41 @@ public class TagiHaku  implements Toiminta{
             io.tulosta("Millään viitteellä ei ole tagia " + haettavaTagi + ".");
         }
         else{
-            tulostaViitteet(tagiOn);
+            ViitteenTulostaja tulostaja = new ViitteenTulostaja(io);
+            tulostaja.tulostaViitteet(tagiOn);
+            //tulostaViitteet(tagiOn);
         }
     }
     
-    private void tulostaViitteet(ArrayList<Viite> viitteet){
-        int i = 0, j = 0;
-        String[][] tiedot;
-        
-        while(i < viitteet.size()){
-            tiedot = viitteet.get(i).annaTiedot();
-            while(j < tiedot.length){
-                if(!tiedot[j][1].equals("")){
-                    io.tulosta(tiedot[j][0] + " = " + tiedot[j][1]);
-                }
-                j++;
-            }
-            
-            ArrayList<String> tagit = viitteet.get(i).getTags();
-            if(!tagit.isEmpty()) tulostaTagit(tagit);
-            
-            io.tulosta("");
-            
-            j = 0;
-            i++;
-        }
-    }
-    
-    private void tulostaTagit(ArrayList<String> tagit) {
-        String output = "";
-        for(String tagi: tagit) {
-            output += tagi + ",";
-        }
-        io.tulosta("tagit: " + output.substring(0, output.length() - 1) + ".");
-    }   
+//    private void tulostaViitteet(ArrayList<Viite> viitteet){
+//        int i = 0, j = 0;
+//        String[][] tiedot;
+//        
+//        while(i < viitteet.size()){
+//            tiedot = viitteet.get(i).annaTiedot();
+//            while(j < tiedot.length){
+//                if(!tiedot[j][1].equals("")){
+//                    io.tulosta(tiedot[j][0] + " = " + tiedot[j][1]);
+//                }
+//                j++;
+//            }
+//            
+//            ArrayList<String> tagit = viitteet.get(i).getTags();
+//            if(!tagit.isEmpty()) tulostaTagit(tagit);
+//            
+//            io.tulosta("");
+//            
+//            j = 0;
+//            i++;
+//        }
+//    }
+//    
+//    private void tulostaTagit(ArrayList<String> tagit) {
+//        String output = "";
+//        for(String tagi: tagit) {
+//            output += tagi + ",";
+//        }
+//        io.tulosta("tagit: " + output.substring(0, output.length() - 1) + ".");
+//    }   
     
 }
