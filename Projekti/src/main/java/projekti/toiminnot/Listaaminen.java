@@ -37,7 +37,7 @@ public class Listaaminen implements Toiminta{
     
     private void tulostaViitteet(ArrayList<Viite> viitteet){
         ViitteenTulostaja tulostaja = new ViitteenTulostaja(io);
-        tulostaja.tulostaViitteet(viitteet);
+        io.tulosta(tulostaja.annaTuloste(viitteet));
 //        int i = 0, j = 0;
 //        String[][] tiedot;
 //        
