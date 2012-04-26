@@ -54,7 +54,7 @@ public class ListaaminenTest {
         instance.suorita();
         
         ArrayList<String> output = io.getOutput();
-        System.err.println(io.getOutput().get(0));
+        //System.err.println(io.getOutput().get(0));
         assertEquals("millainenViite = @book"+ "\n" + "label = testi" + "\n" +
                         "author = Pekka" +  "\n" + "\n" +
                         "millainenViite = @article" + "\n" + "label = testilabel" + "\n"
