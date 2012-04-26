@@ -12,45 +12,14 @@ import projekti.Viite;
  * @author hanna
  */
 public class ViitteenTulostaja {
-    private IOrajapinta io;
-   
+    public ViitteenTulostaja(){
+        
+    }
     public ViitteenTulostaja(IOrajapinta io){
-        this.io = io;
+       
     }
     
     public String annaTuloste(ArrayList<Viite> viitteet){
-//        int i = 0, j = 0;
-//        String[][] tiedot;
-//        
-//        while(i < viitteet.size()){
-//            tiedot = viitteet.get(i).annaTiedot();
-//            while(j < tiedot.length){
-//                if(!tiedot[j][1].equals("")){
-//                    io.tulosta(tiedot[j][0] + " = " + tiedot[j][1]);
-//                }
-//                j++;
-//            }
-//            
-//            ArrayList<String> tagit = viitteet.get(i).getTags();
-//            if(!tagit.isEmpty()) tulostaTagit(tagit);
-//            
-//            io.tulosta("");
-//            
-//            j = 0;
-//            i++;
-//        }
-        return tulostaViitteet2(viitteet);
-    }
-    
-//    private void tulostaTagit(ArrayList<String> tagit) {
-//        String output = "";
-//        for(String tagi: tagit) {
-//            output += tagi + ",";
-//        }
-//        io.tulosta("tagit: " + output.substring(0, output.length() - 1) + ".");
-//    }
-    
-    public String tulostaViitteet2(ArrayList<Viite> viitteet){
         int i = 0, j = 0;
         String[][] tiedot;
         String output = "";
@@ -66,7 +35,7 @@ public class ViitteenTulostaja {
             
             ArrayList<String> tagit = viitteet.get(i).getTags();
             if(!tagit.isEmpty()){
-                output += tulostaTagit2(tagit);
+                output += annaTagit(tagit);
             }
             else{
                 output = output.substring(0, output.length()-1);
@@ -79,7 +48,9 @@ public class ViitteenTulostaja {
         return output;
     }
     
-    private String tulostaTagit2(ArrayList<String> tagit) {
+
+    
+    private String annaTagit(ArrayList<String> tagit) {
         String output = "tagit: ";
         for(String tagi: tagit) {
             output += tagi + ",";
@@ -87,7 +58,6 @@ public class ViitteenTulostaja {
         
         output = output.substring(0, output.length()-1);
         output += ".";
-        //io.tulosta("tagit: " + output.substring(0, output.length() - 1) + ".");
         return output;
     } 
     
