@@ -35,20 +35,3 @@ scenario "Kayttaja voi hakea viitteita tagin perustella, jos annettu tagi on ole
     }
 }
 
-scenario "Kayttaja ei voi hakea viitteita tagin perustella, jos tiedosto on tyhja", {
-
-    given 'kayttaja on valinnut komennon haku' , {
-        io = new StubIO("haku", "tagi");
-        tk = new StubTK();
-        bib = new StubBib()
-        kayttoliittyma = new KomentoriviKayttoliittyma(io, tk, bib)
-    }
-
-    when 'tiedosto ei ole olemassa' , {
-        kayttoliittyma.kaynnista()
-    }
-
-    then 'jarjestelma kertoo etta tiedosto on tyhja', {
-        io.getOutput().shouldHave("Viitteita ei ole tai tiedosto ei ole olemassa.\n")
-    }
-}
