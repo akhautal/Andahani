@@ -50,8 +50,12 @@ public class StubTK implements TiedostonkasittelijaRajapinta {
        
     @Override
     public void poistaViiteTiedostosta(String label){
+        Viite poistettavaViite = null;
+        
         for(Viite viite: viitteet) {
-            if(viite.getLabel().equals(label)) viitteet.remove(viite);
+            if(viite.getLabel().equals(label)) poistettavaViite = viite;
         }
+        
+        if(poistettavaViite != null) viitteet.remove(poistettavaViite); 
     }
 }
