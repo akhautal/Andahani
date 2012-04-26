@@ -41,7 +41,6 @@ public class PoistaViite implements Toiminta {
             io.tulosta("Viitteita ei ole tai tiedostoa ei ole olemassa.\n");
             return;
         }
-       
         io.tulosta("Kirjoita poistettavan viitteen label:"); 
         String syote = io.lue();
         
