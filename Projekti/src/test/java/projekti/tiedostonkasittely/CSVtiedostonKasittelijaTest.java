@@ -16,19 +16,20 @@ import projekti.Viite;
  */
 public class CSVtiedostonKasittelijaTest {
     
-    public CSVtiedostonKasittelijaTest() {
-    }
-
-    @BeforeClass
-    public static void setUpClass() throws Exception {
-    }
-
-    @AfterClass
-    public static void tearDownClass() throws Exception {
-    }
+    CSVtiedostonKasittelija instance;
     
     @Before
     public void setUp() {
+        
+        Viite uusi = new Viite();
+        instance = new CSVtiedostonKasittelija("testi2.csv");
+        
+        uusi.lisaaTietoa("millainenViite", "@book");
+        uusi.lisaaTietoa("label", "testi");
+        uusi.lisaaTietoa("author", "Pekka");
+        uusi.lisaaTietoa("title", "Otsikko");
+        instance.tallenna(uusi);
+        
     }
     
     @After
@@ -42,15 +43,7 @@ public class CSVtiedostonKasittelijaTest {
      */
     @Test
     public void testTallenna() {
-        Viite uusi = new Viite();
-        CSVtiedostonKasittelija instance = new CSVtiedostonKasittelija("testi2.csv");
-        
-        uusi.lisaaTietoa("millainenViite", "@book");
-        uusi.lisaaTietoa("label", "testi");
-        uusi.lisaaTietoa("author", "Pekka");
-        uusi.lisaaTietoa("title", "Otsikko");
-        instance.tallenna(uusi);
-        
+      
         String rivi = null;
         try {
             FileInputStream fstream = new FileInputStream("testi2.csv");
@@ -68,15 +61,8 @@ public class CSVtiedostonKasittelijaTest {
 
     @Test
     public void viitteidenLuku(){
-        Viite uusi = new Viite();
-        CSVtiedostonKasittelija instance = new CSVtiedostonKasittelija("testi2.csv");
         
-        uusi.lisaaTietoa("millainenViite", "@book");
-        uusi.lisaaTietoa("label", "testi");
-        uusi.lisaaTietoa("author", "Pekka");
-        uusi.lisaaTietoa("title", "Otsikko");
-        instance.tallenna(uusi);
-        uusi = new Viite();
+        Viite uusi = new Viite();
         uusi.lisaaTietoa("millainenViite", "@article");
         uusi.lisaaTietoa("label", "testilabel");
         uusi.lisaaTietoa("author", "Matti");
@@ -107,4 +93,82 @@ public class CSVtiedostonKasittelijaTest {
         assertEquals(viitteet.get(1).annaTiedot()[4][1], "");
         assertEquals(viitteet.get(1).annaTiedot()[10][1], "");
     }
+    
+    @Test
+    public void testLisaaTagit() {
+        
+        ArrayList<String> tagit = new ArrayList<String>();
+        tagit.add("lisattytagi");
+        instance.lisaaTagitTiedostoon("testi", tagit);
+                
+        String rivi = null;
+        try {
+            FileInputStream fstream = new FileInputStream("testi2.csv");
+            DataInputStream in = new DataInputStream(fstream);
+            BufferedReader br = new BufferedReader(new InputStreamReader(in));
+            String strLine;
+            rivi = br.readLine();
+            br.close();
+            File file = new File("testi.csv");
+            file.delete();
+        } catch (Exception e) {
+        }
+        assertEquals(rivi, "@book;testi;Pekka;Otsikko;-;-;-;-;-;-;-;-;lisattytagi;");
+    }
+    
+    @Test
+    public void testPoistaViite() throws IOException {
+        File tempfile = new File("tempfile");
+        tempfile.createNewFile();
+        
+        File file = new File("testi2.csv");
+        if(file.exists()) file.delete();
+        
+        Viite uusi = new Viite();
+        instance = new CSVtiedostonKasittelija("testi2.csv");
+        
+        uusi.lisaaTietoa("millainenViite", "@inproceedings");
+        uusi.lisaaTietoa("label", "poistetaan");
+        uusi.lisaaTietoa("author", "Pekka2");
+        uusi.lisaaTietoa("title", "Otsikko2");
+        uusi.lisaaTagi("tagi4");
+        instance.tallenna(uusi);
+        
+        uusi = new Viite();
+        uusi.lisaaTietoa("millainenViite", "@book");
+        uusi.lisaaTietoa("label", "testi");
+        uusi.lisaaTietoa("author", "Pekka");
+        uusi.lisaaTietoa("title", "Otsikko");
+        uusi.lisaaTagi("tagi5");
+        instance.tallenna(uusi);
+        
+        instance.poistaViiteTiedostosta("poistetaan");
+                
+        String rivi = null;
+        try {
+            FileInputStream fstream = new FileInputStream("testi2.csv");
+            DataInputStream in = new DataInputStream(fstream);
+            BufferedReader br = new BufferedReader(new InputStreamReader(in));
+            String strLine;
+            rivi = br.readLine();
+            br.close();
+            file = new File("testi.csv");
+            file.delete();
+        } catch (Exception e) {
+        }
+        assertEquals(rivi, "@book;testi;Pekka;Otsikko;-;-;-;-;-;-;-;-;tagi5;");
+    }
+    
+    @Test
+    public void labelOnOlemassaTesti() {       
+        boolean result = instance.labelOnOlemassa("testi");
+        assertEquals(true, result);
+    }
+    
+    @Test
+    public void labelEiOleOlemassaTesti() {       
+        boolean result = instance.labelOnOlemassa("vaara");
+        assertEquals(false, result);
+    }
+    
 }
