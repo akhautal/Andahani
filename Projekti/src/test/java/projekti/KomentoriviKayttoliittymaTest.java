@@ -49,8 +49,9 @@ public class KomentoriviKayttoliittymaTest {
         assertEquals("\"haku\" hakee tagilla.", output.get(2));       
         assertEquals("\"lista\" listaa kaikki viitteet.", output.get(3));
         assertEquals("\"bib\" tulostaa kaikki viitteet bibtex-muodossa.", output.get(4));
-        assertEquals("\"lopeta\" lopettaa.", output.get(5));
-        assertEquals("\n", output.get(6));
-        assertEquals(output.size(), 7);
+        assertEquals("\"poista\" poistaa haluamasi viitteen labelin perusteella.", output.get(5));
+        assertEquals("\"lopeta\" lopettaa.", output.get(6));
+        assertEquals("\n", output.get(7));
+        assertEquals(output.size(), 8);
     }
 }
