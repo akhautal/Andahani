@@ -169,12 +169,10 @@ public class CSVtiedostonKasittelija implements TiedostonkasittelijaRajapinta{
             {            
                 StringTokenizer st = new StringTokenizer(line,";");
 
-                String luettuLabel = "";
-                if(st.countTokens() >= 2) {
-                    String type = st.nextToken();
-                    luettuLabel = st.nextToken();
-                }
-                
+                String type = "", luettuLabel = "";
+                if(st.hasMoreTokens()) type = st.nextToken();
+                if(st.hasMoreTokens()) luettuLabel = st.nextToken();
+                              
                 if(!luettuLabel.equals(label)) writer.append(line + "\n");
             } 
     }
