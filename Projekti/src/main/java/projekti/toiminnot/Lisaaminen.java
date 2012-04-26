@@ -44,16 +44,16 @@ public class Lisaaminen implements Toiminta{
         uusi = lisaaTagit(uusi);
         return uusi;
     }
-    
-    private String korvaaAakkoset(String str) {
-        str = str.replaceAll("ö", "\\\"{o}");
-        str = str.replaceAll("Ö", "\\\"{O}");
-        str = str.replaceAll("ä", "\\\"{a}");
-        str = str.replaceAll("Ä", "\\\"{A}");
-        
-        //System.out.println(str);
-        return str;
-    }
+//    
+//    private String korvaaAakkoset(String str) {
+//        str = str.replaceAll("ö", "\\\"{o}");
+//        str = str.replaceAll("Ö", "\\\"{O}");
+//        str = str.replaceAll("ä", "\\\"{a}");
+//        str = str.replaceAll("Ä", "\\\"{A}");
+//        
+//        //System.out.println(str);
+//        return str;
+//    }
         
     private Viite lisaaKentat(Viite viite) {
         int i = 0;
@@ -62,7 +62,7 @@ public class Lisaaminen implements Toiminta{
         while(i < kentat.length){
             io.tulosta(kentat[i] + ":");
             syote = io.lue();
-            syote = korvaaAakkoset(syote);
+         //   syote = korvaaAakkoset(syote);
             if(!syote.equals("")){
                 viite.lisaaTietoa(kentat[i], syote);
             }
