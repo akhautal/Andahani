@@ -1,0 +1,935 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns='http://www.w3.org/1999/xhtml' xml:lang='en' lang='en'>
+<head>
+  <meta http-equiv='content-type' content='text/html; charset=utf-8'/>
+  <title>easyb-report</title>
+  <meta name='keywords' content='BDD, behavior driven development, java, java bdd, groovy, groovy bdd, groovy behavior driven development, java behavior driven development, ruby, rspec, easyb, easy bdd'/>
+  <meta name='description' content='easyb is story verification framework built in the spirit of behavior driven development.'/>
+  <link href='easyb_report.css' rel='stylesheet' type='text/css'/>
+  <script src='prototype.js' type='text/javascript'></script>
+  <script type='text/javascript'>
+    function showOnlyContent(contentDiv, linkId) {
+      $('Summaries').hide();
+      $('summary-menu-link').removeClassName('selected-menu-link');
+    
+    
+      $('StoriesList').hide();
+      $('StoriesListPlain').hide();
+      $('stories-list-menu-link').removeClassName('selected-menu-link');
+      $('stories-list-plain-menu-link').removeClassName('selected-menu-link');
+    
+      $(linkId).addClassName('selected-menu-link');
+      $(contentDiv).show();
+    }
+    function toggleScenariosForStory(storyNumber) {
+      $('scenarios_for_story_' + storyNumber).toggle();
+      return false;
+    }
+    function toggleComponentsForSpecification(specificationNumber) {
+      $('components_for_specification_' + specificationNumber).toggle();
+      return false;
+    }
+  </script>
+</head>
+<body>
+<!-- start header -->
+<div id='header'>
+  <h1>
+    <a href='http://www.easyb.org'>
+      <span>easyb</span>
+    </a>
+  </h1>
+  <h2>&nbsp;&nbsp; -- BDD in java can't get any easier</h2>
+</div>
+<!-- end header -->
+
+
+<!-- start page -->
+<div id='page'>
+  <!-- start content -->
+  <div id='content'>
+    <div class='post'>
+      <div class='entry'>
+        <div id='Summaries'>
+          <h2>Summary</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>Behaviors</th>
+                <th>Failed</th>
+                <th>Pending</th>
+                <th>Time (sec)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class='primaryRow'>
+                <td>20</td>
+                <td class=''>0</td>
+                <td class='stepResultPending'>1</td>
+                <td>4.172</td>
+              </tr>
+            </tbody>
+          </table>
+          <h2>Stories Summary</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>Stories</th>
+                <th>Scenarios</th>
+                <th>Failed</th>
+                <th>Pending</th>
+                <th>Time (sec)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class='primaryRow'>
+                <td>8</td>
+                <td>20</td>
+                <td class=''>0</td>
+                <td class='stepResultPending'>1</td>
+                <td>4.172</td>
+              </tr>
+            </tbody>
+          </table>
+          <h2>Specifications Summary</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>Specifications</th>
+                <th>Failed</th>
+                <th>Pending</th>
+                <th>Time (sec)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class='primaryRow'>
+                <td>0</td>
+                <td class=''>0</td>
+                <td class=''>0</td>
+                <td>0.0</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        
+        
+<div id='StoriesList' style='display:none;'>
+  <h2>Stories List</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Story</th>
+        <th>Scenarios</th>
+        <th>Failed</th>
+        <th>Pending</th>
+        <th>Time (sec)</th>
+      </tr>
+    </thead>
+    <tbody>
+      
+      <tr class='primaryRow'>
+        <td>
+         
+          <a href="#" onclick="$('scenarios_for_story_' + 0).toggle(); return false;">bibtex_tiedostoon_kirjoittaminen</a>
+         
+        </td>
+        <td>5</td>
+        <td class=''>0</td>
+        <td class=''>0</td>
+        <td>2.623</td>
+      </tr>
+
+       
+      <tr id='scenarios_for_story_0' class='scenariosForStory' style='display:none;'>
+        <td colspan='5'>
+          <table class='scenariosForStoriesTable'>
+            <tbody>
+              
+              <tr class='primaryScenarioRow'>
+                <td title='Scenario'>kayttaja pystyy luomaan uusi bibtext tiedosto, jos han antaa kelvollinen tiedoston nimi</td>
+                <td title='Result' class='stepResultSuccess'>success</td>
+                <td title='Time (sec)'>0.274</td>
+              </tr>
+              
+              <tr class='scenarioComponents'>
+                <td>given kayttaja on valinnut komennon lista</td>
+                <td class=''></td>
+                <td />
+              </tr>
+              
+              
+              <tr class='scenarioComponents'>
+                <td>when viitteiden lista on epatyhja</td>
+                <td class=''></td>
+                <td />
+              </tr>
+              
+              
+              <tr class='scenarioComponents'>
+                <td>then lista on tulostettu</td>
+                <td class='stepResultSuccess'>success</td>
+                <td />
+              </tr>
+              
+              
+              
+              <tr class='secondaryScenarioRow'>
+                <td title='Scenario'>kayttaja ei pysty luomaan uutta bibtext tiedostoa, jos tiedoston nimen paate ei ole .bib</td>
+                <td title='Result' class='stepResultSuccess'>success</td>
+                <td title='Time (sec)'>0.018</td>
+              </tr>
+              
+              <tr class='scenarioComponents'>
+                <td>given kayttaja on valinnut komennon lista</td>
+                <td class=''></td>
+                <td />
+              </tr>
+              
+              
+              <tr class='scenarioComponents'>
+                <td>when tiedoston nimen lopussa ei ole .bib</td>
+                <td class=''></td>
+                <td />
+              </tr>
+              
+              
+              <tr class='scenarioComponents'>
+                <td>then tiedostoa ei ole luotu vaaralla nimella</td>
+                <td class='stepResultSuccess'>success</td>
+                <td />
+              </tr>
+              
+              
+              
+              <tr class='primaryScenarioRow'>
+                <td title='Scenario'>kayttaja ei pysty luomaan uutta bibtext tiedostoa, jos annetun tiedoston nimen alussa on piste</td>
+                <td title='Result' class='stepResultSuccess'>success</td>
+                <td title='Time (sec)'>0.014</td>
+              </tr>
+              
+              <tr class='scenarioComponents'>
+                <td>given kayttaja on valinnut komennon lista</td>
+                <td class=''></td>
+                <td />
+              </tr>
+              
+              
+              <tr class='scenarioComponents'>
+                <td>when tiedoston nimen alussa on piste</td>
+                <td class=''></td>
+                <td />
+              </tr>
+              
+              
+              <tr class='scenarioComponents'>
+                <td>then tiedostoa ei ole luotu vaaralla nimella</td>
+                <td class='stepResultSuccess'>success</td>
+                <td />
+              </tr>
+              
+              
+              
+              <tr class='secondaryScenarioRow'>
+                <td title='Scenario'>kayttaja ei pysty luomaan uutta bibtext tiedostoa, jos annetussa tiedoston nimessa on erikoinen merkki</td>
+                <td title='Result' class='stepResultSuccess'>success</td>
+                <td title='Time (sec)'>0.02</td>
+              </tr>
+              
+              <tr class='scenarioComponents'>
+                <td>given kayttaja on valinnut komennon lista</td>
+                <td class=''></td>
+                <td />
+              </tr>
+              
+              
+              <tr class='scenarioComponents'>
+                <td>when tiedoston nimessa on joku erikoinen merkki</td>
+                <td class=''></td>
+                <td />
+              </tr>
+              
+              
+              <tr class='scenarioComponents'>
+                <td>then tiedostoa ei ole luotu vaaralla nimella</td>
+                <td class='stepResultSuccess'>success</td>
+                <td />
+              </tr>
+              
+              
+              
+              <tr class='primaryScenarioRow'>
+                <td title='Scenario'>kayttaja ei pysty luomaan uutta bibtext tiedostoa, jos han antaa tyhja tiedoston nimi</td>
+                <td title='Result' class='stepResultSuccess'>success</td>
+                <td title='Time (sec)'>0.016</td>
+              </tr>
+              
+              <tr class='scenarioComponents'>
+                <td>given kayttaja on valinnut komennon lista</td>
+                <td class=''></td>
+                <td />
+              </tr>
+              
+              
+              <tr class='scenarioComponents'>
+                <td>when tiedoston nimessa on joku erikoinen merkki</td>
+                <td class=''></td>
+                <td />
+              </tr>
+              
+              
+              <tr class='scenarioComponents'>
+                <td>then tiedostoa ei ole luotu vaaralla nimella</td>
+                <td class='stepResultSuccess'>success</td>
+                <td />
+              </tr>
+              
+              
+              
+            </tbody>
+          </table>
+        </td>
+      </tr>
+      
+      
+      <tr class='secondaryRow'>
+        <td>
+         
+          <a href="#" onclick="$('scenarios_for_story_' + 1).toggle(); return false;">hello world</a>
+         
+        </td>
+        <td>1</td>
+        <td class=''>0</td>
+        <td class='stepResultPending'>1</td>
+        <td>0.077</td>
+      </tr>
+
+       
+      <tr id='scenarios_for_story_1' class='scenariosForStory' style='display:none;'>
+        <td colspan='5'>
+          <table class='scenariosForStoriesTable'>
+            <tbody>
+              
+              <tr class='primaryScenarioRow'>
+                <td title='Scenario'>customers should receive discounts</td>
+                <td title='Result' class='stepResultPending'>pending</td>
+                <td title='Time (sec)'>0.018</td>
+              </tr>
+              
+              <tr class='scenarioComponents'>
+                <td>given a shopping cart with 3 items</td>
+                <td class=''></td>
+                <td />
+              </tr>
+              
+              
+              <tr class='scenarioComponents'>
+                <td>when a user checks out</td>
+                <td class=''></td>
+                <td />
+              </tr>
+              
+              
+              <tr class='scenarioComponents'>
+                <td>then they should receive a 10% discount</td>
+                <td class='stepResultPending'>pending</td>
+                <td />
+              </tr>
+              
+              
+              
+            </tbody>
+          </table>
+        </td>
+      </tr>
+      
+      
+      <tr class='primaryRow'>
+        <td>
+         
+          <a href="#" onclick="$('scenarios_for_story_' + 2).toggle(); return false;">tuntematon_komento</a>
+         
+        </td>
+        <td>1</td>
+        <td class=''>0</td>
+        <td class=''>0</td>
+        <td>0.16</td>
+      </tr>
+
+       
+      <tr id='scenarios_for_story_2' class='scenariosForStory' style='display:none;'>
+        <td colspan='5'>
+          <table class='scenariosForStoriesTable'>
+            <tbody>
+              
+              <tr class='primaryScenarioRow'>
+                <td title='Scenario'>kayttaja pystyy kirjoittamaan vaaria komentoja, ilman etta tulee virhe</td>
+                <td title='Result' class='stepResultSuccess'>success</td>
+                <td title='Time (sec)'>0.015</td>
+              </tr>
+              
+              <tr class='scenarioComponents'>
+                <td>given kayttaja on valinnut tuntematon komento</td>
+                <td class=''></td>
+                <td />
+              </tr>
+              
+              
+              <tr class='scenarioComponents'>
+                <td>when komento ei ole tuettujen komentojen listassa</td>
+                <td class=''></td>
+                <td />
+              </tr>
+              
+              
+              <tr class='scenarioComponents'>
+                <td>then jarjestelma tulostaa oikeat komennot kayttajalle</td>
+                <td class='stepResultSuccess'>success</td>
+                <td />
+              </tr>
+              
+              
+              
+            </tbody>
+          </table>
+        </td>
+      </tr>
+      
+      
+      <tr class='secondaryRow'>
+        <td>
+         
+          <a href="#" onclick="$('scenarios_for_story_' + 3).toggle(); return false;">viitteen_poistaminen</a>
+         
+        </td>
+        <td>3</td>
+        <td class=''>0</td>
+        <td class=''>0</td>
+        <td>0.32</td>
+      </tr>
+
+       
+      <tr id='scenarios_for_story_3' class='scenariosForStory' style='display:none;'>
+        <td colspan='5'>
+          <table class='scenariosForStoriesTable'>
+            <tbody>
+              
+              <tr class='primaryScenarioRow'>
+                <td title='Scenario'>kayttaja pystyy poistamaan olemassaolevia viitteita</td>
+                <td title='Result' class='stepResultSuccess'>success</td>
+                <td title='Time (sec)'>0.024</td>
+              </tr>
+              
+              <tr class='scenarioComponents'>
+                <td>given kayttaja on valinnut komennon poista</td>
+                <td class=''></td>
+                <td />
+              </tr>
+              
+              
+              <tr class='scenarioComponents'>
+                <td>when haluttu viite on olemassa</td>
+                <td class=''></td>
+                <td />
+              </tr>
+              
+              
+              <tr class='scenarioComponents'>
+                <td>then viite poistetaan</td>
+                <td class='stepResultSuccess'>success</td>
+                <td />
+              </tr>
+              
+              
+              
+              <tr class='secondaryScenarioRow'>
+                <td title='Scenario'>kayttaja ei pystyy poistamaan viiteen, jos se ei ole olemassa</td>
+                <td title='Result' class='stepResultSuccess'>success</td>
+                <td title='Time (sec)'>0.018</td>
+              </tr>
+              
+              <tr class='scenarioComponents'>
+                <td>given kayttaja on valinnut komennon poista</td>
+                <td class=''></td>
+                <td />
+              </tr>
+              
+              
+              <tr class='scenarioComponents'>
+                <td>when haluttu viite ei ole olemassa</td>
+                <td class=''></td>
+                <td />
+              </tr>
+              
+              
+              <tr class='scenarioComponents'>
+                <td>then jarjestelma ilmoittaa virheesta</td>
+                <td class='stepResultSuccess'>success</td>
+                <td />
+              </tr>
+              
+              
+              
+              <tr class='primaryScenarioRow'>
+                <td title='Scenario'>kayttaja ei pystyy poistamaan viiteen, jos tiedosto ei ole olemassa</td>
+                <td title='Result' class='stepResultSuccess'>success</td>
+                <td title='Time (sec)'>0.02</td>
+              </tr>
+              
+              <tr class='scenarioComponents'>
+                <td>given kayttaja on valinnut komennon poista</td>
+                <td class=''></td>
+                <td />
+              </tr>
+              
+              
+              <tr class='scenarioComponents'>
+                <td>when tiedosto ei ole olemassa</td>
+                <td class=''></td>
+                <td />
+              </tr>
+              
+              
+              <tr class='scenarioComponents'>
+                <td>then jarjestelma ilmoittaa virheesta</td>
+                <td class='stepResultSuccess'>success</td>
+                <td />
+              </tr>
+              
+              
+              
+            </tbody>
+          </table>
+        </td>
+      </tr>
+      
+      
+      <tr class='primaryRow'>
+        <td>
+         
+          <a href="#" onclick="$('scenarios_for_story_' + 4).toggle(); return false;">tagin_lisaaminen</a>
+         
+        </td>
+        <td>2</td>
+        <td class=''>0</td>
+        <td class=''>0</td>
+        <td>0.248</td>
+      </tr>
+
+       
+      <tr id='scenarios_for_story_4' class='scenariosForStory' style='display:none;'>
+        <td colspan='5'>
+          <table class='scenariosForStoriesTable'>
+            <tbody>
+              
+              <tr class='primaryScenarioRow'>
+                <td title='Scenario'>kayttaja pystyy lisaamaan tageja olemassaoleviin viitteisiin</td>
+                <td title='Result' class='stepResultSuccess'>success</td>
+                <td title='Time (sec)'>0.014</td>
+              </tr>
+              
+              <tr class='scenarioComponents'>
+                <td>given kayttaja on valinnut komennon tagi</td>
+                <td class=''></td>
+                <td />
+              </tr>
+              
+              
+              <tr class='scenarioComponents'>
+                <td>when haluttu viite on olemassa</td>
+                <td class=''></td>
+                <td />
+              </tr>
+              
+              
+              <tr class='scenarioComponents'>
+                <td>then tagi on lisatty viitteeseen</td>
+                <td class='stepResultSuccess'>success</td>
+                <td />
+              </tr>
+              
+              
+              
+              <tr class='secondaryScenarioRow'>
+                <td title='Scenario'>kayttaja ei pystyy lisaamaan tageja, jos haettu viite ei ole olemassa</td>
+                <td title='Result' class='stepResultSuccess'>success</td>
+                <td title='Time (sec)'>0.012</td>
+              </tr>
+              
+              <tr class='scenarioComponents'>
+                <td>given kayttaja on valinnut komennon tagi</td>
+                <td class=''></td>
+                <td />
+              </tr>
+              
+              
+              <tr class='scenarioComponents'>
+                <td>when haluttu viite on olemassa</td>
+                <td class=''></td>
+                <td />
+              </tr>
+              
+              
+              <tr class='scenarioComponents'>
+                <td>then tagi on lisatty viitteeseen</td>
+                <td class='stepResultSuccess'>success</td>
+                <td />
+              </tr>
+              
+              
+              
+            </tbody>
+          </table>
+        </td>
+      </tr>
+      
+      
+      <tr class='secondaryRow'>
+        <td>
+         
+          <a href="#" onclick="$('scenarios_for_story_' + 5).toggle(); return false;">viitteen_lisaaminen</a>
+         
+        </td>
+        <td>4</td>
+        <td class=''>0</td>
+        <td class=''>0</td>
+        <td>0.317</td>
+      </tr>
+
+       
+      <tr id='scenarios_for_story_5' class='scenariosForStory' style='display:none;'>
+        <td colspan='5'>
+          <table class='scenariosForStoriesTable'>
+            <tbody>
+              
+              <tr class='primaryScenarioRow'>
+                <td title='Scenario'>kayttaja pystyy lisaamaan uusi viite, jos annetut tiedot on oikein</td>
+                <td title='Result' class='stepResultSuccess'>success</td>
+                <td title='Time (sec)'>0.019</td>
+              </tr>
+              
+              <tr class='scenarioComponents'>
+                <td>given kayttaja on valinnut komennon lisaa</td>
+                <td class=''></td>
+                <td />
+              </tr>
+              
+              
+              <tr class='scenarioComponents'>
+                <td>when label on mielivaltainen merkkijono joka ei viela ole olemassa jarjestelmassa</td>
+                <td class=''></td>
+                <td />
+              </tr>
+              
+              
+              <tr class='scenarioComponents'>
+                <td>then Uusi viite on lisatty</td>
+                <td class='stepResultSuccess'>success</td>
+                <td />
+              </tr>
+              
+              
+              
+              <tr class='secondaryScenarioRow'>
+                <td title='Scenario'>kayttaja ei pysty lisaamaan uusi viite, jos annettu label on jo olemassa</td>
+                <td title='Result' class='stepResultSuccess'>success</td>
+                <td title='Time (sec)'>0.013</td>
+              </tr>
+              
+              <tr class='scenarioComponents'>
+                <td>given kayttaja on valinnut komennon lisaa</td>
+                <td class=''></td>
+                <td />
+              </tr>
+              
+              
+              <tr class='scenarioComponents'>
+                <td>when label on mielivaltainen merkkijono joka ei viela ole olemassa jarjestelmassa</td>
+                <td class=''></td>
+                <td />
+              </tr>
+              
+              
+              <tr class='scenarioComponents'>
+                <td>then Uusi viite on lisatty</td>
+                <td class='stepResultSuccess'>success</td>
+                <td />
+              </tr>
+              
+              
+              
+              <tr class='primaryScenarioRow'>
+                <td title='Scenario'>kayttaja ei pysty antaamaan vaaraa viitteen tyyppia</td>
+                <td title='Result' class='stepResultSuccess'>success</td>
+                <td title='Time (sec)'>0.012</td>
+              </tr>
+              
+              <tr class='scenarioComponents'>
+                <td>given kayttaja on valinnut komennon lisaa</td>
+                <td class=''></td>
+                <td />
+              </tr>
+              
+              
+              <tr class='scenarioComponents'>
+                <td>when kayttaja antaa vaara viitten tyyppi (ei 1,2,3)</td>
+                <td class=''></td>
+                <td />
+              </tr>
+              
+              
+              <tr class='scenarioComponents'>
+                <td>then Jarjestelma pyytaa antamaan toinen tyyppi</td>
+                <td class='stepResultSuccess'>success</td>
+                <td />
+              </tr>
+              
+              
+              
+              <tr class='secondaryScenarioRow'>
+                <td title='Scenario'>kayttaja pystyy lisamaan tageja uuteen viitteeseen</td>
+                <td title='Result' class='stepResultSuccess'>success</td>
+                <td title='Time (sec)'>0.022</td>
+              </tr>
+              
+              <tr class='scenarioComponents'>
+                <td>given kayttaja on valinnut komennon lisaa</td>
+                <td class=''></td>
+                <td />
+              </tr>
+              
+              
+              <tr class='scenarioComponents'>
+                <td>when kayttaja lisaa tageja viitteeseen</td>
+                <td class=''></td>
+                <td />
+              </tr>
+              
+              
+              <tr class='scenarioComponents'>
+                <td>then tageja on lisatty viitteeseen</td>
+                <td class='stepResultSuccess'>success</td>
+                <td />
+              </tr>
+              
+              
+              
+            </tbody>
+          </table>
+        </td>
+      </tr>
+      
+      
+      <tr class='primaryRow'>
+        <td>
+         
+          <a href="#" onclick="$('scenarios_for_story_' + 6).toggle(); return false;">viitteiden_listaaminen</a>
+         
+        </td>
+        <td>3</td>
+        <td class=''>0</td>
+        <td class=''>0</td>
+        <td>0.288</td>
+      </tr>
+
+       
+      <tr id='scenarios_for_story_6' class='scenariosForStory' style='display:none;'>
+        <td colspan='5'>
+          <table class='scenariosForStoriesTable'>
+            <tbody>
+              
+              <tr class='primaryScenarioRow'>
+                <td title='Scenario'>kayttaja pystyy listamaan epatyhjan viitteiden listan</td>
+                <td title='Result' class='stepResultSuccess'>success</td>
+                <td title='Time (sec)'>0.03</td>
+              </tr>
+              
+              <tr class='scenarioComponents'>
+                <td>given kayttaja on valinnut komennon lista</td>
+                <td class=''></td>
+                <td />
+              </tr>
+              
+              
+              <tr class='scenarioComponents'>
+                <td>when viitteiden lista on epatyhja</td>
+                <td class=''></td>
+                <td />
+              </tr>
+              
+              
+              <tr class='scenarioComponents'>
+                <td>then lista on tulostettu</td>
+                <td class='stepResultSuccess'>success</td>
+                <td />
+              </tr>
+              
+              
+              
+              <tr class='secondaryScenarioRow'>
+                <td title='Scenario'>kayttaja pystyy listamaan tyhjan viitteiden listan</td>
+                <td title='Result' class='stepResultSuccess'>success</td>
+                <td title='Time (sec)'>0.029</td>
+              </tr>
+              
+              <tr class='scenarioComponents'>
+                <td>given kayttaja on valinnut komennon lista</td>
+                <td class=''></td>
+                <td />
+              </tr>
+              
+              
+              <tr class='scenarioComponents'>
+                <td>when viitteiden lista on tyhja</td>
+                <td class=''></td>
+                <td />
+              </tr>
+              
+              
+              <tr class='scenarioComponents'>
+                <td>then Jarjestelma kertoo, etta viiteita ei ole</td>
+                <td class='stepResultSuccess'>success</td>
+                <td />
+              </tr>
+              
+              
+              
+              <tr class='primaryScenarioRow'>
+                <td title='Scenario'>kayttaja pystyy listamaan viitteiden listan, jos viitteilla on tageja</td>
+                <td title='Result' class='stepResultSuccess'>success</td>
+                <td title='Time (sec)'>0.017</td>
+              </tr>
+              
+              <tr class='scenarioComponents'>
+                <td>given kayttaja on valinnut komennon lista</td>
+                <td class=''></td>
+                <td />
+              </tr>
+              
+              
+              <tr class='scenarioComponents'>
+                <td>when viitteiden lista on epatyhja ja viitteilla on tageja</td>
+                <td class=''></td>
+                <td />
+              </tr>
+              
+              
+              <tr class='scenarioComponents'>
+                <td>then Jarjestelma kertoo, etta viiteita ei ole</td>
+                <td class='stepResultSuccess'>success</td>
+                <td />
+              </tr>
+              
+              
+              
+            </tbody>
+          </table>
+        </td>
+      </tr>
+      
+      
+      <tr class='secondaryRow'>
+        <td>
+         
+          <a href="#" onclick="$('scenarios_for_story_' + 7).toggle(); return false;">tagi_haku</a>
+         
+        </td>
+        <td>1</td>
+        <td class=''>0</td>
+        <td class=''>0</td>
+        <td>0.139</td>
+      </tr>
+
+       
+      <tr id='scenarios_for_story_7' class='scenariosForStory' style='display:none;'>
+        <td colspan='5'>
+          <table class='scenariosForStoriesTable'>
+            <tbody>
+              
+              <tr class='primaryScenarioRow'>
+                <td title='Scenario'>Kayttaja voi hakea viitteita tagin perustella, jos annettu tagi on olemassa</td>
+                <td title='Result' class='stepResultSuccess'>success</td>
+                <td title='Time (sec)'>0.02</td>
+              </tr>
+              
+              <tr class='scenarioComponents'>
+                <td>given kayttaja on valinnut komennon haku</td>
+                <td class=''></td>
+                <td />
+              </tr>
+              
+              
+              <tr class='scenarioComponents'>
+                <td>when haettu tagi on olemassa</td>
+                <td class=''></td>
+                <td />
+              </tr>
+              
+              
+              <tr class='scenarioComponents'>
+                <td>then jarjestelma listaa viitteita</td>
+                <td class='stepResultSuccess'>success</td>
+                <td />
+              </tr>
+              
+              
+              
+            </tbody>
+          </table>
+        </td>
+      </tr>
+      
+      
+    </tbody>
+  </table>
+</div>
+
+
+
+
+<div id='StoriesListPlain' style='display:none;'>
+  <h2>Stories Text</h2>
+  
+  <div>20 scenarios (including 1 pending) executed successfully.</div>
+  <div><br/><br/>&nbsp;&nbsp;Story: bibtex_tiedostoon_kirjoittaminen<br/><br/>&nbsp;&nbsp;&nbsp;Kayttaja pystyy luomaan viitteista bib-tiedosto<br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;scenario kayttaja pystyy luomaan uusi bibtext tiedosto, jos han antaa kelvollinen tiedoston nimi<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;given kayttaja on valinnut komennon lista<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;when viitteiden lista on epatyhja<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;then lista on tulostettu<br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;scenario kayttaja ei pysty luomaan uutta bibtext tiedostoa, jos tiedoston nimen paate ei ole .bib<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;given kayttaja on valinnut komennon lista<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;when tiedoston nimen lopussa ei ole .bib<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;then tiedostoa ei ole luotu vaaralla nimella<br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;scenario kayttaja ei pysty luomaan uutta bibtext tiedostoa, jos annetun tiedoston nimen alussa on piste<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;given kayttaja on valinnut komennon lista<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;when tiedoston nimen alussa on piste<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;then tiedostoa ei ole luotu vaaralla nimella<br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;scenario kayttaja ei pysty luomaan uutta bibtext tiedostoa, jos annetussa tiedoston nimessa on erikoinen merkki<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;given kayttaja on valinnut komennon lista<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;when tiedoston nimessa on joku erikoinen merkki<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;then tiedostoa ei ole luotu vaaralla nimella<br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;scenario kayttaja ei pysty luomaan uutta bibtext tiedostoa, jos han antaa tyhja tiedoston nimi<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;given kayttaja on valinnut komennon lista<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;when tiedoston nimessa on joku erikoinen merkki<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;then tiedostoa ei ole luotu vaaralla nimella<br/><br/>&nbsp;&nbsp;Story: hello world<br/><br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;scenario customers should receive discounts<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;given a shopping cart with 3 items<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;when a user checks out<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;then they should receive a 10% discount&nbsp;<span style='color:#BABFEE;'>[PENDING]</span><br/><br/>&nbsp;&nbsp;Story: tuntematon_komento<br/><br/>&nbsp;&nbsp;&nbsp;Kayttaja pystyy kirjoittamaan vaaria komentoja<br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;scenario kayttaja pystyy kirjoittamaan vaaria komentoja, ilman etta tulee virhe<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;given kayttaja on valinnut tuntematon komento<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;when komento ei ole tuettujen komentojen listassa<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;then jarjestelma tulostaa oikeat komennot kayttajalle<br/><br/>&nbsp;&nbsp;Story: viitteen_poistaminen<br/><br/>&nbsp;&nbsp;&nbsp;Kayttaja pystyy poistamaan viitteen<br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;scenario kayttaja pystyy poistamaan olemassaolevia viitteita<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;given kayttaja on valinnut komennon poista<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;when haluttu viite on olemassa<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;then viite poistetaan<br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;scenario kayttaja ei pystyy poistamaan viiteen, jos se ei ole olemassa<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;given kayttaja on valinnut komennon poista<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;when haluttu viite ei ole olemassa<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;then jarjestelma ilmoittaa virheesta<br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;scenario kayttaja ei pystyy poistamaan viiteen, jos tiedosto ei ole olemassa<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;given kayttaja on valinnut komennon poista<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;when tiedosto ei ole olemassa<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;then jarjestelma ilmoittaa virheesta<br/><br/>&nbsp;&nbsp;Story: tagin_lisaaminen<br/><br/>&nbsp;&nbsp;&nbsp;Kayttaja pystyy lisaamaan tageja viitteisiin<br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;scenario kayttaja pystyy lisaamaan tageja olemassaoleviin viitteisiin<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;given kayttaja on valinnut komennon tagi<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;when haluttu viite on olemassa<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;then tagi on lisatty viitteeseen<br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;scenario kayttaja ei pystyy lisaamaan tageja, jos haettu viite ei ole olemassa<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;given kayttaja on valinnut komennon tagi<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;when haluttu viite on olemassa<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;then tagi on lisatty viitteeseen<br/><br/>&nbsp;&nbsp;Story: viitteen_lisaaminen<br/><br/>&nbsp;&nbsp;&nbsp;Kayttaja pystyy lisaamaan uusi viite jarjestelmaan<br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;scenario kayttaja pystyy lisaamaan uusi viite, jos annetut tiedot on oikein<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;given kayttaja on valinnut komennon lisaa<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;when label on mielivaltainen merkkijono joka ei viela ole olemassa jarjestelmassa<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;then Uusi viite on lisatty<br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;scenario kayttaja ei pysty lisaamaan uusi viite, jos annettu label on jo olemassa<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;given kayttaja on valinnut komennon lisaa<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;when label on mielivaltainen merkkijono joka ei viela ole olemassa jarjestelmassa<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;then Uusi viite on lisatty<br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;scenario kayttaja ei pysty antaamaan vaaraa viitteen tyyppia<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;given kayttaja on valinnut komennon lisaa<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;when kayttaja antaa vaara viitten tyyppi (ei 1,2,3)<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;then Jarjestelma pyytaa antamaan toinen tyyppi<br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;scenario kayttaja pystyy lisamaan tageja uuteen viitteeseen<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;given kayttaja on valinnut komennon lisaa<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;when kayttaja lisaa tageja viitteeseen<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;then tageja on lisatty viitteeseen<br/><br/>&nbsp;&nbsp;Story: viitteiden_listaaminen<br/><br/>&nbsp;&nbsp;&nbsp;Kayttaja pystyy listaamaan kaikki viitteet<br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;scenario kayttaja pystyy listamaan epatyhjan viitteiden listan<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;given kayttaja on valinnut komennon lista<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;when viitteiden lista on epatyhja<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;then lista on tulostettu<br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;scenario kayttaja pystyy listamaan tyhjan viitteiden listan<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;given kayttaja on valinnut komennon lista<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;when viitteiden lista on tyhja<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;then Jarjestelma kertoo, etta viiteita ei ole<br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;scenario kayttaja pystyy listamaan viitteiden listan, jos viitteilla on tageja<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;given kayttaja on valinnut komennon lista<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;when viitteiden lista on epatyhja ja viitteilla on tageja<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;then Jarjestelma kertoo, etta viiteita ei ole<br/><br/>&nbsp;&nbsp;Story: tagi_haku<br/><br/>&nbsp;&nbsp;&nbsp;Kayttaja voi hakea viitteita tagien perusteella<br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;scenario Kayttaja voi hakea viitteita tagin perustella, jos annettu tagi on olemassa<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;given kayttaja on valinnut komennon haku<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;when haettu tagi on olemassa<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;then jarjestelma listaa viitteita</div>
+</div>
+
+      </div>
+    </div>
+
+  </div>
+  <!-- end content -->
+
+
+  <!-- start sidebar -->
+  <div id='sidebar'>
+    <ul>
+      <li>
+        <h2>Sections</h2>
+        <ul>
+          <li>
+            <a id='summary-menu-link' class='selected-menu-link' href='#' onclick='showOnlyContent("Summaries", "summary-menu-link")'>Summary</a>
+          </li>
+          
+          <li>
+            <a id='stories-list-menu-link' href='#' onclick='showOnlyContent("StoriesList", "stories-list-menu-link")'>Stories</a>
+          </li>
+          <li>
+            <a id='stories-list-plain-menu-link' href='#' onclick='showOnlyContent("StoriesListPlain", "stories-list-plain-menu-link")'>Stories Text</a>
+          </li>
+          
+          
+        </ul>
+      </li>
+    </ul>
+    <div style='clear: both;'>&nbsp;</div>
+  </div>
+  <!-- end sidebar -->
+
+</div>
+<!-- end page -->
+
+<div id='footer'/>
+</body>
+</html>
