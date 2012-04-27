@@ -1,9 +1,9 @@
-<easyb time='Thu Apr 26 11:07:44 EEST 2012' totalbehaviors='17' totalfailedbehaviors='0' totalpendingbehaviors='1' executionTime='4048'>
-  <stories scenarios='17' failedscenarios='0' pendingscenarios='1' executionTime='4048'>
-    <story name='bibtex_tiedostoon_kirjoittaminen' scenarios='5' failedscenarios='0' pendingscenarios='0' executionTime='2668'>
-      <execute name='bibtex_tiedostoon_kirjoittaminen' scenarios='5' failedscenarios='0' pendingscenarios='0' executionTime='1974'>
+<easyb time='Fri Apr 27 08:53:47 EEST 2012' totalbehaviors='20' totalfailedbehaviors='0' totalpendingbehaviors='1' executionTime='4172'>
+  <stories scenarios='20' failedscenarios='0' pendingscenarios='1' executionTime='4172'>
+    <story name='bibtex_tiedostoon_kirjoittaminen' scenarios='5' failedscenarios='0' pendingscenarios='0' executionTime='2623'>
+      <execute name='bibtex_tiedostoon_kirjoittaminen' scenarios='5' failedscenarios='0' pendingscenarios='0' executionTime='1944'>
         <description name='Kayttaja pystyy luomaan viitteista bib-tiedosto' />
-        <scenario name='kayttaja pystyy luomaan uusi bibtext tiedosto, jos han antaa kelvollinen tiedoston nimi' result='success' executionTime='281'>
+        <scenario name='kayttaja pystyy luomaan uusi bibtext tiedosto, jos han antaa kelvollinen tiedoston nimi' result='success' executionTime='274'>
           <given name='kayttaja on valinnut komennon lista' />
           <when name='viitteiden lista on epatyhja' />
           <then name='lista on tulostettu' result='success' />
@@ -13,7 +13,7 @@
           <when name='tiedoston nimen lopussa ei ole .bib' />
           <then name='tiedostoa ei ole luotu vaaralla nimella' result='success' />
         </scenario>
-        <scenario name='kayttaja ei pysty luomaan uutta bibtext tiedostoa, jos annetun tiedoston nimen alussa on piste' result='success' executionTime='15'>
+        <scenario name='kayttaja ei pysty luomaan uutta bibtext tiedostoa, jos annetun tiedoston nimen alussa on piste' result='success' executionTime='14'>
           <given name='kayttaja on valinnut komennon lista' />
           <when name='tiedoston nimen alussa on piste' />
           <then name='tiedostoa ei ole luotu vaaralla nimella' result='success' />
@@ -30,89 +30,109 @@
         </scenario>
       </execute>
     </story>
-    <story name='hello world' scenarios='1' failedscenarios='0' pendingscenarios='1' executionTime='81'>
-      <execute name='hello world' scenarios='1' failedscenarios='0' pendingscenarios='1' executionTime='76'>
-        <scenario name='customers should receive discounts' result='pending' executionTime='22'>
+    <story name='hello world' scenarios='1' failedscenarios='0' pendingscenarios='1' executionTime='77'>
+      <execute name='hello world' scenarios='1' failedscenarios='0' pendingscenarios='1' executionTime='70'>
+        <scenario name='customers should receive discounts' result='pending' executionTime='18'>
           <given name='a shopping cart with 3 items' />
           <when name='a user checks out' />
           <then name='they should receive a 10% discount' result='pending' />
         </scenario>
       </execute>
     </story>
-    <story name='tuntematon_komento' scenarios='1' failedscenarios='0' pendingscenarios='0' executionTime='179'>
-      <execute name='tuntematon_komento' scenarios='1' failedscenarios='0' pendingscenarios='0' executionTime='159'>
+    <story name='tuntematon_komento' scenarios='1' failedscenarios='0' pendingscenarios='0' executionTime='160'>
+      <execute name='tuntematon_komento' scenarios='1' failedscenarios='0' pendingscenarios='0' executionTime='154'>
         <description name='Kayttaja pystyy kirjoittamaan vaaria komentoja' />
-        <scenario name='kayttaja pystyy kirjoittamaan vaaria komentoja, ilman etta tulee virhe' result='success' executionTime='14'>
+        <scenario name='kayttaja pystyy kirjoittamaan vaaria komentoja, ilman etta tulee virhe' result='success' executionTime='15'>
           <given name='kayttaja on valinnut tuntematon komento' />
           <when name='komento ei ole tuettujen komentojen listassa' />
           <then name='jarjestelma tulostaa oikeat komennot kayttajalle' result='success' />
         </scenario>
       </execute>
     </story>
-    <story name='tagin_lisaaminen' scenarios='2' failedscenarios='0' pendingscenarios='0' executionTime='242'>
-      <execute name='tagin_lisaaminen' scenarios='2' failedscenarios='0' pendingscenarios='0' executionTime='235'>
+    <story name='viitteen_poistaminen' scenarios='3' failedscenarios='0' pendingscenarios='0' executionTime='320'>
+      <execute name='viitteen_poistaminen' scenarios='3' failedscenarios='0' pendingscenarios='0' executionTime='305'>
+        <description name='Kayttaja pystyy poistamaan viitteen' />
+        <scenario name='kayttaja pystyy poistamaan olemassaolevia viitteita' result='success' executionTime='24'>
+          <given name='kayttaja on valinnut komennon poista' />
+          <when name='haluttu viite on olemassa' />
+          <then name='viite poistetaan' result='success' />
+        </scenario>
+        <scenario name='kayttaja ei pystyy poistamaan viiteen, jos se ei ole olemassa' result='success' executionTime='18'>
+          <given name='kayttaja on valinnut komennon poista' />
+          <when name='haluttu viite ei ole olemassa' />
+          <then name='jarjestelma ilmoittaa virheesta' result='success' />
+        </scenario>
+        <scenario name='kayttaja ei pystyy poistamaan viiteen, jos tiedosto ei ole olemassa' result='success' executionTime='20'>
+          <given name='kayttaja on valinnut komennon poista' />
+          <when name='tiedosto ei ole olemassa' />
+          <then name='jarjestelma ilmoittaa virheesta' result='success' />
+        </scenario>
+      </execute>
+    </story>
+    <story name='tagin_lisaaminen' scenarios='2' failedscenarios='0' pendingscenarios='0' executionTime='248'>
+      <execute name='tagin_lisaaminen' scenarios='2' failedscenarios='0' pendingscenarios='0' executionTime='241'>
         <description name='Kayttaja pystyy lisaamaan tageja viitteisiin' />
-        <scenario name='kayttaja pystyy lisaamaan tageja olemassaoleviin viitteisiin' result='success' executionTime='19'>
+        <scenario name='kayttaja pystyy lisaamaan tageja olemassaoleviin viitteisiin' result='success' executionTime='14'>
           <given name='kayttaja on valinnut komennon tagi' />
           <when name='haluttu viite on olemassa' />
           <then name='tagi on lisatty viitteeseen' result='success' />
         </scenario>
-        <scenario name='kayttaja ei pystyy lisaamaan tageja, jos haettu viite ei ole olemassa' result='success' executionTime='17'>
+        <scenario name='kayttaja ei pystyy lisaamaan tageja, jos haettu viite ei ole olemassa' result='success' executionTime='12'>
           <given name='kayttaja on valinnut komennon tagi' />
           <when name='haluttu viite on olemassa' />
           <then name='tagi on lisatty viitteeseen' result='success' />
         </scenario>
       </execute>
     </story>
-    <story name='viitteen_lisaaminen' scenarios='4' failedscenarios='0' pendingscenarios='0' executionTime='420'>
-      <execute name='viitteen_lisaaminen' scenarios='4' failedscenarios='0' pendingscenarios='0' executionTime='405'>
+    <story name='viitteen_lisaaminen' scenarios='4' failedscenarios='0' pendingscenarios='0' executionTime='317'>
+      <execute name='viitteen_lisaaminen' scenarios='4' failedscenarios='0' pendingscenarios='0' executionTime='311'>
         <description name='Kayttaja pystyy lisaamaan uusi viite jarjestelmaan' />
-        <scenario name='kayttaja pystyy lisaamaan uusi viite, jos annetut tiedot on oikein' result='success' executionTime='20'>
+        <scenario name='kayttaja pystyy lisaamaan uusi viite, jos annetut tiedot on oikein' result='success' executionTime='19'>
           <given name='kayttaja on valinnut komennon lisaa' />
           <when name='label on mielivaltainen merkkijono joka ei viela ole olemassa jarjestelmassa' />
           <then name='Uusi viite on lisatty' result='success' />
         </scenario>
-        <scenario name='kayttaja ei pysty lisaamaan uusi viite, jos annettu label on jo olemassa' result='success' executionTime='21'>
+        <scenario name='kayttaja ei pysty lisaamaan uusi viite, jos annettu label on jo olemassa' result='success' executionTime='13'>
           <given name='kayttaja on valinnut komennon lisaa' />
           <when name='label on mielivaltainen merkkijono joka ei viela ole olemassa jarjestelmassa' />
           <then name='Uusi viite on lisatty' result='success' />
         </scenario>
-        <scenario name='kayttaja ei pysty antaamaan vaaraa viitteen tyyppia' result='success' executionTime='19'>
+        <scenario name='kayttaja ei pysty antaamaan vaaraa viitteen tyyppia' result='success' executionTime='12'>
           <given name='kayttaja on valinnut komennon lisaa' />
           <when name='kayttaja antaa vaara viitten tyyppi (ei 1,2,3)' />
           <then name='Jarjestelma pyytaa antamaan toinen tyyppi' result='success' />
         </scenario>
-        <scenario name='kayttaja pystyy lisamaan tageja uuteen viitteeseen' result='success' executionTime='18'>
+        <scenario name='kayttaja pystyy lisamaan tageja uuteen viitteeseen' result='success' executionTime='22'>
           <given name='kayttaja on valinnut komennon lisaa' />
           <when name='kayttaja lisaa tageja viitteeseen' />
           <then name='tageja on lisatty viitteeseen' result='success' />
         </scenario>
       </execute>
     </story>
-    <story name='viitteiden_listaaminen' scenarios='3' failedscenarios='0' pendingscenarios='0' executionTime='298'>
-      <execute name='viitteiden_listaaminen' scenarios='3' failedscenarios='0' pendingscenarios='0' executionTime='292'>
+    <story name='viitteiden_listaaminen' scenarios='3' failedscenarios='0' pendingscenarios='0' executionTime='288'>
+      <execute name='viitteiden_listaaminen' scenarios='3' failedscenarios='0' pendingscenarios='0' executionTime='283'>
         <description name='Kayttaja pystyy listaamaan kaikki viitteet' />
-        <scenario name='kayttaja pystyy listamaan epatyhjan viitteiden listan' result='success' executionTime='20'>
+        <scenario name='kayttaja pystyy listamaan epatyhjan viitteiden listan' result='success' executionTime='30'>
           <given name='kayttaja on valinnut komennon lista' />
           <when name='viitteiden lista on epatyhja' />
           <then name='lista on tulostettu' result='success' />
         </scenario>
-        <scenario name='kayttaja pystyy listamaan tyhjan viitteiden listan' result='success' executionTime='12'>
+        <scenario name='kayttaja pystyy listamaan tyhjan viitteiden listan' result='success' executionTime='29'>
           <given name='kayttaja on valinnut komennon lista' />
           <when name='viitteiden lista on tyhja' />
           <then name='Jarjestelma kertoo, etta viiteita ei ole' result='success' />
         </scenario>
-        <scenario name='kayttaja pystyy listamaan viitteiden listan, jos viitteilla on tageja' result='success' executionTime='27'>
+        <scenario name='kayttaja pystyy listamaan viitteiden listan, jos viitteilla on tageja' result='success' executionTime='17'>
           <given name='kayttaja on valinnut komennon lista' />
           <when name='viitteiden lista on epatyhja ja viitteilla on tageja' />
           <then name='Jarjestelma kertoo, etta viiteita ei ole' result='success' />
         </scenario>
       </execute>
     </story>
-    <story name='tagi_haku' scenarios='1' failedscenarios='0' pendingscenarios='0' executionTime='160'>
-      <execute name='tagi_haku' scenarios='1' failedscenarios='0' pendingscenarios='0' executionTime='156'>
+    <story name='tagi_haku' scenarios='1' failedscenarios='0' pendingscenarios='0' executionTime='139'>
+      <execute name='tagi_haku' scenarios='1' failedscenarios='0' pendingscenarios='0' executionTime='134'>
         <description name='Kayttaja voi hakea viitteita tagien perusteella' />
-        <scenario name='Kayttaja voi hakea viitteita tagin perustella, jos annettu tagi on olemassa' result='success' executionTime='26'>
+        <scenario name='Kayttaja voi hakea viitteita tagin perustella, jos annettu tagi on olemassa' result='success' executionTime='20'>
           <given name='kayttaja on valinnut komennon haku' />
           <when name='haettu tagi on olemassa' />
           <then name='jarjestelma listaa viitteita' result='success' />

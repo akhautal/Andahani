@@ -15,8 +15,6 @@ public class Bibtallentaja implements BibtallentajaRajapinta {
     public void tallenna(Viite viite, String tiedostonimi){
         try
 	{
-            //pitäisi aina tehdä uusi tiedosto, muuten samat viitteet tallentuvat monta kertaa 
-            //kun bibtiedosto-tallennusta kutsutaan monta kertaa
             BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(tiedostonimi, true),"UTF8"));
 
             int i = 2;
@@ -49,12 +47,10 @@ public class Bibtallentaja implements BibtallentajaRajapinta {
     }
     
     private String tarkistaAakkoset(String lisattava){
-        //muutettava ööt \"{o} :ksi ja äät \"{a} :ksi
-        //(ja ÖÖT \"{O} ja ÄÄT \"{A} :ksi)        
-        lisattava.replace("ö", "\\\"{o}");
-        lisattava.replace("Ö", "\\\"{O}");
-        lisattava.replace("ä", "\\\"{a}");
-        lisattava.replace("Ä", "\\\"{A}");        
+        lisattava = lisattava.replace("ö", "\\\"{o}");
+        lisattava = lisattava.replace("Ö", "\\\"{O}");
+        lisattava = lisattava.replace("ä", "\\\"{a}");
+        lisattava = lisattava.replace("Ä", "\\\"{A}");
         return lisattava;
     }
 }   
